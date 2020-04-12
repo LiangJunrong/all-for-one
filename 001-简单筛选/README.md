@@ -26,6 +26,18 @@
 
 级别：简单
 
+## <a name="chapter-three" id="chapter-three"></a>三 知识点
+
+> [返回目录](#chapter-one)
+
+* 获取单个元素：`const getItem = document.querySelector('body')`
+* 获取多个元素：`const getAllItem = document.querySelectorAll('body button')`
+* 创建元素：`const createItem = document.createElement('p')`
+* 原有内容添加元素：`document.querySelect('body').appendChild(createItem)`
+* 设置内容：`getItem = ''`，`createItem = '<span>年龄</span>'`
+* 添加样式：`getItem.add('container')`
+* 移除样式：`getItem.remove('container')`
+
 ---
 
 **不折腾的前端，和咸鱼有什么区别！**
