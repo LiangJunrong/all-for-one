@@ -1,0 +1,37 @@
+.container {
+  width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background: black;
+  color: #fff;
+}
+.text-center {
+  text-align: center;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+a {
+  color: deepskyblue;
+  text-decoration: none;
+}
+ul {
+  padding: 10px;
+}
+ul li {
+  opacity: 0.8;
+  border-bottom: 1px solid #fff;
+  line-height: 40px;
+  list-style: none;
+}
+ul li:hover {
+  opacity: 1;
+}
+.delete {
+  margin-left: 10px;
+}
+.add {
+  margin-right: 10px;
+}
