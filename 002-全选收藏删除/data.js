@@ -1,4 +1,4 @@
-const data = [];
+let data = [];
 // 生成小写英文随机数。ASCII 小写英文（a-z）：97-122
 const getEnglishRandom = (lower, upper) => Math.floor(Math.random() * (upper - lower + 1)) + lower;
 // 生成随机长度小写随机英文
@@ -15,4 +15,4 @@ const getData = (length) => {
     })
   }
 }
-getData(10);
+getData(5);
