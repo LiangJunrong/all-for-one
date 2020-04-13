@@ -35,3 +35,13 @@ ul li:hover {
 .add {
   margin-right: 10px;
 }
+.works {
+  display: inline-block;
+  width: 200px;
+}
+.like:hover {
+  color: red;
+}
+.dislike:hover {
+  color: green;
+}
