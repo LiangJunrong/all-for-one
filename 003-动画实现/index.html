@@ -12,15 +12,21 @@
     <div class="box2"></div>
     <div class="box1"></div>
   </div>
+  <div class="text-center">
+    <button class="button1">点我展开</button>
+    <button class="button2">点我收缩</button>
+  </div>
   <script src="./index.js"></script>
   <script>
-    jsliang('.box2').click(() => {
-      console.log('初次调用！');
-    }).click(() => {
-      console.log('链式调用！');
+    jsliang('.button1').click(() => {
       jsliang('.box2').animate({ width: '300px', height: '300px', borderRadius: '150px' }, 3000, () => {
-        console.log('动画完成！');
-      })
+        console.log('展开完成！');
+      });
+    });
+    jsliang('.button2').click(() => {
+      jsliang('.box2').animate({ width: '100px', height: '100px', borderRadius: '50px' }, 3000, () => {
+        console.log('收缩完成！');
+      });
     });
   </script>
 </body>

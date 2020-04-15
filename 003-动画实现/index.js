@@ -32,17 +32,15 @@ class JSLIANG {
   }
   animate(styles, time, fn) {
     for (let i = 0; i < this.length; i++) {
-      this[i].style.transitionDuration = time;
+      this[i].style.transition = time / 1000 + 's';
     }
     Object.getOwnPropertyNames(styles).forEach((key) => {
-      // console.log(key);
-      // console.log(styles[key]);
       for (let i = 0; i < this.length; i++) {
         this[i].style[key] = styles[key];
       }
     });
-    console.log(this);
-    console.log('time：', time);
+    fn();
+    return new JSLIANG(this);
   }
 }
 
