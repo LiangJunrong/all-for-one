@@ -1,0 +1,20 @@
+.container {
+  width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  box-shadow: 3px 3px 3px 3px solid #ccc;
+  padding: 10px;
+}
+.box1 {
+  width: 100px;
+  height: 100px;
+  background: red;
+  border-radius: 50px;
+}
+.box2 {
+  width: 100px;
+  height: 100px;
+  background: deepskyblue;
+  border-radius: 50px;
+}

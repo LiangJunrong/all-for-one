@@ -8,8 +8,20 @@
 </head>
 <body>
   <div class="container">
-
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box1"></div>
   </div>
   <script src="./index.js"></script>
+  <script>
+    jsliang('.box2').click(() => {
+      console.log('初次调用！');
+    }).click(() => {
+      console.log('链式调用！');
+      jsliang('.box2').animate({ width: '300px', height: '300px', borderRadius: '150px' }, 3000, () => {
+        console.log('动画完成！');
+      })
+    });
+  </script>
 </body>
 </html>
