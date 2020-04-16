@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-04-16 10:02:26**  
-> Recently revised in **2020-04-16 19:57:16**
+> Recently revised in **2020-4-16 22:40:37**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -13,6 +13,7 @@
 | [一 目录](#chapter-one) | 
 | <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
 | <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 知识点](#chapter-three) |
+| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 参考文献](#chapter-four) |
 
 ## <a name="chapter-two" id="chapter-two"></a>二 前言
 
@@ -31,11 +32,19 @@
 * 按键监听
 * ……
 
-## <a name="chapter-three" id="chapter-three"></a>三 知识点
+## <a name="chapter-three" id="chapter-three"></a>三 知识点和展示
 
 > [返回目录](#chapter-one)
 
-正在开发
+* 过滤搜索内容
+
+![图](img/过滤搜索内容.gif)
+
+* 上下左右控制
+
+![图](img/上下左右控制.gif)
+
+如果需要调用接口渲染的，那么防抖是个不错的点，这里就先不添加了（偷懒），如果你需要的话，自己加吧，别客气~
 
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 

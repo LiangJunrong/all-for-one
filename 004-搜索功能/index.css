@@ -38,6 +38,6 @@
   text-decoration: none;
   color: black;
 }
-.search-content li a:focus {
+.search-content li a:hover {
   color: deepskyblue;
 }
