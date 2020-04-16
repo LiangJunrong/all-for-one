@@ -22,7 +22,7 @@
   border-radius: 10px;
   box-shadow: 0 0 0 5px deepskyblue;
 }
-.search-test {
+.search-content {
   width: 90%;
   margin: 0 20px;
   list-style: none;
@@ -32,4 +32,12 @@
   border: 1px solid #ccc;
   border-top: none;
   border-radius: 10px;
+  visibility: hidden;
+}
+.search-content li a {
+  text-decoration: none;
+  color: black;
+}
+.search-content li a:focus {
+  color: deepskyblue;
 }
