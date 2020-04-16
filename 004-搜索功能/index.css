@@ -1,0 +1,35 @@
+.container {
+  width: 600px;
+  height: 400px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px 3px #ccc;
+}
+.text-center {
+  text-align: center;
+}
+.search {
+  width: 90%;
+  height: 20px;
+  margin: 0 20px;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.search:focus {
+  outline: none;
+  border-radius: 10px;
+  box-shadow: 0 0 0 5px deepskyblue;
+}
+.search-test {
+  width: 90%;
+  margin: 0 20px;
+  list-style: none;
+  padding-inline-start: 0;
+  padding-left: 10px;
+  padding-top: 5px;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 10px;
+}
