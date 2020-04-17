@@ -13,6 +13,18 @@ render(data);
 
 // 光标索引
 let index = -1;
+let timer;
+
+// 防抖
+const debounce = (delay, fn) => {
+  if (timer) {
+    clearTimeout(timer);
+  }
+  timer = setTimeout(() => {
+    timer = undefined;
+    fn();
+  }, delay);
+};
 
 const searchEvent = () => {
   // 找到输入框
@@ -37,11 +49,13 @@ const searchEvent = () => {
   // 输入内容
   search.addEventListener('input', (e) => {
     const content = document.querySelector('.search').value;
-    if (content) {
-      ul.style.visibility = 'visible';
-    }
-    const newData = data.filter(item => item.content.includes(content));
-    render(newData);
+    debounce(1000, () => {
+      if (content) {
+        ul.style.visibility = 'visible';
+      }
+      const newData = data.filter(item => item.content.includes(content));
+      render(newData);
+    })
   });
 
   search.addEventListener('keydown', (e) => {

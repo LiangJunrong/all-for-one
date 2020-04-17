@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-04-16 10:02:26**  
-> Recently revised in **2020-4-16 22:40:37**
+> Recently revised in **2020-04-17 13:22:14**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -25,13 +25,6 @@
 
 刚好最近练手 **数据驱动视图**，所以尝试着写一个。
 
-一开始想到的功能：
-
-* 防抖
-* 数据驱动视图
-* 按键监听
-* ……
-
 ## <a name="chapter-three" id="chapter-three"></a>三 知识点和展示
 
 > [返回目录](#chapter-one)
@@ -44,7 +37,11 @@
 
 ![图](img/上下左右控制.gif)
 
-如果需要调用接口渲染的，那么防抖是个不错的点，这里就先不添加了（偷懒），如果你需要的话，自己加吧，别客气~
+实现功能列表：
+
+1. 防抖
+2. 数据驱动视图
+3. 按键监听
 
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 
