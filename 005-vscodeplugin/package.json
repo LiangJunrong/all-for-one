@@ -1,7 +1,7 @@
 {
-	"name": "jsliang",
-	"displayName": "jsliang",
-	"description": "jsliang 开发的插件",
+	"name": "005-vscodeplugin",
+	"displayName": "005-VSCodePlugin",
+	"description": "jsliang 的 Visio StudioCode 插件",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.44.0"
@@ -10,13 +10,13 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:jsliang.helloWorld"
+		"onCommand:005-vscodeplugin.helloWorld"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "jsliang.helloWorld",
+				"command": "005-vscodeplugin.helloWorld",
 				"title": "Hello World"
 			}
 		]
