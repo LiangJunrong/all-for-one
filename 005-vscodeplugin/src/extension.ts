@@ -1,27 +1,27 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+// 模块（module） 'vscode' 包含了 VS Code 的可拓展性 API
+// 导入这个模块并在下面代码中使用别名 vscode 来引用它
 import * as vscode from 'vscode';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+// 这个方法在激活扩展的时候调用
+// 你的扩展在第一次执行命令时被激活
 export function activate(context: vscode.ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
+	// 使用控制台输出信息（console.log）和错误（console.error）
+	// 当你的拓展被激活时，这一行代码将只执行一次
 	console.log('Congratulations, your extension "005-vscodeplugin" is now active!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('005-vscodeplugin.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
+	// 这个命令在 package.json 文件中被定义了
+	// 现在用 registerCommand 命令实现，commandId 参数必须与 package.json 中的命令字段匹配
+	let disposable = vscode.commands.registerCommand('005-vscodeplugin.HelloWorld', () => {
+		// 你在这里配置的代码将在每次执行命令时被调用
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from 005-VSCodePlugin!');
+		// 打印一个 Message 信息弹窗
+		const message = 'Hello jsliang！这是你的第一个插件！';
+		vscode.window.showInformationMessage(message);
 	});
 
 	context.subscriptions.push(disposable);
 }
 
-// this method is called when your extension is deactivated
+// 当你的拓展被停用时会调用这个钩子
 export function deactivate() {}

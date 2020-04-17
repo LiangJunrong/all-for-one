@@ -1,7 +1,6 @@
-005 - jsliang 的 VS Code 插件开发
-===
+# 005-VSCodePlugin README
 
-This is the README for your extension "005-vscodeplugin". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "005-VSCodePlugin". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 
