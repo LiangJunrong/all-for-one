@@ -1,8 +1,8 @@
 007 - 方块运动 - 链式（Promise）
 ===
 
-> Create by **jsliang** on **2020-4-20 17:11:52**  
-> Recently revised in **2020-4-20 17:34:33**
+> Create by **jsliang** on **2020-4-20 20:09:06**  
+> Recently revised in **2020-4-20 20:09:09**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -26,12 +26,14 @@
 > [返回目录](#chapter-one)
 
 * `Window.getComputedStyle()`
+* `Promise`
 
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 
 > [返回目录](#chapter-one)
 
 * [【MDN】《Window.getComputedStyle()》](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getComputedStyle)
+* [【MDN】《Promise》](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 ---
 
