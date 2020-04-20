@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>008 - 方块运动 - 等待（async...await）</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      background: deepskyblue;
+      color: #fff;
+      text-align: center;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    jsliang
+  </div>
+
+  <script>
+    (function() {
+
+      // 1. 定义运动
+      const move = (element, position, distance, speed) => {
+        return new Promise(resolve => {
+          // 1.1 递归
+          const ergodic = () => {
+            let startPosition = parseInt(window.getComputedStyle(element, null)[position]);
+            const interval = distance > startPosition ? speed : -speed;
+            // 1.2 定时器
+            setTimeout(() => {
+              startPosition += interval;
+              element.style[position] = startPosition + 'px';
+              if (startPosition === distance) {
+                // 1.3 成功则终止
+                resolve();
+              } else {
+                // 1.4 不成功则继续递归
+                ergodic();
+              }
+            }, 100);
+          }
+          ergodic();
+        });
+      };
+      // 2. 找到元素
+      const box = document.querySelector('.box');
+      // 3. 开始奔跑
+      let time = 0;
+      async function run() {
+        const step1 = await move(box, 'left', 200, 20);
+        console.log('第一步执行完毕！');
+        const step2 = await move(box, 'top', 200, 20);
+        console.log('第二步执行完毕！');
+        const step3 = await move(box, 'left', 0, 20);
+        console.log('第三步执行完毕！');
+        const step4 = await move(box, 'top', 0, 20);
+        console.log('第四步执行完毕！');
+        time ++;
+        console.log(`执行完第 ${time} 圈.`);
+        run();
+      }
+      // 4. 开始循环奔跑
+      run();
+    })();
+  </script>
+</body>
+</html>
