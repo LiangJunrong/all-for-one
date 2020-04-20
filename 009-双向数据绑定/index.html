@@ -4,8 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>009 - 双向数据绑定 - 手写</title>
+  <script src="index.js"></script>
 </head>
 <body>
-  
+  <div id="app">
+    <!-- 第一层模板数据 -->
+    {{ message }} {{ doIt }}
+    <div>
+      <!-- 第二层模板数据 -->
+      {{ message }}
+      <div>
+        <!-- 第三层模板数据 -->
+        {{ message }}
+      </div>
+    </div>
+    {{ sayGoodBye }}
+  </div>
+
+  <script>
+    // 数据驱动
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello jsliang!',
+        doIt: '让我们荡起双桨~',
+        sayGoodBye: '玩得高兴，下次再见！',
+      },
+    });
+  </script>
 </body>
 </html>
