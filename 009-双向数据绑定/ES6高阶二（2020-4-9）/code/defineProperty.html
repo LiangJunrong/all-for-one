@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // let data = {
+    //     message: "数据"
+    // }
+    // console.log(data);
+    // data.message = "111";
+    //创建对象；
+    // let newObj = Object.defineProperty({}, "message", {
+    //     configurable: true,
+    //     enumerable: true,
+    //     get() {
+    //         console.log("get...");
+    //         return "数据"
+    //     },
+    //     set(newValue) {
+    //         console.log("set..", newValue);
+    //     }
+    // })
+    // for (let key in newObj) {
+    //     console.log(key);
+    // }
+
+
+    // delete newObj.message;
+    // console.log(newObj);
+    // console.log(newObj);
+    // newObj.message;
+    // newObj.message = "新的值";
+
+    // 修改对象；
+    let obj = {
+        name: "张三",
+        age: 20
+    }
+    for (let key in obj) {
+        let value = obj[key];
+        Object.defineProperty(obj, key, {
+            configurable: true,
+            enumerable: true,
+            get() {
+                return value;
+            },
+            set(newValue) {
+                value = newValue;
+            }
+        })
+    }
+    console.log(obj);
+</script>
+
+</html>
