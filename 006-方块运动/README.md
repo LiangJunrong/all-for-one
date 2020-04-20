@@ -1,8 +1,8 @@
 006 - 方块运动
 ===
 
-> Create by **jsliang** on **2020-4-20 17:05:58**  
-> Recently revised in **2020-4-20 17:06:02**
+> Create by **jsliang** on **2020-4-20 17:11:52**  
+> Recently revised in **2020-4-20 17:34:33**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -12,12 +12,26 @@
 | --- | 
 | [一 目录](#chapter-one) | 
 | <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
+| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 知识点](#chapter-three) |
+| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 参考文献](#chapter-four) |
 
 ## <a name="chapter-two" id="chapter-two"></a>二 前言
 
 > [返回目录](#chapter-one)
 
-方块运动
+无
+
+## <a name="chapter-three" id="chapter-three"></a>三 知识点和展示
+
+> [返回目录](#chapter-one)
+
+* `Window.getComputedStyle()`
+
+## <a name="chapter-four" id="chapter-four"></a>四 参考文献
+
+> [返回目录](#chapter-one)
+
+* [【MDN】《Window.getComputedStyle()》](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getComputedStyle)
 
 ---
 
