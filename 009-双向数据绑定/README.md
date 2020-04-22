@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-4-20 21:46:11**  
-> Recently revised in **2020-4-20 21:46:14**
+> Recently revised in **2020-4-22 08:34:00**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -12,26 +12,102 @@
 | --- | 
 | [一 目录](#chapter-one) | 
 | <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
-| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 知识点](#chapter-three) |
-| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 参考文献](#chapter-four) |
 
 ## <a name="chapter-two" id="chapter-two"></a>二 前言
 
 > [返回目录](#chapter-one)
 
-无
+我们都知道，Vue 中有一个 `{{ 字符串 }}`，它可以解析里面的内容，并将其渲染出来，那么我们能不能对其实现方式进行简单模仿呢？
 
-## <a name="chapter-three" id="chapter-three"></a>三 知识点和展示
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>009 - 双向数据绑定 - Vue</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+  </div>
+  <script>
+    // 数据驱动
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello jsliang!',
+      },
+    });
+  </script>
+</body>
+</html>
+```
 
-> [返回目录](#chapter-one)
+当然，我们仅仅要求能展示 `message`，而不解析表达式形式，例如：`{{ 2 > 3 ? message : 123 }}`。
 
-无
+毕竟我们不需要重新造一个 `Vue`，而是体验一下人家的强大。
 
-## <a name="chapter-four" id="chapter-four"></a>四 参考文献
+所以我们应该怎么实现呢？
 
-> [返回目录](#chapter-one)
+实现方式：
 
-无
+```js
+class Vue {
+  constructor(options) {
+    this.options = options;
+    this._data = options.data;
+    this.complie();
+  };
+  complie = () => {
+    const element = document.querySelector(this.options.el);
+    const childNodes = element.childNodes;
+    this.complieNode(childNodes);
+  };
+  complieNode = (childNodes) => {
+    childNodes.forEach((node) => {
+      if (node.nodeType === 3) { // 文本节点
+        // 正则查找 {{ message }} 而不能是 {{ mess{}age }}
+        const reg = /\{\{\s*([^\{\}\s]+)\s*\}\}/g;
+        const textContent = node.textContent;
+        const textList = textContent.match(reg);
+        // 判断内容是否为空
+        if (textList) {
+          // 重新组建文本
+          let newTextContent = '';
+          // 循环获取所有文本
+          for (let i = 0; i < textList.length; i++) {
+            if (textList[i].match(reg)) {
+              const $1 = RegExp.$1;
+              const tempData = this._data[$1];
+              newTextContent += tempData;
+            }
+          }
+          // 重新渲染文本
+          node.textContent = newTextContent;
+        }
+      } else if (node.nodeType === 1) { // 元素节点
+        // 如果存在元素节点，并且里面含有内容
+        // 那么就通过递归，将所有内容解析出来
+        if (node.childNodes.length) {
+          this.complieNode(node.childNodes);
+        }
+      }
+    });
+  }
+}
+```
+
+1. 通过 `document.querySelector(this.options.el)` 获取 `#app` 里面的元素
+2. 通过 `element.childNodes` 查看该元素的节点
+3. 通过 `node.nodeType` 判断每个元素的节点类型，是文本节点还是元素节点
+4. 如果是文本节点，则通过正则判断 `{{ message }}` 形式，然后将 `message` 提取出来和 `data` 中的数据比较，并将里面的所有符合要求的数据用 `data` 替换
+5. 如果是元素节点，那就简单点，直接递归到它为单个内容为止。
+
+综上，我们完成了解析，从而产生新的疑惑：
+
+* 我们使用了正则表达式 `/\{\{\s*([^\{\}\s]+)\s*\}\}/g` 来判断 `{{ message }}` 格式，我们能换成人能看懂的方式吗？
 
 ---
 
