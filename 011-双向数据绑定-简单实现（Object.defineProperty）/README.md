@@ -1,4 +1,4 @@
-011 - 双向数据绑定 - 简单实现
+011 - 双向数据绑定 - 简单实现（Object.defineProperty）
 ===
 
 > Create by **jsliang** on **2020-4-22 22:55:38**  
