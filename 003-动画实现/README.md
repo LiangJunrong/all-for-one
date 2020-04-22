@@ -18,11 +18,15 @@
 
 > [返回目录](#chapter-one)
 
-
+实现类似于 jQuery 的方法。
 
 ## <a name="chapter-three" id="chapter-three"></a>三 知识点
 
 > [返回目录](#chapter-one)
+
+* `new`
+* 链式调用
+* 仿 jQuery
 
 ---
 
