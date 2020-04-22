@@ -1,8 +1,8 @@
-013 - 双向数据绑定 - 观察者模式
+013 - 双向数据绑定 - Proxy
 ===
 
 > Create by **jsliang** on **2020-4-22 22:57:19**  
-> Recently revised in **2020-4-22 22:57:22**
+> Recently revised in **2020-4-22 23:00:51**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
