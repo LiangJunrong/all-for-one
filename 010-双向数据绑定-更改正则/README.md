@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-4-22 08:19:58**  
-> Recently revised in **2020-4-22 08:20:01**
+> Recently revised in **2020-4-22 22:20:57**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -12,8 +12,7 @@
 | --- | 
 | [一 目录](#chapter-one) | 
 | <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
-| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 知识点](#chapter-three) |
-| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 参考文献](#chapter-four) |
+| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 操作](#chapter-three) |
 
 ## <a name="chapter-two" id="chapter-two"></a>二 前言
 
@@ -34,17 +33,65 @@
 
 * 我们可以换个正常人也能写出来的代码来做这个匹配吗？
 
-## <a name="chapter-three" id="chapter-three"></a>三 知识点和展示
+## <a name="chapter-three" id="chapter-three"></a>三 操作
 
 > [返回目录](#chapter-one)
 
-无
+原代码：
 
-## <a name="chapter-four" id="chapter-four"></a>四 参考文献
+```js
+// 正则查找 {{ message }} 而不能是 {{ mess{}age }}
+const reg = /\{\{\s*([^\{\}\s]+)\s*\}\}/g;
+const textContent = node.textContent;
+const textList = textContent.match(reg);
+// 判断内容是否为空
+if (textList) {
+  // 重新组建文本
+  let newTextContent = '';
+  // 循环获取所有文本
+  for (let i = 0; i < textList.length; i++) {
+    if (textList[i].match(reg)) {
+      const $1 = RegExp.$1;
+      const tempData = this._data[$1];
+      newTextContent += tempData;
+    }
+  }
+  // 重新渲染文本
+  node.textContent = newTextContent;
+}
+```
 
-> [返回目录](#chapter-one)
+改造后代码：
 
-无
+```js
+let textContent = node.textContent;
+// 1. 设置结果集
+const result = [];
+// 2. 开始统计
+let startFlag = false;
+let tempStr = '';
+for (let i = 0; i < textContent.length; i++) {
+  if (textContent[i] === '{' && textContent[i + 1] === '{') { // 2.1 如果是开头
+    startFlag = true;
+    i++;
+  } else if (startFlag && textContent[i] === '}' && textContent[i + 1] === '}') { // 2.2 如果有开头并且结局一样
+    startFlag = false;
+    result.push(tempStr.trim()); // result 添加 tempStr 清除掉首尾空格后的数据
+    tempStr = '';
+    i++;
+  } else {
+    tempStr += textContent[i]; // 正常添加数据
+  }
+}
+// 3. 遍历，将所有结果进行替换
+for (let i = 0; i < result.length; i++) {
+  textContent = textContent.replace(result[i], this._data[result[i]]);
+}
+// 4. 重新渲染
+node.textContent = textContent;
+```
+
+大致思路还是 OK 的。
 
 ---
 

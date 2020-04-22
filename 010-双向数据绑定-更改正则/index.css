@@ -1,0 +1,18 @@
+.floor-1 {
+  background: deepskyblue;
+  color: #fff;
+  width: 600px;
+  margin: 0 auto;
+  padding: 10px;
+  line-height: 30px;
+}
+.floor-2 {
+  background: gold;
+  padding: 10px;
+  color: black;
+}
+.floor-3 {
+  background: deepskyblue;
+  color: #fff;
+  padding: 10px;
+}

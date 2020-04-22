@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>009 - 双向数据绑定 - 简单实现</title>
+  <link rel="stylesheet" href="./index.css" />
+  <script src="index.js"></script>
+</head>
+<body>
+  <div id="app" class="floor-1">
+    <!-- 第一层模板数据 -->
+    {{ message1 }} {{ doIt1 }}
+    <div class="floor-2">
+      <!-- 第二层模板数据 -->
+      {{ message2 }} {{ doIt2 }}
+      <div class="floor-3">
+        <!-- 第三层模板数据 -->
+        {{ message3 }} {{ doIt3 }}
+      </div>
+    </div>
+    {{ sayGoodBye }}
+  </div>
+
+  <script>
+    // 数据驱动
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        message1: 'Hello jsliang！',
+        message2: 'Hello 梁峻荣！',
+        message3: 'Hello 小梁！',
+        doIt1: '让我们荡起双桨~',
+        doIt2: '勇往直前~',
+        doIt3: '直到胜利~',
+        sayGoodBye: '玩得高兴，下次再见！',
+      },
+    });
+  </script>
+</body>
+</html>
