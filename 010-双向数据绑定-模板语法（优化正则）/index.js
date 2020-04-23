@@ -12,8 +12,9 @@ class Vue {
   complieNode = (childNodes) => {
     childNodes.forEach((node) => {
       if (node.nodeType === 3) { // 文本节点
-        let textContent = node.textContent;
+        let textContent = node.textContent.trim();
         const result = [];
+        const replaceResult = [];
         let startFlag = false;
         let tempStr = '';
         for (let i = 0; i < textContent.length; i++) {
@@ -22,15 +23,16 @@ class Vue {
             i++;
           } else if (startFlag && textContent[i] === '}' && textContent[i + 1] === '}') {
             startFlag = false;
+            replaceResult.push('{{' + tempStr + '}}');
             result.push(tempStr.trim());
             tempStr = '';
             i++;
-          } else {
+          } else if (startFlag) {
             tempStr += textContent[i];
           }
         }
         for (let i = 0; i < result.length; i++) {
-          textContent = textContent.replace(result[i], this._data[result[i]]);
+          textContent = textContent.replace(replaceResult[i], this._data[result[i]]);
         }
         node.textContent = textContent;
       } else if (node.nodeType === 1) { // 元素节点
