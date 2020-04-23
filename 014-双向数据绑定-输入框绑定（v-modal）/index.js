@@ -40,7 +40,6 @@ class Vue extends EventTarget {
     const dep = new Dep();
     for (let key in data) {
       let value = data[key];
-      // const _this = this;
       Object.defineProperty(data, key, {
         configurable: true,
         enumerable: true,
@@ -51,11 +50,6 @@ class Vue extends EventTarget {
           return value;
         },
         set(newValue) {
-          // // 触发事件
-          // const event = new CustomEvent(key, {
-          //   detail: newValue,
-          // });
-          // _this.dispatchEvent(event);
           dep.notify(newValue, key);
           if (newValue !== value) {
             value = newValue;
@@ -72,8 +66,9 @@ class Vue extends EventTarget {
   complieNode = (childNodes) => {
     childNodes.forEach((node) => {
       if (node.nodeType === 3) { // 文本节点
-        let textContent = node.textContent;
+        let textContent = node.textContent.trim();
         const result = [];
+        const replaceResult = [];
         let startFlag = false;
         let tempStr = '';
         for (let i = 0; i < textContent.length; i++) {
@@ -82,32 +77,29 @@ class Vue extends EventTarget {
             i++;
           } else if (startFlag && textContent[i] === '}' && textContent[i + 1] === '}') {
             startFlag = false;
+            replaceResult.push('{{' + tempStr + '}}');
             result.push(tempStr.trim());
             tempStr = '';
             i++;
-          } else {
+          } else if (startFlag) {
             tempStr += textContent[i];
           }
         }
-        for (let i = 0; i < result.length; i++) {
-          textContent = textContent.replace(result[i], this._data[result[i]]);
-        }
-        node.textContent = textContent;
-
-        // 绑定事件二次渲染视图
-        for (let i = 0; i < result.length; i++) {
-          // this.addEventListener(result[i], e => {
-          //   if (result[i] === e.type) {
-          //     textContent = textContent.replace(this._data[result[i]], e.detail);
-          //   }
-          //   node.textContent = textContent;
-          // });
-          new Watcher(this._data, result[i], (newValue, key) => {
-            if (result[i] === key) {
-              textContent = textContent.replace(this._data[result[i]], newValue);
-            }
-            node.textContent = textContent;
-          });
+        if (result.length) {
+          for (let i = 0; i < result.length; i++) {
+            textContent = textContent.replace(replaceResult[i], this._data[result[i]]);
+          }
+          node.textContent = textContent;
+  
+          // // 绑定事件二次渲染视图
+          for (let i = 0; i < result.length; i++) {
+            new Watcher(this._data, result[i], (newValue, key) => {
+              if (result[i] === key) {
+                textContent = textContent.replace(this._data[result[i]], newValue);
+              }
+              node.textContent = textContent;
+            });
+          }
         }
       } else if (node.nodeType === 1) { // 元素节点
         // 如果存在元素节点，并且里面含有内容
