@@ -36,33 +36,43 @@ class Vue extends EventTarget {
     this.observer(this._data);
     this.complie();
   };
+  // observer(data) {
+  //   const dep = new Dep();
+  //   for (let key in data) {
+  //     let value = data[key];
+  //     Object.defineProperty(data, key, {
+  //       configurable: true,
+  //       enumerable: true,
+  //       get() {
+  //         if (Dep.target) {
+  //           dep.addSub(Dep.target);
+  //         }
+  //         return value;
+  //       },
+  //       set(newValue) {
+  //         dep.notify(newValue, key);
+  //         if (newValue !== value) {
+  //           value = newValue;
+  //         }
+  //       }
+  //     });
+  //   }
+  // };
   observer(data) {
     const dep = new Dep();
-    for (let key in data) {
-      let value = data[key];
-      // const _this = this;
-      Object.defineProperty(data, key, {
-        configurable: true,
-        enumerable: true,
-        get() {
-          if (Dep.target) {
-            dep.addSub(Dep.target);
-          }
-          return value;
-        },
-        set(newValue) {
-          // // 触发事件
-          // const event = new CustomEvent(key, {
-          //   detail: newValue,
-          // });
-          // _this.dispatchEvent(event);
-          dep.notify(newValue, key);
-          if (newValue !== value) {
-            value = newValue;
-          }
+    this._data = new Proxy(data, {
+      get(target, key) {
+        if (Dep.target) {
+          dep.addSub(Dep.target);
         }
-      });
-    }
+        return target[key];
+      },
+      set(target, key, newValue) {
+        dep.notify(newValue, key);
+        target[key] = newValue;
+        return true;
+      }
+    })
   };
   complie = () => {
     const element = document.querySelector(this.options.el);
@@ -98,12 +108,6 @@ class Vue extends EventTarget {
 
         // 绑定事件二次渲染视图
         for (let i = 0; i < result.length; i++) {
-          // this.addEventListener(result[i], e => {
-          //   if (result[i] === e.type) {
-          //     textContent = textContent.replace(this._data[result[i]], e.detail);
-          //   }
-          //   node.textContent = textContent;
-          // });
           new Watcher(this._data, result[i], (newValue, key) => {
             if (result[i] === key) {
               textContent = textContent.replace(this._data[result[i]], newValue);

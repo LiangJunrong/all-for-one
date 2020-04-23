@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-4-22 22:57:19**  
-> Recently revised in **2020-04-23 16:11:48**
+> Recently revised in **2020-04-23 16:31:36**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -12,12 +12,72 @@
 | --- | 
 | [一 目录](#chapter-one) | 
 | <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
+| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 参考文献](#chapter-three) |
 
 ## <a name="chapter-two" id="chapter-two"></a>二 前言
 
 > [返回目录](#chapter-one)
 
+* `Proxy`
+* 语法：`const p = new Proxy(target, handler)`
+* 参数：
+  * `target`：要使用 `Proxy` 包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）。
+  * `handler`：一个通常以函数作为属性的对象，各属性中的函数分别定义了在执行各种操作时代理 `p` 的行为。
 
+在原本使用 `Object.defineProperty()` 的时候：
+
+```js
+observer(data) {
+  const dep = new Dep();
+  for (let key in data) {
+    let value = data[key];
+    Object.defineProperty(data, key, {
+      configurable: true,
+      enumerable: true,
+      get() {
+        if (Dep.target) {
+          dep.addSub(Dep.target);
+        }
+        return value;
+      },
+      set(newValue) {
+        dep.notify(newValue, key);
+        if (newValue !== value) {
+          value = newValue;
+        }
+      }
+    });
+  }
+};
+```
+
+升级为 `Proxy` 之后：
+
+```js
+observer(data) {
+  const dep = new Dep();
+  this._data = new Proxy(data, {
+    get(target, key) {
+      if (Dep.target) {
+        dep.addSub(Dep.target);
+      }
+      return target[key];
+    },
+    set(target, key, newValue) {
+      dep.notify(newValue, key);
+      target[key] = newValue;
+      return true;
+    }
+  })
+};
+```
+
+## <a name="chapter-three" id="chapter-three"></a>三 参考文献
+
+> [返回目录](#chapter-one)
+
+* [【MDN】《Proxy》](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+* [【掘金】寻找海蓝96《面试官: 实现双向绑定Proxy比defineproperty优劣如何?》](https://juejin.im/post/5acd0c8a6fb9a028da7cdfaf)
 
 ---
 
