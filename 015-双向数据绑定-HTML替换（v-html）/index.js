@@ -33,6 +33,7 @@ class Vue extends EventTarget {
     super();
     this.options = options;
     this._data = options.data;
+    this.data = options.data;
     this.observer(this._data);
     this.complie();
   };
@@ -113,6 +114,9 @@ class Vue extends EventTarget {
               const inputValue = e.target.value;
               this._data[attrValue] = inputValue;
             });
+          }
+          if (attrName === 'v-html') {
+            node.innerHTML = this._data[attrValue];
           }
         });
 

@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-04-23 16:54:32**  
-> Recently revised in **2020-04-23 16:54:34**
+> Recently revised in **2020-04-23 18:36:30**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -17,7 +17,7 @@
 
 > [返回目录](#chapter-one)
 
-
+和 `v-modal` 类似，毫无挑战性。
 
 ---
 

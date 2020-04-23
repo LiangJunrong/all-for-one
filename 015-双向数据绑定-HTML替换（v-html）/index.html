@@ -8,20 +8,22 @@
   <script src="index.js"></script>
 </head>
 <body>
-  <div id="app" class="floor-1">
-    <!-- 第一层模板数据 -->
-    {{ message1 }} {{ doIt1 }}
-    <div class="floor-2">
-      <!-- 第二层模板数据 -->
-      {{ message2 }} {{ doIt2 }}
-      <div class="floor-3">
-        <!-- 第三层模板数据 -->
-        {{ message3 }} {{ doIt3 }}
+  <div id="app" class="container">
+    <h2>模板引擎</h2>
+    1 秒后和 2 秒后会改变：<span class="black">{{ message1 }} {{ doIt1 }}</span>
+    <div>
+      第二层：{{ message2 }} {{ doIt2 }}
+      <div>
+        第三层：{{ message3 }} {{ doIt3 }}
       </div>
     </div>
     {{ sayGoodBye }}
+    <hr />
     <h2>v-modal</h2>
     <input type="text" v-modal="myName">—— {{ myName }}
+    <hr />
+    <h2>v-html</h2>
+    <div v-html="myHTML">我是要被替换的内容</div>
   </div>
 
   <script>
@@ -29,21 +31,33 @@
     const vm = new Vue({
       el: '#app',
       data: {
-        message1: 'Hello jsliang！',
-        message2: 'Hello 梁峻荣！',
-        message3: 'Hello 小梁！',
+        message1: 'Hello 张三！',
+        message2: 'Hello 李四！',
+        message3: 'Hello 王五！',
         doIt1: '让我们荡起双桨~',
         doIt2: '勇往直前~',
         doIt3: '直到胜利~',
         sayGoodBye: '玩得高兴，下次再见！',
-        myName: 'jsliang',
+        myName: '狂徒张三',
+        myHTML: `
+          <p>你好，我是一个机器人 {{ myName }}</p>
+          <p>你好，我也是一个机器人</p>
+          <a href="http://www.baidu.com" target="_black">打开百度</a>
+        `,
       },
     });
+    // vm._data
     setTimeout(() => {
       vm._data.message1 = '1234567890';
       vm._data.doIt1 = '0987654321';
-      console.log('一秒后 data：', vm._data);
+      console.log('1 秒后 data：', vm._data);
     }, 1000);
+    // vm.data
+    setTimeout(() => {
+      vm.data.message1 = 'Hello 张三！';
+      vm.data.doIt1 = '让我们荡起双桨~';
+      console.log('2 秒后 data：', vm._data);
+    }, 2000);
   </script>
 </body>
 </html>
