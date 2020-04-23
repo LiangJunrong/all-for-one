@@ -8,9 +8,9 @@ class Dep {
     this.subs.push(sub);
   };
   // 发布
-  notify(newValue) {
+  notify(newValue, key) {
     this.subs.forEach((sub) => {
-      sub.update(newValue);
+      sub.update(newValue, key);
     });
   }
 }
@@ -23,8 +23,8 @@ class Watcher {
     data[key];
     Dep.target = null;
   };
-  update(newValue) {
-    this.cb(newValue);
+  update(newValue, key) {
+    this.cb(newValue, key);
   }
 }
 
@@ -40,12 +40,11 @@ class Vue extends EventTarget {
     const dep = new Dep();
     for (let key in data) {
       let value = data[key];
-      const _this = this;
+      // const _this = this;
       Object.defineProperty(data, key, {
         configurable: true,
         enumerable: true,
         get() {
-          console.log(Dep.target);
           if (Dep.target) {
             dep.addSub(Dep.target);
           }
@@ -57,7 +56,7 @@ class Vue extends EventTarget {
           //   detail: newValue,
           // });
           // _this.dispatchEvent(event);
-          dep.notify(newValue);
+          dep.notify(newValue, key);
           if (newValue !== value) {
             value = newValue;
           }
@@ -103,8 +102,11 @@ class Vue extends EventTarget {
           //   }
           //   node.textContent = textContent;
           // });
-          new Watcher(this._data, result[i], newValue => {
-            textContent = textContent.replace(this._data[result[i]], newValue);
+          new Watcher(this._data, result[i], (newValue, key) => {
+            if (result[i] === key) {
+              textContent = textContent.replace(this._data[result[i]], newValue);
+            }
+            node.textContent = textContent;
           });
         }
       } else if (node.nodeType === 1) { // 元素节点

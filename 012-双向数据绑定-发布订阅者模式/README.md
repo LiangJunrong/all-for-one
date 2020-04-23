@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-4-22 22:57:19**  
-> Recently revised in **2020-4-22 22:57:22**
+> Recently revised in **2020-04-23 15:19:05**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -17,7 +17,90 @@
 
 > [返回目录](#chapter-one)
 
+发布订阅者模式的一个改动：
 
+```js
+// 发布订阅
+// 发布者
+class Dep {
+  constructor() {
+    this.subs = [];
+  };
+  addSub(sub) {
+    this.subs.push(sub);
+  };
+  // 发布
+  notify(newValue, key) {
+    this.subs.forEach((sub) => {
+      sub.update(newValue, key);
+    });
+  }
+}
+// 订阅者
+class Watcher {
+  constructor(data, key, cb) {
+    Dep.target = this;
+    this.cb = cb;
+    // 人为触发 get
+    data[key];
+    Dep.target = null;
+  };
+  update(newValue, key) {
+    this.cb(newValue, key);
+  }
+}
+```
+
+> 发布
+
+```js
+const dep = new Dep();
+for (let key in data) {
+  let value = data[key];
+  Object.defineProperty(data, key, {
+    configurable: true,
+    enumerable: true,
+    get() {
+      if (Dep.target) {
+        dep.addSub(Dep.target);
+      }
+      return value;
+    },
+    set(newValue) {
+      dep.notify(newValue, key);
+      if (newValue !== value) {
+        value = newValue;
+      }
+    }
+  });
+}
+```
+
+> 订阅
+
+```js
+// 绑定事件二次渲染视图
+for (let i = 0; i < result.length; i++) {
+  new Watcher(this._data, result[i], (newValue, key) => {
+    if (result[i] === key) {
+      textContent = textContent.replace(this._data[result[i]], newValue);
+    }
+    node.textContent = textContent;
+  });
+}
+```
+
+不求甚解的是，为啥订阅者设置：
+
+```js
+Dep.target = this;
+this.cb = cb;
+// 人为触发 get
+data[key];
+Dep.target = null;
+```
+
+然后就可以触发事件了，估计答案在设计模式和面向对象那块内容。
 
 ---
 
