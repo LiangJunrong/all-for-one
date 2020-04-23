@@ -102,6 +102,20 @@ class Vue extends EventTarget {
           }
         }
       } else if (node.nodeType === 1) { // 元素节点
+        // 绑定 v-modal
+        const attrs = node.attributes;
+        [...attrs].forEach((attr) => {
+          const attrName = attr.name;
+          const attrValue = attr.value;
+          if (attrName === 'v-modal') {
+            node.value = this._data[attrValue];
+            node.addEventListener('input', (e) => {
+              const inputValue = e.target.value;
+              this._data[attrValue] = inputValue;
+            });
+          }
+        });
+
         // 如果存在元素节点，并且里面含有内容
         // 那么就通过递归，将所有内容解析出来
         if (node.childNodes.length) {
