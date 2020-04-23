@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-04-23 15:30:57**  
-> Recently revised in **2020-04-23 16:16:23**
+> Recently revised in **2020-04-23 16:56:14**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -17,7 +17,33 @@
 
 > [返回目录](#chapter-one)
 
+核心：
 
+> index.html
+
+```html
+<input type="text" v-modal="myName">
+```
+
+> index.js
+
+```js
+// 绑定 v-modal
+const attrs = node.attributes;
+[...attrs].forEach((attr) => {
+  const attrName = attr.name;
+  const attrValue = attr.value;
+  if (attrName === 'v-modal') {
+    node.value = this._data[attrValue];
+    node.addEventListener('input', (e) => {
+      const inputValue = e.target.value;
+      this._data[attrValue] = inputValue;
+    });
+  }
+});
+```
+
+通过查找节点，然后看是否有 `v-modal`，对该节点的 `input` 操作进行监听，然后进行数据绑定更改。
 
 ---
 
