@@ -3,9 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>defineProperty</title>
+  <title>Object.defineProperty</title>
 </head>
 <body>
   
 </body>
+<script>
+  // 原本对象观察
+  const data = {
+    message: '数据1',
+  };
+  console.log(data);
+  /*
+    Console：{message: "数据1"}
+    展开：{
+      message: "数据2"
+      __proto__: Object
+    }
+  */
+  data.message = '数据2';
+
+
+
+  // 新的观察方式
+  const newObj = Object.defineProperty({}, 'message', {
+    configurable: true,
+    enumerable: true,
+    get() {
+      console.log('get...');
+      return '数据3';
+    },
+    set(newValue) {
+      console.log('set...');
+      console.log(newValue);
+    }
+  });
+  // 1. 观察这个新对象
+  console.log(newObj);
+  /*
+    Console：{}
+    展开：{
+      message: "数据3"
+      get message: ƒ get()
+      set message: ƒ set(newValue)
+      __proto__: Object
+    }
+  */
+  // 2. 触发 Get
+  console.log(newObj.message);
+  /*
+    Console：
+    * get...
+    * 数据3
+  */
+  // 3. 修改 Set
+  newObj.message = 'jsliang';
+  // Console：set...
+  // 4. 遍历对象
+  for (let key in newObj) {
+    console.log(key);
+  }
+  // Console：message
+
+
+
+  // 修改 Object.defineProperty 观察对象
+  const obj = {
+    name: 'jsliang',
+    age: 25,
+  };
+  for (let key in obj) {
+    let value = obj[key];
+    Object.defineProperty(obj, key, {
+      configurable: true,
+      enumerable: true,
+      get() {
+        return value;
+      },
+      set(newValue) {
+        value = newValue;
+      },
+    });
+  }
+  console.log(obj);
+  /*
+    Console：{}
+    展开：{
+      age: 25
+      name: "jsliang"
+      get age: ƒ get()
+      set age: ƒ set(newValue)
+      get name: ƒ get()
+      set name: ƒ set(newValue)
+      __proto__: Object
+    }
+  */
+  delete obj.name;
+  console.log(obj);
+  /*
+    Console：{}
+    展开：{
+      age: 25
+      name: "LiangJunrong"
+      get age: ƒ get()
+      set age: ƒ set(newValue)
+      get name: ƒ get()
+      set name: ƒ set(newValue)
+      __proto__: Object
+    }
+  */
+</script>
 </html>
