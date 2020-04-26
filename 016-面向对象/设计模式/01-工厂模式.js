@@ -1,6 +1,6 @@
 /**
  * @name 01-工厂模式
- * @description 2020-4-26 16:40:18
+ * @description 2020-4-26 16:53:40
  */
 
 // const zhangsan = {
@@ -20,14 +20,20 @@
 // ……王五、赵六……
 // 都是同一个模子复制出来的玩意，使用工厂模式
 
+// 工厂模式
 function Person(name, age, hobby) {
-  const obj = {};
+  const obj = {}; // 添加原料
   obj.name = name;
   obj.age = age;
   obj.hobby = function() {
     console.log(hobby);
   };
-  return obj;
+  return obj; // 出厂
 };
+
+// const person1 = new Person('张三', 20, '喜欢玩');
+// const person2 = new Person('李四', 21, '没有爱好');
+// console.log(person1);
+// console.log(person2);
 
 module.exports = Person;
