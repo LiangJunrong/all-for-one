@@ -20,15 +20,24 @@
 // ……王五、赵六……
 // 都是同一个模子复制出来的玩意，使用工厂模式
 
-// 工厂模式
+// 工厂模式 - 原版
+// function Person(name, age, hobby) {
+//   const obj = {}; // 添加原料
+//   obj.name = name;
+//   obj.age = age;
+//   obj.hobby = function() {
+//     console.log(hobby);
+//   };
+//   return obj; // 出厂
+// };
+
+// 工厂模式 - 根据 new 运算符改造
 function Person(name, age, hobby) {
-  const obj = {}; // 添加原料
-  obj.name = name;
-  obj.age = age;
-  obj.hobby = function() {
+  this.name = name;
+  this.age = age;
+  this.hobby = function() {
     console.log(hobby);
   };
-  return obj; // 出厂
 };
 
 // const person1 = new Person('张三', 20, '喜欢玩');
