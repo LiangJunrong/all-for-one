@@ -1,0 +1,42 @@
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+h2 {
+  margin: 0;
+}
+#wrap {
+  margin: 30px auto;
+  width: 482px;
+  padding: 5px;
+  position: relative;
+  border: 1px solid #000;
+  background: #eee;
+}
+.title {
+  font: bold 18px/40px "宋体";
+  text-align: center;
+  border-bottom: 1px solid #000;
+}
+#list {
+  padding-left: 2px;
+}
+#list li {
+  opacity: 0.8;
+  font: 14px/36px "宋体";
+  border-bottom: 1px solid #000;
+}
+#list li:hover {
+  opacity: 1;
+}
+#list label input {
+  margin: 0 20px 0 30px;
+}
+input[type="chekbox"] {
+  width: 20px;
+  height: 20px;
+}
+.footer {
+  font: 16px/36px "宋体";
+}

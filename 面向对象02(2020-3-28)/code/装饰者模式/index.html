@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 装饰者模式-->扩展；--->横向；(增强)
+    // 继承  --->扩展； --->纵向扩展；（扩展新功能）super；
+    // 对象装饰；
+    // class Hero{
+    //     constructor(name){
+    //         this.name = name;
+    //     }
+    //     fire(){
+    //         console.log("释放了技能");
+    //     }
+    // }
+
+
+
+    // function fireDecrator (hero){
+    //     this.hero = hero;
+    // }
+    // fireDecrator.prototype.fire = function(fn,...arg){
+    //     // 要扩展的方法；
+    //     fn();
+    //     this.hero.fire();
+    // }
+
+    // let hero = new Hero("王昭君");
+    // // hero.fire();
+    // let newfireDecrator = new fireDecrator(hero);
+    // function fn(){
+    //     console.log("造成了200点伤害");
+    // }
+    // newfireDecrator.fire(fn,..arg);
+
+    // new Function();
+
+    // 函数扩展
+    function fn(){
+        console.log("fn的逻辑...");
+    }
+    Function.prototype.DecratorFn = function(extendsFn,...arg){
+        extendsFn.call(this);
+        this.call(this,...arg);
+    }
+    // fn();
+    function myAddFn(){
+        console.log("扩展的逻辑..");
+    }
+    fn.DecratorFn(myAddFn);
+
+
+
+
+
+</script>
+</html>

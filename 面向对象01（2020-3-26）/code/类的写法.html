@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 面向对象  oop； 抽象---》对象（属性，方法）-->类---》研究类之间逻辑关系；可扩展性，可维护性；
+    // 面向过程；
+
+    // es5：构造函数--》模拟类的概念；
+    // function Person(name){
+    //     this.name = name;
+    //     this.age = 20;
+    // }
+    // Person.prototype.hobby = function(){
+    //     console.log("喜欢篮球");
+    // }
+    // Person.num = 10;
+    //es6 类；
+    // 函数；
+    class Person{
+        static height = 20;
+        // 私有属性
+        #myname = "李四";
+        constructor(name){
+            this.name = name;
+            this.age = 20;
+        }
+        hobby(){
+            console.log("喜欢篮球");
+        }
+    }
+    // console.log(Person.height);
+    // Person.num
+    // console.log(typeof Person);
+    let zhangsan = new Person("张三");
+    // zhangsan.hobby();
+    // console.log(zhangsan.#myname);
+
+//    Object.keys();
+//    Object.values()
+
+
+
+</script>
+</html>

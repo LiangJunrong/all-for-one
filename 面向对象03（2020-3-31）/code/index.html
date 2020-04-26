@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+// 解耦；
+function fn1(){
+    console.log("fn1...");
+}
+
+function fn2(){
+    console.log("fn2...");
+}
+
+// fn1();
+// fn2();
+// 类似事件一样触发；
+// document.addEventListener("click",fn1);
+// document.addEventListener("click",fn2);
+// [fn1,fn2,fn3]
+let handle = {};
+// 事件绑定；
+addEvent("myevent",fn1);
+addEvent("myevent",fn2);
+// 移除；
+removeEvent("myevent",fn2);
+// 触发；
+trigger("myevent");
+// {myevnet:[fn1,fn2],myevnet2:[fn3,fn4]}
+// 绑定事件
+function addEvent(evnetName,fn){
+    if(typeof handle[evnetName] === "undefined"){
+        handle[evnetName] = [];
+    }
+    handle[evnetName].push(fn);
+}
+
+// 触发；
+function trigger(evnetName){
+    if(!evnetName in handle){
+        return ;
+    }
+    handle[evnetName].forEach(event=>{
+        event();
+    })
+}
+
+// 移除自定义事件
+function removeEvent(eventName,fn){
+    if(!eventName in handle){
+        return ;
+    }
+    for(let i=0;i<handle[eventName].length;i++){
+        if(fn===handle[eventName][i]){
+            handle[eventName].splice(i,1);
+            break;
+        }
+    }
+}
+
+// for(let i=0;i)
+// let obj = {
+//     name:"张三",
+//     age:20
+// }
+// let arr = ["张三","李四","王五"];
+// obj.__proto__.height = "178cm";
+// for(let i in obj){
+//     // console.log(i);
+
+// }
+
+// let arr = []
+
+// for(let value of arr){
+//     console.log(value)
+// }
+
+
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <img is="my-img" src="#" /> -->
+    <my-component></my-component>
+</body>
+<script>
+    // 继承html的自定义组件；
+    // class MyComponent extends HTMLImageElement{
+    //     constructor(){
+    //         super();
+    //         // console.log(this);
+    //         setTimeout(()=>{
+    //             this.src = "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3173584241,3533290860&fm=26&gp=0.jpg";
+    //         },2000)
+    //     }
+    // }
+    // customElements.define("my-img",MyComponent,{
+    //     extends : "img"
+    // })
+    // 独立自定义组件
+
+    class MyComponent extends HTMLElement{
+        constructor(){
+            super();
+            console.log(this);
+            this.innerHTML = `<button>自定义组件里的button</button>`;
+        }
+    }
+    customElements.define("my-component",MyComponent);
+
+
+</script>
+</html>

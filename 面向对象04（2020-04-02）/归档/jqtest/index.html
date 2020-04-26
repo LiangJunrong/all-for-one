@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery2.1.1.js" type="text/javascript"></script>
+    <style>
+        .box1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box1"></div>
+    <button class="btn">点击</button>
+</body>
+<script>
+    // document.querySelector(".box1").onclick = function(){
+    //     console.log("box1...");
+    // }
+    // $(".box1").click(()=>{console.log(111)})
+    // $(".box1")
+    // $(function(){
+    //     console.log("some value...")
+    // })
+    // $(document.querySelector(".box1")).click(function(){
+    //     console.log("1111");
+    // })
+    
+    // $(".box1").click(()=>{console.log(111)})
+        // $(".box1").on("click",()=>{console.log(111)});
+        // $(".box1").on("mousemove   mousedown  mouseover",()=>{console.log(111)});
+        // $(".box1").eq(0).click(function(){
+        //     console.log("click...");
+        // })
+        // $(".box1").eq(0).end();
+        // console.log($(".box1"));
+    //    console.log( $(".box1").end() );
+// $(".box2").css("background","yellow");
+// $(".box2").css({"background":"black","width":"200px"});
+//  console.log( $(".box1").css("background"));
+// wh  
+// $.cssHooks['wh'] = {
+//     get(el){
+//         // console.log(el);
+//         return el.offsetWidth + " " +  el.offsetHeight;
+//     },
+//     set(el,value){
+//         // console.log("??",el,value);
+//         el.style['width'] = value;
+//         el.style['height'] = value;
+//     }
+// } 
+// //  $(".box1").css("wh")
+// $(".box1").css("wh","200px");
+// 作业：  实现animate方法；
+$(".btn").click(function(){
+    // $(".box2").animate({"width":"300px"},function(){
+    //     console.log("运动完成！！！");
+    // });
+    $(".box2").animate({"width":"300px"},"fast",function(){
+        console.log("运动完成！！！");
+    });
+
+})
+
+
+</script>
+</html>
