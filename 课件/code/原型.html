@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+function Person(name){
+    this.name = name;
+    this.age = 20;
+    // this.hobby = function(){
+    //     console.log("喜欢篮球");
+    // }
+}
+
+// 功能空间原型；
+// Person.prototype.hobby = function(){
+//     console.log("喜欢篮球");
+// }
+// Person.prototype.fn = function(){
+//     console.log("fn");
+// }
+// Person.prototype = {
+//     constructor:Person,
+//     hobby:function(){
+//         console.log("hobby");
+//     }
+// }
+
+// 原型的固有属性；
+// console.log( Person.prototype.constructor===Person);
+// let zhangsan = new Person("张三");
+// console.log(zhangsan.constructor===Person);
+// console.log(zhangsan);
+// console.log(zhangsan.__proto__===Person.prototype);
+// let lisi = new Person("李四");
+
+// console.log(zhangsan.hobby===lisi.hobby);
+
+// 判断类型；
+// let str = new String("abd");
+// let str = "abc";
+// console.log(str.constructor===String);
+
+</script>
+</html>

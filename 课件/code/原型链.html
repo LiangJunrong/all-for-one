@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+// 构造函数
+function Foo(name){
+    this.name = name;
+    this.age = 20;
+    // this.test = "你好111"
+}
+//原型对象；
+Foo.prototype.fn = function () {
+    console.log("f");
+}
+// Foo.prototype.test = "hello";
+// Object.prototype.test = "你好222";
+let newFoo = new Foo("张三");
+console.log( newFoo.test);
+// let obj  = new  Object();
+// console.log(Object.prototype.__proto__);
+
+
+
+
+
+</script>
+</html>

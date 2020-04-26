@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+// 对象创建
+// 1.字面量方式
+let str = 'name';
+
+let obj = {
+    [str]:"张三",
+    age:"20",
+    hobby:function(){
+        console.log("喜欢篮球")
+    }
+}
+// 2.构造函数；
+// let obj = new Object();
+// obj.name = "张三";
+// obj.age  = 20;
+// obj.hobby = function(){
+//     console.log("喜欢篮球")
+// }
+// console.log(obj);
+// 3.Object.create() ;属性方法放在原型上；
+// let obj = Object.create({
+//     name:"张三",
+//     age:20,
+//     hobby(){
+//         console.log("喜欢篮球");
+//     }
+// })
+// console.log(obj)
+
+// 对象的调用；
+// console.log(obj.name);
+// obj.hobby();
+console.log(obj['name']);
+// let str = "name";
+// // console.log( obj.str);
+// console.log( obj[str]);
+</script>
+</html>

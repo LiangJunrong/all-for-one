@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+// let zhangsan = {
+//     name:"张三",
+//     age:20,
+//     hobby(){
+//         console.log("喜欢篮球");
+//     }
+// }
+// let lisi = {
+//     name:"李四",
+//     age:21,
+//     hobby(){
+//         console.log("喜欢足球");
+//     }
+// }
+// 工厂模式 ：类
+function Person(name,age,hobby){
+    let obj = {}; // 添加原料
+    obj.name = name;
+    obj.age = age;
+    obj.hobby = function(){
+        console.log(hobby);
+    }
+    // 加工原料
+    return obj; //出厂；
+}
+
+let zhangsan  = Person("张三",20,"喜欢篮球");
+let lisi  = Person("李四",21,"喜欢足球");
+console.log(zhangsan);
+console.log(lisi);
+
+
+
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+function Dad(name,age) {
+    this.name = name;
+    this.age = age;
+    this.money = "100000";
+}
+Dad.prototype.fn = function () {
+    console.log("喜欢象棋");
+}
+
+function Son(name,age) {
+    Dad.call(this,name,age);
+    this.sex = "男";
+}
+
+// Son.prototype =deepCopy(Dad.prototype);
+let Link = function(){};
+Link.prototype = Dad.prototype;
+Son.prototype = new Link();
+Son.prototype.constructor = Son;
+Son.prototype.fn = function () {
+    console.log("喜欢篮球");
+}
+let zhangsan  = new Son("张三",20);
+// console.log( zhangsann.money);
+// console.log( zhangsann.sex);
+zhangsan.fn();
+let zhangyi  = new Dad("张一",50);
+zhangyi.fn();
+
+
+</script>
+</html>

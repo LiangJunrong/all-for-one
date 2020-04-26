@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+// let str = "";
+// let str = new String();
+// 1.执行函数；2.自动创建一个空对象； 3.把空对象和this绑定 4.如果没有返还，隐式返还this；
+// function test(){
+//     console.log("test");
+// }
+// test();
+// new test();
+// new test;
+
+// function Test(){
+//     // let obj = {};  === this;
+
+
+//     // return this;
+// }
+
+// new Test();
+
+
+// 工厂模式；
+function Person(name,age,hobby){
+    // let obj = {}; // 添加原料  === this;
+    this.name = name;
+    this.age = age;
+    this.hobby = function(){
+        console.log(hobby);
+    }
+    // 加工原料
+    // return obj; //出厂；
+}
+
+let zhangsan =  new Person("张三",20,"篮球");
+console.log( zhangsan.name);
+zhangsan.hobby();
+
+</script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//复杂数据类型传址;
+// let DadProto = {
+//     name:"张三",
+//     age:20
+// }
+
+// let SonProto = DadProto;
+// SonProto.name = "李四";
+// console.log(SonProto);
+// console.log(DadProto);
+
+// 简单数据类型：传值；
+// let a = 10;
+// let b = a;
+// b = 20;
+// console.log(a);
+
+// 深拷贝；
+// let DadProto = {
+//     name:"张三",
+//     age:20,
+//     fn:function() {
+//         console.log("fn..");
+//     },
+//     test:undefined
+// }
+
+// let SonProto = JSON.parse(JSON.stringify( DadProto));
+// SonProto.name = "李四";
+// console.log(DadProto);
+// console.log(SonProto);
+
+
+// 深拷贝 
+let obj = {
+    name:"张三",
+    age:20,
+    fn:function() {
+        console.log("fn..");
+    },
+    test:undefined,
+    arr:[],
+}
+
+let obj2 = deepCopy( obj);
+
+obj2.name = "李四";
+console.log(obj2);
+console.log(obj);
+
+function deepCopy(obj) {
+    let newObj = Array.isArray(obj)?[]:{};
+    for(let key in obj){
+        if(obj.hasOwnProperty(key)){
+            if(typeof obj[key] === "object"){
+                newObj[key] = deepCopy(obj[key]) ;
+            }else{
+                newObj[key] = obj[key];
+            }
+        }
+    }
+    return newObj;
+}
+
+</script>
+</html>
