@@ -1,3 +1,8 @@
+/**
+ * @name 主调用面板
+ * @description 2020-4-26 16:54:15
+ */
+
 const Person = require('./设计模式/01-工厂模式');
 
 // 工厂模式
