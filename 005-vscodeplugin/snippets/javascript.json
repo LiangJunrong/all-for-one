@@ -1,0 +1,14 @@
+{
+  "@api": {
+		"prefix": "@api",
+		"body": [
+			"/**",
+			"* @name 接口名字",
+      "* @tutorial 接口地址",
+      "* @param 接口参数",
+      "* @return 接口返回",
+			"*/"
+		],
+		"description": "PLM 接口文档注释"
+	}
+}
