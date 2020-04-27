@@ -12,6 +12,10 @@
 */
 ```
 
+一套下来发现小茗同学的文档非常齐全了，这里仅仅是为了做这个内容的插件，如果你不知道自己想做什么，或者单纯想知道某块内容怎么做，推荐看小茗同学的 VS Code 插件开发全套系列。
+
+* [【博客园】小茗同学《VSCode插件开发全攻略（一）概览》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-overview.html)
+
 ## 一 安装脚手架
 
 * 安装 `yeoman` 脚手架工具：`npm i yo -g`
@@ -343,7 +347,31 @@ Do you want to continue? [y/N] y
 
 ## 八 发布
 
+1. 创建 Microsoft 账号：https://login.live.com/
+2. 通过 Microsoft 账号注册 Azure 账号：https://aka.ms/SignupAzureDevOps
+3. 进入 Azure 后在右上角的个人设置出找到 `Person access tokens`
+4. 创建 Token：
 
+```
+Name：随便填
+Organization：All assessible organizations
+Expiration（UTC）：90 days
+Scopes：Full access
+```
+
+5. 通过命令行发布：`vsce create-publisher jsliang`（比较麻烦，不推荐）
+6. 最好通过网站上传发布：https://marketplace.visualstudio.com/manage
+
+我这边看到的是：
+
+![](./images/plm-snipptes.png)
+
+代表着发布完成了。
+
+> 发布可以参考下面文献：
+
+* [【掘金】别闹《VS Code 插件发布步骤》](https://juejin.im/post/5d4d162c5188251f6b1ef845)
+* [【小茗同学的博客园】小茗同学《VSCode插件开发全攻略（十）打包、发布、升级》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-publish.html)
 
 ## N 参考文献
 
