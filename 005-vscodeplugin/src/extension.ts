@@ -8,7 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// 使用控制台输出信息（console.log）和错误（console.error）
 	// 当你的拓展被激活时，这一行代码将只执行一次
-	console.log('Congratulations, your extension "005-vscodeplugin" is now active!');
+	console.log('你的扩展已被激活');
 
 	// 这个命令在 package.json 文件中被定义了
 	// 现在用 registerCommand 命令实现，commandId 参数必须与 package.json 中的命令字段匹配
@@ -24,4 +24,6 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // 当你的拓展被停用时会调用这个钩子
-export function deactivate() {}
+export function deactivate() {
+	console.log('你的扩展已被释放');
+}
