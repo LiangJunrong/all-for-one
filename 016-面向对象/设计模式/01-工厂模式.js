@@ -32,17 +32,30 @@
 // };
 
 // 工厂模式 - 根据 new 运算符改造
-function Person(name, age, hobby) {
-  this.name = name;
-  this.age = age;
-  this.hobby = function() {
-    console.log(hobby);
+// function Person(name, age, hobby) {
+//   this.name = name;
+//   this.age = age;
+//   this.hobby = function() {
+//     console.log(hobby);
+//   };
+// };
+function Factory() {
+  // 原料
+  const o = {};
+  // 加工原料
+  o.name = '张三';
+  o.fn = function() {
+    console.log('喜欢篮球');
   };
-};
+  // 出厂
+  return o;
+}
+
+export default Factory;
 
 // const person1 = new Person('张三', 20, '喜欢玩');
 // const person2 = new Person('李四', 21, '没有爱好');
 // console.log(person1);
 // console.log(person2);
 
-module.exports = Person;
+// module.exports = Person; // Node 导出
