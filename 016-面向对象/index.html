@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>面向对象</title>
+</head>
+<body>
+  
+</body>
+<script type="module">
+  import Factory from './设计模式/01-工厂模式.js';
+  const p1 = new Factory('jsliang');
+  console.log(p1); // {name: "张三", fn: ƒ}
+  console.log(p1.fn()); // '喜欢篮球'
+</script>
+</html>
