@@ -317,6 +317,96 @@ export function deactivate() {}
 }
 ```
 
+* 【2020-04-28 20:18:35】实现插入代码
+
+> json
+
+```json
+{
+	"activationEvents": [
+		"onCommand:extension.fileheader"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"keybindings": [
+			{
+				"command": "extension.fileheader",
+				"key": "ctrl+shift+i",
+				"mac": "cmd+shift+i",
+				"when": "editorTextFocus"
+			}
+		]
+	},
+}
+```
+
+> extension.ts
+
+```ts
+// 模块（module） 'vscode' 包含了 VS Code 的可拓展性 API
+// 导入这个模块并在下面代码中使用别名 vscode 来引用它
+import * as vscode from 'vscode';
+
+// 这个方法在激活扩展的时候调用
+// 你的扩展在第一次执行命令时被激活
+export function activate(context: vscode.ExtensionContext) {
+
+	// 使用控制台输出信息（console.log）和错误（console.error）
+	// 当你的拓展被激活时，这一行代码将只执行一次
+	console.log('你的扩展已被激活');
+
+	const disposable = vscode.commands.registerCommand('extension.fileheader', () => {
+		let lang:any;
+		let selection:any;
+		let nowLineText:any;
+		if (vscode.window.activeTextEditor) {
+			// 找到文件类型
+			lang = vscode.window.activeTextEditor.document.languageId;
+			// 找到当前选择光标的位置
+			selection = vscode.window.activeTextEditor.selection;
+			// 找到该行的文本
+			nowLineText = vscode.window.activeTextEditor.document.lineAt(selection.start.line);
+		}
+		if ((lang === 'javascript')) {
+			const textArray = nowLineText.text.split('=');
+			const fnNameList = textArray[0].trim().split(' ');
+			// 找到函数名
+			const fnName = fnNameList[fnNameList.length - 1];
+			// 找到所有参数
+			const argName = textArray[1].match(/\(([^)]*)\)/)[1].split(',').map((item: string) => item.trim());
+			// 组装内容
+			let insertText = '';
+			insertText += '/**\n';
+			insertText += `* @name ${fnName}\n`;
+			insertText += `* @description API 接口描述\n`;
+			insertText += `* @address API 接口地址\n`;
+			for (let i = 0; i < argName.length; i++) {
+				insertText += `* @param {any} ${argName[i]}\n`;
+			}
+			insertText += '*/\n';
+
+			// 开始的行数
+			const startLine = selection.start.line;
+			// 设置位置 { line: 0, character: 1}
+			let pos:vscode.Position;
+			pos = new vscode.Position(startLine, 0);
+
+			vscode.window.activeTextEditor?.edit((editBuilder: vscode.TextEditorEdit) => {
+				editBuilder.insert(pos, insertText);
+			});
+		}
+	});
+
+	context.subscriptions.push(disposable);
+}
+
+// 当你的拓展被停用时会调用这个钩子
+export function deactivate() {
+	console.log('你的扩展已被释放');
+}
+
+```
+
 ## 七 打包
 
 不管是本地打包还是发布到应用市场都需要 `vsce` 这个工具：
