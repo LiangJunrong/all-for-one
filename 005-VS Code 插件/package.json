@@ -18,7 +18,7 @@
 	"categories": [
 		"Other"
 	],
-	"icon": "images/icon.png",
+	"icon": "images/icon.jpg",
 	"activationEvents": [
 		"onCommand:jsliang.functionComments"
 	],
