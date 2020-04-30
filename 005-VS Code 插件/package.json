@@ -1,19 +1,22 @@
 {
-	"name": "005-vscodeplugin",
-	"displayName": "005-vscodeplugin",
-	"description": "jsliang 的 插件",
-	"keywords": ["jsliang", "自定义命令"],
+	"name": "jsliang",
+	"displayName": "jsliang",
 	"publisher": "jsliang",
-	"version": "0.0.1",
+	"description": "jsliang 开发的插件，欢迎定制需求",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.44.0"
 	},
+	"keywords": [
+		"jsliang",
+		"前端"
+	],
 	"categories": [
 		"Other"
 	],
 	"icon": "images/icon.png",
 	"activationEvents": [
-		"onCommand:005-vscodeplugin.HelloWorld"
+		"onCommand:jsliang.functionComments"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -21,35 +24,21 @@
 			{
 				"language": "javascript",
 				"path": "./snippets/javascript.json"
+			},
+			{
+				"language": "html",
+				"path": "./snippets/html.json"
 			}
 		],
-		"commands": [{
-			"command": "005-vscodeplugin.HelloWorld",
-			"title": "Hello World"
-		}],
-		"keybindings": [{
-			"command": "005-vscodeplugin.HelloWorld",
-			"key": "ctrl+shift+i",
-			"mac": "cmd+shift+i",
-			"when": "editorTextFocus"
-		}],
-		"menus": {
-			"editor/context": [{
-				"when": "editorFocus",
-				"command": "005-vscodeplugin.HelloWorld",
-				"group": "navigation"
-			}]
-		}
+		"keybindings": [
+			{
+				"command": "jsliang.functionComments",
+				"key": "ctrl+shift+i",
+				"mac": "cmd+shift+i",
+				"when": "editorTextFocus"
+			}
+		]
 	},
-	"snippets": [{
-			"language": "javascript",
-			"path": "./snippets/javascript.json"
-		},
-		{
-			"language": "html",
-			"path": "./snippets/html.json"
-		}
-	],
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
