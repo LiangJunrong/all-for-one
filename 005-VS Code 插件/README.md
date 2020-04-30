@@ -54,7 +54,7 @@ jsliang 的插件
 
 在 JS 文件输入 `@fnComments` 插入 `snippets` 代码片段：
 
-![](./images/01-fn-snippets.gif)
+![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/01-fn-snippets.gif?raw=true)
 
 ### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 代码：!!
 
@@ -62,7 +62,7 @@ jsliang 的插件
 
 在 HTML 文件输入 `!!` 插入 `snippets` 代码片段：
 
-![](images/02-html-snippets.gif)
+![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/02-html-snippets.gif?raw=true)
 
 ### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 快捷键：Ctrl/Command + Shift + I
 
@@ -70,7 +70,7 @@ jsliang 的插件
 
 当光标聚集于方法体的时候，使用快捷键 `Command/Ctrl + Shift + I`，会给该方法添加注释：
 
-![](images/03-fnComment.gif)
+![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/03-fnComment.gif?raw=true)
 
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 
