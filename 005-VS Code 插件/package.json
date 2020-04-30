@@ -11,6 +11,10 @@
 		"jsliang",
 		"前端"
 	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/LiangJunrong/all-for-one.git"
+	},
 	"categories": [
 		"Other"
 	],
