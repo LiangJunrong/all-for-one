@@ -20,7 +20,8 @@
 	],
 	"icon": "images/icon.jpg",
 	"activationEvents": [
-		"onCommand:jsliang.functionComments"
+		"onCommand:jsliang.functionComments",
+		"onLanguage:javascriptreact"
 	],
 	"main": "./out/extension.js",
 	"contributes": {

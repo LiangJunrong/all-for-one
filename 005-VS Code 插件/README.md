@@ -2,7 +2,7 @@ jsliang 的插件
 ===
 
 > Create by **jsliang** on **2020-4-30 15:26:16**  
-> Recently revised in **2020-4-30 16:29:24**
+> Recently revised in **2020-05-05 15:41:26**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -22,6 +22,7 @@ jsliang 的插件
 在开发 Visio Studio Code 插件的过程中，查阅了很多插件，最让我看得舒适的是小茗同学的系列文章：
 
 * [【博客园】小茗同学《VSCode插件开发全攻略》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-overview.html)
+* [【GitHub】小茗同学《vscode-plugin-demo》](https://github.com/sxei/vscode-plugin-demo)
 
 当然，当中有一些点，因为时间差异，可能 VS Code 对此进行了变更，所以各位小伙伴自行找解决方案了。
 
@@ -47,6 +48,8 @@ jsliang 的插件
 * [x] 输入 `@fnComments` 出现 `snippets` 代码提示（用于常用代码配置）
 * [x] 输入 `!!` 快速生成 H5 常用文件代码
 * [x] 在功能函数或者接口函数中使用快捷键 `Ctrl/Command + Shift + I` 在 JS/JSX 文件中快速注释
+* [x] 在 JSX 文件中通过 `import ... from ...` 导入的 CSS，支持通过 `Ctrl/Command + 点击` 跳转到对应文件中。
+* [x] 在 JSX 文件中通过 `import ... from 'src/...'` 形式导入的内容，支持 `Ctrl/Command + 点击` 跳转到对应文件中。（注意，是项目根路径下存在 `src` 文件夹）
 
 ### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 代码：@fnComments
 
@@ -71,6 +74,24 @@ jsliang 的插件
 当光标聚集于方法体的时候，使用快捷键 `Command/Ctrl + Shift + I`，会给该方法添加注释：
 
 ![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/03-fnComment.gif?raw=true)
+
+### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 自定义跳转：JSX 对 CSS 文件跳转的支持
+
+> [返回目录](#chapter-one)
+
+在 VS Code JSX 文件中，用户可以通过 `Ctrl/Command + 点击` 跳转到对应的 JS 文件，但是无法跳转到 CSS 文件，对此，**jsliang** 的插件进行了拓展，支持跳转到对应的插件上。
+
+在 JSX 文件中通过 `import ... from ...` 导入的 CSS，通过 `Ctrl/Command + 点击` 跳转到对应文件中。
+
+图：暂无
+
+### <a name="chapter-three-five" id="chapter-three-five"></a>3.5 自定义跳转：JSX 文件跳转到 src 文件夹下内容
+
+> [返回目录](#chapter-one)
+
+在 JSX 文件中通过 `import ... from 'src/...'` 形式导入的内容，支持 `Ctrl/Command + 点击` 跳转到对应文件中。（注意，是项目根路径下存在 `src` 文件夹）
+
+图：暂无
 
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 
