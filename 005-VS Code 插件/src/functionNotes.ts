@@ -12,6 +12,8 @@ const functionNotes = vscode.commands.registerCommand('jsliang.functionComments'
   // 找到文件类型
   lang = vscode.window.activeTextEditor?.document.languageId;
 
+  console.log(lang);
+
   // js 文件或者 jsx 文件
   if ((lang === 'javascript') || (lang === 'javascriptreact')) {
 

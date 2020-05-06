@@ -9,6 +9,7 @@ pos) => {
     var _a, _b, _c, _d;
     // 找到文件类型
     lang = (_a = vscode.window.activeTextEditor) === null || _a === void 0 ? void 0 : _a.document.languageId;
+    console.log(lang);
     // js 文件或者 jsx 文件
     if ((lang === 'javascript') || (lang === 'javascriptreact')) {
         // 找到当前选择光标的位置

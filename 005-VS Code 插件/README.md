@@ -2,7 +2,7 @@ jsliang 的插件
 ===
 
 > Create by **jsliang** on **2020-4-30 15:26:16**  
-> Recently revised in **2020-05-05 15:41:26**
+> Recently revised in **2020-05-06 14:18:15**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -50,6 +50,7 @@ jsliang 的插件
 * [x] 在功能函数或者接口函数中使用快捷键 `Ctrl/Command + Shift + I` 在 JS/JSX 文件中快速注释
 * [x] 在 JSX 文件中通过 `import ... from ...` 导入的 CSS，支持通过 `Ctrl/Command + 点击` 跳转到对应文件中。
 * [x] 在 JSX 文件中通过 `import ... from 'src/...'` 形式导入的内容，支持 `Ctrl/Command + 点击` 跳转到对应文件中。（注意，是项目根路径下存在 `src` 文件夹）
+* [x] Markdown 模板自动生成，通过 `template`、`time`、`category`、`ads` 这四个关键字生成模板，详细开启看 3.6 章节的讲解。
 
 ### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 代码：@fnComments
 
@@ -92,6 +93,37 @@ jsliang 的插件
 在 JSX 文件中通过 `import ... from 'src/...'` 形式导入的内容，支持 `Ctrl/Command + 点击` 跳转到对应文件中。（注意，是项目根路径下存在 `src` 文件夹）
 
 图：暂无
+
+### <a name="chapter-three-six" id="chapter-three-six"></a>3.6 Markdown 模板自动生成
+
+> [返回目录](#chapter-one)
+
+在 Markdown 的 `.md` 后缀文件中，通过以下快捷键能快速搭建文档：
+
+* `template`：jsliang 的文章模板
+* `time`：jsliang 的时间注释
+* `category`：jsliang 的目录生成
+* `ads`：jsliang 的广告 + 文档声明
+
+注意：由于 VS Code 默认每页开启 Markdown 的提示，所以不仅仅是这个插件，原本它内置的提示内容，例如 `link` 等都不会出现（很奇怪的点，花了几个钟才解决）。
+
+所以需要通过 `Ctrl/Command + Shift + P`，然后输入 `setting`，找到【首选项：打开工作区设置（JSON）】，然后进行设置：
+
+> 英文版本对应的是 `Preferences: Open Workspace Settings (JSON)`
+
+```json
+{
+	"[markdown]": {
+		"editor.quickSuggestions": {
+			"other": true,
+			"comments": false,
+			"strings": true
+		},
+	},
+}
+```
+
+这样它就可以开启 Markdown 的提示了~
 
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 
