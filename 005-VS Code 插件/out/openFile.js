@@ -11,12 +11,12 @@ class OpenFile {
         const word = document.getText(document.getWordRangeAtPosition(position));
         const lineText = document.lineAt(position).text;
         const projectPath = util_1.default.getProjectPath(document);
-        // console.log('====== 关键字段列表 ======');
-        // console.log('当前文件名: ' + fileName);
-        // console.log('当前文件所在目录: ' + workDir);
-        // console.log('当前光标所在单词: ' + word);
-        // console.log('当前光标所在行: ' + lineText);
-        // console.log('当前工程目录: ' + projectPath);
+        console.log('====== 关键字段列表 ======');
+        console.log('当前文件名: ' + fileName);
+        console.log('当前文件所在目录: ' + workDir);
+        console.log('当前光标所在单词: ' + word);
+        console.log('当前光标所在行: ' + lineText);
+        console.log('当前工程目录: ' + projectPath);
         let targetPath = projectPath;
         // 1. 根据 ES6 的 'import ... from ...' 来查找路径
         if (lineText.includes('import') && lineText.includes('from')) {
@@ -48,10 +48,16 @@ class OpenFile {
                     }
                 }
                 else if (lineText.includes('src')) { // 3.2 匹配根路径下的 'src'
-                    targetPath = workDir + '/' + fragment[0];
+                    if (!lineText.includes('.js')) {
+                        targetPath = workDir.slice(0, workDir.indexOf('src')) + fragment[0] + '.js';
+                    }
+                    else {
+                        targetPath = workDir.slice(0, workDir.indexOf('src')) + fragment[0];
+                    }
                 }
             }
         }
+        console.log('targetPath：', targetPath);
         // 4. 检测路径是否存在，存在则打开，不存在则弹窗提示
         if (fs.existsSync(targetPath)) {
             return new vscode.Location(vscode.Uri.file(targetPath), new vscode.Position(0, 0));
