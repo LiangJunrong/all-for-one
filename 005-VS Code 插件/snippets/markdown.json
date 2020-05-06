@@ -1,0 +1,18 @@
+{
+  "模板": {
+		"prefix": "模板",
+		"body": [
+			"文章名称",
+			"==="
+		],
+		"description": "jsliang 写作的模板"
+  },
+  "@js": {
+    "prefix": "js",
+		"body": [
+			"文章名称",
+			"==="
+		],
+		"description": "jsliang 写作的模板"
+  }
+}

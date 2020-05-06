@@ -33,6 +33,10 @@
 			{
 				"language": "html",
 				"path": "./snippets/html.json"
+			},
+			{
+				"language": "markdown",
+				"path": "./snippets/markdown.json"
 			}
 		],
 		"keybindings": [
