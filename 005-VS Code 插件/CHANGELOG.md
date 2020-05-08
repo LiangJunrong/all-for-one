@@ -1,6 +1,10 @@
 更新日志
 ===
 
+## 【0.0.7】2020-05-08 10:56:55
+
+* [x] 修复无法打开隐藏了 `.js` 或者 `.jsx` 路径的内容，例如：`import Table2 from '../obj/Table2'`（Table2.jsx） 以及 `import store from '../../temp'`（temp.js）。
+
 ## 【0.0.6】2020-05-07 08:11:19
 
 * [x] 添加 LeetCode 的文章模板
