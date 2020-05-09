@@ -2,7 +2,7 @@ jsliang 的插件
 ===
 
 > Create by **jsliang** on **2020-4-30 15:26:16**  
-> Recently revised in **2020-5-7 08:16:27**
+> Recently revised in **2020-05-09 14:50:02**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -76,7 +76,7 @@ jsliang 的插件
 
 ![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/03-fnComment.gif?raw=true)
 
-### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 自定义跳转：JSX 对 CSS 文件跳转的支持
+### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 自定义跳转
 
 > [返回目录](#chapter-one)
 
@@ -84,13 +84,12 @@ jsliang 的插件
 
 在 JSX 文件中通过 `import ... from ...` 导入的 CSS，通过 `Ctrl/Command + 点击` 跳转到对应文件中。
 
-图：暂无
+同时，通过梳理调整，在 `src` 目录下，使用 `Command/Ctrl + 点击`，支持 4 种格式的跳转：
 
-### <a name="chapter-three-five" id="chapter-three-five"></a>3.5 自定义跳转：JSX 文件跳转到 src 文件夹下内容
-
-> [返回目录](#chapter-one)
-
-在 JSX 文件中通过 `import ... from 'src/...'` 形式导入的内容，支持 `Ctrl/Command + 点击` 跳转到对应文件中。（注意，是项目根路径下存在 `src` 文件夹）
+1. `import ... from './../'`    —— 有相对路径
+2. `import ... from 'src/...'`  —— 有 `src` 的绝对路径
+3. `import ... from 'index'`    —— `js` 文件不添加后缀的（`index.js`）
+4. `import ... from 'Table'`    —— `jsx` 文件引用 `jsx` 文件的时候不添加后缀
 
 图：暂无
 
