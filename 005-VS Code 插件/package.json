@@ -3,7 +3,7 @@
 	"displayName": "jsliang",
 	"publisher": "jsliang",
 	"description": "jsliang 开发的插件，欢迎定制需求",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"engines": {
 		"vscode": "^1.44.0"
 	},
@@ -22,6 +22,7 @@
 	"icon": "images/icon.jpg",
 	"activationEvents": [
 		"onCommand:jsliang.functionComments",
+		"onCommand:jsliang.variableFormatConversion",
 		"onLanguage:javascriptreact"
 	],
 	"main": "./out/extension.js",
@@ -46,6 +47,12 @@
 				"key": "ctrl+shift+i",
 				"mac": "cmd+shift+i",
 				"when": "editorTextFocus"
+			},
+			{
+				"command": "jsliang.variableFormatConversion",
+				"key": "ctrl+shift+j",
+				"mac": "cmd+shift+j",
+				"when": "editorHasSelection"
 			}
 		]
 	},

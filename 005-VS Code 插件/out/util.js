@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const vscode = require('vscode');
 const util = {
+    /* ———————————————————————————————— 项目类 ———————————————————————————————— */
     /**
      * @name 获取当前所在工程根目录
      * @description
@@ -42,12 +43,142 @@ const util = {
         }
         return projectPath;
     },
+    /* ———————————————————————————————— 警示类 ———————————————————————————————— */
     /**
      * @name 弹出错误信息
      * @param info 需要展示的错误信息
      */
-    showError: function (info) {
+    showError(info) {
         vscode.window.showErrorMessage(info);
+    },
+    /* ———————————————————————————————— 转换类 ———————————————————————————————— */
+    // 判断类型
+    isCamel(text) { return text[0] === text[0].toLowerCase() && text !== text.toLowerCase(); },
+    isPascal(text) { return text[0] === text[0].toUpperCase() && !text.includes('_'); },
+    isPhp(text) { return text[0] === text[0].toLowerCase() && text.includes('_'); },
+    isConstant(text) { return text[0] === text[0].toUpperCase() && text.includes('_'); },
+    isKebab(text) { return text.includes('-'); },
+    /**
+     * @name getStyle
+     * @description 获取文本类型
+     * @param text
+     */
+    getStyle(text) {
+        if (this.isCamel(text)) {
+            return 'camel';
+        }
+        else if (this.isPascal(text)) {
+            return 'pascal';
+        }
+        else if (this.isPhp(text)) {
+            return 'php';
+        }
+        else if (this.isConstant(text)) {
+            return 'constant';
+        }
+        else if (this.isKebab(text)) {
+            return 'kebab';
+        }
+        else {
+            return 'unknow';
+        }
+    },
+    /**
+     * 返回字符串打散后的小写字符数组
+     * @param {string} text
+     * @return {Array}
+     */
+    getTextArray(text) {
+        switch (this.getStyle(text)) {
+            case 'camel':
+                return text.replace(/([A-Z])/g, '_$1').toLowerCase().split('_');
+            case 'pascal':
+                return text.replace(/([A-Z])/g, '_$1').toLowerCase().split('_').slice(1);
+            case 'php':
+                return text.split('_');
+            case 'constant':
+                return text.split('_').map((item) => item.toLowerCase());
+            case 'kebab':
+                return text.split('-');
+            default:
+                return [text];
+        }
+    },
+    /**
+     * @name toCamelCase
+     * @description 转为驼峰式命名 textStyle
+     * @param {string} text
+     */
+    toCamelCase(text) {
+        if (this.isCamel(text)) {
+            return text;
+        }
+        else {
+            return this.getTextArray(text).map((item, i) => {
+                if (i > 0) {
+                    item = item[0].toUpperCase() + item.substr(1);
+                    return item;
+                }
+                else {
+                    return item;
+                }
+            }).join('');
+        }
+    },
+    /**
+     * @name toPascal
+     * @description 转为帕斯卡命名 TextStyle
+     * @param {string} text
+     */
+    toPascal(text) {
+        if (this.isPascal(text)) {
+            return text;
+        }
+        else {
+            return this.getTextArray(text).map((item) => {
+                item = item[0].toUpperCase() + item.substr(1);
+                return item;
+            }).join('');
+        }
+    },
+    /**
+     * @name toConstant
+     * @description 转为常量式命名 TEXT_STYLE
+     * @param {string} text
+     */
+    toConstant(text) {
+        if (this.isConstant(text)) {
+            return text;
+        }
+        else {
+            return this.getTextArray(text).join('_').toUpperCase();
+        }
+    },
+    /**
+     * @name toKebab
+     * @description 转为中横线命名 text-style
+     * @param {string} text
+     */
+    toKebab(text) {
+        if (this.isKebab(text)) {
+            return text;
+        }
+        else {
+            return this.getTextArray(text).join('-');
+        }
+    },
+    /**
+     * @name toPhp
+     * @description 转为 php 风格命名 text_style
+     * @param {string} text
+     */
+    toPhp(text) {
+        if (this.isPhp(text)) {
+            return text;
+        }
+        else {
+            return this.getTextArray(text).join('_');
+        }
     },
 };
 exports.default = util;

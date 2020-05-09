@@ -2,7 +2,7 @@ jsliang 的插件
 ===
 
 > Create by **jsliang** on **2020-4-30 15:26:16**  
-> Recently revised in **2020-05-09 15:00:34**
+> Recently revised in **2020-05-09 17:12:11**
 
 听说你在找我？扫描下面二维码加我微信：
 
@@ -97,6 +97,14 @@ jsliang 的插件
 
 图：暂无
 
+### <a name="chapter-three-five" id="chapter-three-five"></a>3.5 变量类型转换：Ctrl/Command + Shift + J
+
+> [返回目录](#chapter-one)
+
+添加了类型转换功能，快捷键 `Command/Ctrl + Shift + J`，转换顺序：`text_style -> textStyle -> TextStyle -> TEXT_STYLE -> text-style`
+
+图：暂无
+
 ### <a name="chapter-three-six" id="chapter-three-six"></a>3.6 Markdown 模板自动生成
 
 > [返回目录](#chapter-one)
@@ -127,6 +135,8 @@ jsliang 的插件
 ```
 
 这样它就可以开启 Markdown 的提示了~
+
+图：暂无
 
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 

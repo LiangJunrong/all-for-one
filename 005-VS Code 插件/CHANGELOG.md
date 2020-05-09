@@ -1,6 +1,10 @@
 更新日志
 ===
 
+## 【0.0.8】2020-05-09 16:25:50
+
+* [x] 添加了类型转换功能，快捷键 `Command/Ctrl + Shift + J`，转换顺序：`text_style -> textStyle -> TextStyle -> TEXT_STYLE -> text-style`
+
 ## 【0.0.8】2020-05-09 15:00:44
 
 * [x] 添加联系方式
