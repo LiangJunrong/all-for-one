@@ -2,7 +2,7 @@ jsliang 的插件
 ===
 
 > Create by **jsliang** on **2020-4-30 15:26:16**  
-> Recently revised in **2020-05-09 17:12:11**
+> Recently revised in **2020-05-09 17:23:33**
 
 听说你在找我？扫描下面二维码加我微信：
 
@@ -101,7 +101,11 @@ jsliang 的插件
 
 > [返回目录](#chapter-one)
 
-添加了类型转换功能，快捷键 `Command/Ctrl + Shift + J`，转换顺序：`text_style -> textStyle -> TextStyle -> TEXT_STYLE -> text-style`
+添加了变量类型转换功能，选中文本，通过快捷键 `Command/Ctrl + Shift + J`，可以快速转换变量类型。
+
+转换顺序为：`text_style -> textStyle -> TextStyle -> TEXT_STYLE -> text-style`
+
+支持 5 种格式的互相转换。
 
 图：暂无
 
