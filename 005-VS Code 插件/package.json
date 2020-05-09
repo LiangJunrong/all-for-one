@@ -3,17 +3,18 @@
 	"displayName": "jsliang",
 	"publisher": "jsliang",
 	"description": "jsliang 开发的插件，欢迎定制需求",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"engines": {
 		"vscode": "^1.44.0"
 	},
 	"keywords": [
 		"jsliang",
-		"前端"
+		"前端",
+		"markdown"
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/LiangJunrong/all-for-one.git"
+		"url": "https://github.com/LiangJunrong/all-for-one"
 	},
 	"categories": [
 		"Other"

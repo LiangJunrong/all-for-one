@@ -2,7 +2,11 @@ jsliang 的插件
 ===
 
 > Create by **jsliang** on **2020-4-30 15:26:16**  
-> Recently revised in **2020-05-09 14:50:02**
+> Recently revised in **2020-05-09 15:00:34**
+
+听说你在找我？扫描下面二维码加我微信：
+
+![](https://github.com/LiangJunrong/document-library/blob/master/public-repertory/img/z-small-wechat.jpeg?raw=true)
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
