@@ -2,7 +2,7 @@ jsliang 的插件
 ===
 
 > Create by **jsliang** on **2020-4-30 15:26:16**  
-> Recently revised in **2020-05-09 17:23:33**
+> Recently revised in **2020-05-11 11:10:31**
 
 听说你在找我？扫描下面二维码加我微信：
 
@@ -55,6 +55,7 @@ jsliang 的插件
 * [x] 在 JSX 文件中通过 `import ... from ...` 导入的 CSS，支持通过 `Ctrl/Command + 点击` 跳转到对应文件中。
 * [x] 在 JSX 文件中通过 `import ... from 'src/...'` 形式导入的内容，支持 `Ctrl/Command + 点击` 跳转到对应文件中。（注意，是项目根路径下存在 `src` 文件夹）
 * [x] Markdown 模板自动生成，通过 `template`、`time`、`category`、`ads` 这四个关键字生成模板，详细开启看 3.6 章节的讲解。
+* [x] 在任何文件中选中特定格式的单词，通过 `Ctrl/Command + Shift + J` 命令将其按照 `text_style -> textStyle -> TextStyle -> TEXT_STYLE -> text-style` 的顺序进行变更。
 
 ### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 代码：@fnComments
 
