@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-5-6 08:46:19**  
-> Recently revised in **2020-5-6 08:46:37**
+> Recently revised in **2020-5-12 09:11:25**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -18,6 +18,10 @@
 > [返回目录](#chapter-one)
 
 通过面向对象的形式，编写英雄选择页面。
+
+成品展示：
+
+![](./images/finished-product.gif)
 
 ---
 

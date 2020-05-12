@@ -19,8 +19,10 @@ const elements = {
   },
   game: {
     choose: document.querySelector('.choose'),
+    chooseItem: document.querySelectorAll('.choose-item'),
     description: document.querySelector('.description'),
     hero: document.querySelector('.hero'),
+    skill: document.querySelector('.skill'),
   },
 }
 
@@ -30,10 +32,44 @@ window.onload = () => {
   const user = 'jsliang';
   elements.login.user.innerHTML = user;
   game.login(user);
+  // 默认英雄
+  game.defaultHero = '冷无双';
+  const defaultHero = game.player.heros.find(item => item.name === '冷无双');
+  // 初始化画布
+  const initDraw = (defaultHero) => {
+    // 1. 更新英雄描述以及英雄名
+    elements.game.description.innerHTML = `
+      <div class="description-item">
+        <p class="hero-name">${defaultHero.name}</p>
+        <span class="description-content">
+          ${defaultHero.description}
+        </span>
+      </div>
+    `;
+
+    // 2. 更新英雄展示
+    elements.game.hero.innerHTML = `
+      <div class="hero-item">
+        <img src="${defaultHero.heroImage}" alt="${defaultHero.name}">
+      </div>
+    `;
+
+    // 3. 更新英雄技能
+    elements.game.skill.innerHTML = defaultHero.skills.map((item2) => {
+      return `
+        <div class="skill-item">
+          <img src="${item2.ico}" alt="技能">
+          <span>${item2.name}</span>
+        </div>
+      `;
+    });
+  };
+  initDraw(defaultHero);
 
   // 更新选择栏
   elements.game.choose.innerHTML = '';
   game.player.heros.forEach((item) => {
+    // 更新选择栏
     const chooseItem = document.createElement('div');
     chooseItem.classList.add('choose-item');
     if (item.name === '冷无双') {
@@ -44,38 +80,36 @@ window.onload = () => {
       <span>${item.name}</span>
     `;
     elements.game.choose.appendChild(chooseItem);
-  })
-
-  // 更新英雄描述以及英雄名
-  elements.game.description.innerHTML = '';
-  game.player.heros.forEach((item) => {
-    const descriptionItem = document.createElement('div');
-    descriptionItem.classList.add('description-item');
-    if (item.name !== '冷无双') {
-      descriptionItem.classList.add('display-none');
+    // 点击切换技能介绍、英雄展示、英雄选择、技能
+    chooseItem.onclick = () => {
+      elements.game.choose.childNodes.forEach((item2) => {
+        item2.classList.remove('choose-item-active');
+      })
+      chooseItem.classList.add('choose-item-active');
+      
+      elements.game.description.innerHTML= `
+        <div class="description-item">
+          <p class="hero-name">${item.name}</p>
+          <span class="description-content">
+            ${item.description}
+          </span>
+        </div>
+      `;
+      elements.game.hero.innerHTML = `
+        <div class="hero-item">
+          <img src="${item.heroImage}" alt="${item.name}">
+        </div>
+      `;
+      elements.game.skill.innerHTML = item.skills.map((item2) => {
+        return `
+          <div class="skill-item">
+            <img src="${item2.ico}" alt="技能">
+            <span>${item2.name}</span>
+          </div>
+        `;
+      });
     }
-    descriptionItem.innerHTML = `
-      <p class="hero-name">${item.name}</p>
-      <span class="description-content">
-        ${item.description}
-      </span>
-    `;
-    elements.game.description.appendChild(descriptionItem);
   })
-
-  // 更新英雄展示
-  elements.game.hero.innerHTML = '';
-  game.player.heros.forEach((item) => {
-    const herosItem = document.createElement('div');
-    herosItem.classList.add('hero-item');
-    if (item.name !== '冷无双') {
-      herosItem.classList.add('display-none');
-    }
-    herosItem.innerHTML = `
-      <img src="${item.heroImage}" alt="${item.hero}">
-    `;
-    elements.game.hero.appendChild(herosItem);
-  });
 
   console.log(game);
 }

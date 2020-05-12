@@ -37,6 +37,9 @@
   width: 100px;
   height: 150px;
 }
+.choose-item img:hover {
+  cursor: pointer;
+}
 .choose-item-active {
   border: 1px solid deepskyblue;
   border-radius: 50px;
@@ -45,7 +48,7 @@
 .skill {
   position: absolute;
   bottom: 30px;
-  right: 30px;
+  right: 220px;
   display: flex;
   flex-wrap: wrap;
 }
