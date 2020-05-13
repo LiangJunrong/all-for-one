@@ -1,0 +1,83 @@
+.game {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  color: #fff;
+}
+.user {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 10px;
+  border: 1px solid rgb(255, 251, 0);
+  border-radius: 20px;
+  background: deepskyblue;
+}
+.choose-hero {
+  width: 100%;
+}
+.hero {
+  position: absolute;
+  top: 100px;
+  left: 350px;
+}
+.choose {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 160px;
+  right: 33px;
+}
+.choose-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.choose-item img {
+  width: 100px;
+  height: 150px;
+}
+.choose-item img:hover {
+  cursor: pointer;
+}
+.choose-item-active {
+  border: 1px solid deepskyblue;
+  border-radius: 50px;
+  padding-bottom: 20px;
+}
+.skill {
+  position: absolute;
+  bottom: 30px;
+  right: 220px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 25px;
+}
+.skill-item img {
+  width: 70px;
+}
+.description {
+  position: absolute;
+  left: 60px;
+  top: 100px;
+}
+.description-item {
+  width: 200px;
+}
+.hero-name {
+  font-size: 1.2em;
+}
+.hero-item img {
+  width: 230px;
+  height: 350px;
+}
+
+/* 共用 */
+.display-none {
+  display: none;
+}
