@@ -1,8 +1,8 @@
-017 - 面向对象 - 英雄选择（继承）
+018 - 面向对象 - 英雄选择（继承）
 ===
 
 > Create by **jsliang** on **2020-05-13 08:30:26**  
-> Recently revised in **2020-5-13 08:42:16**  
+> Recently revised in **2020-5-13 08:55:36**  
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
