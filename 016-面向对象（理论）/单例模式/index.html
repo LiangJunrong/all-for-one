@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>面向对象</title>
+</head>
+<body>
+  
+</body>
+<script type="module">
+  // 单例：一个实例
+  // const obj = {
+  //   name: 10,
+  // };
+  // 上面就是一个最简单的单例
+  import Single from './index.js';
+  // 开放封闭原则：对内封闭，对外开放
+  const single1 = new Single('jsliang1');
+  const single2 = new Single('jsliang2');
+  console.log(single1); // Person {name: "jsliang1", age: 20}
+  console.log(single2); // Person {name: "jsliang1", age: 20}
+  // 不管你怎么实例化，返回的都是第一次的结果
+  console.log(single1 === single2); // true
+</script>
+</html>
