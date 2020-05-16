@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>面向对象</title>
+</head>
+<body>
+  
+</body>
+<script type="module">
+  import Hero from './index.js';
+  function fireDecrator (hero) {
+    this.hero = hero;
+  }
+  fireDecrator.prototype.fire = function(fn, ...arg) {
+    // 要扩展的方法
+    fn();
+    this.hero.fire(arg[0]);
+  }
+  let hero = new Hero('亚瑟');
+  // hero.fire(); // 包装之前
+  let newFireDecrator = new fireDecrator(hero);
+  function fn() {
+    console.log('造成了 200 点伤害');
+  }
+  newFireDecrator.fire(fn, '猛虎冲击', '相位猛冲');
+  // 造成了 200 点伤害
+  // 释放了技能猛虎冲击
+</script>
+</html>
