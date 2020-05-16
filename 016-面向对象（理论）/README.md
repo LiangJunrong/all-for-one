@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-4-26 16:39:16**  
-> Recently revised in **2020-4-26 16:39:19**
+> Recently revised in **2020-5-16 17:12:41**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -17,7 +17,10 @@
 
 > [返回目录](#chapter-one)
 
-
+* 单例模式
+* 工厂模式
+* 观察者模式
+* 装饰器模式
 
 ---
 
