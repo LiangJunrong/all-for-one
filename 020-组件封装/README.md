@@ -1,8 +1,8 @@
-019 - 面向对象 - 英雄选择（单例）
+020 - 组件封装
 ===
 
-> Create by **jsliang** on **2020-05-16 10:58:20**  
-> Recently revised in **2020-5-16 10:59:57**  
+> Create by **jsliang** on **2020-05-18 07:43:23**  
+> Recently revised in **2020-05-18 07:43:23**  
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -12,26 +12,12 @@
 | --- | 
 | [一 目录](#chapter-one) | 
 | <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
-| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 更新变化](#chapter-three) |
 
 ## <a name="chapter-two" id="chapter-two"></a>二 前言
 
 > [返回目录](#chapter-one)
 
-通过面向对象的形式，编写英雄选择页面。
 
-成品展示：
-
-![](./images/finished-product.gif)
-
-## <a name="chapter-three" id="chapter-three"></a>三 更新变化
-
-> [返回目录](#chapter-one)
-
-想比于《017-面向对象-英雄选择（继承）》，它的更新在于：
-
-1. 修改了 `game/init/init.js`
-2. 对外暴露的是单例模式，只允许初始化一次，不给改变里面内容
 
 ---
 
