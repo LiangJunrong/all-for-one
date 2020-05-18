@@ -1,8 +1,8 @@
-020 - 组件封装
+020 - 弹窗组件封装
 ===
 
 > Create by **jsliang** on **2020-05-18 07:43:23**  
-> Recently revised in **2020-5-18 09:10:29**  
+> Recently revised in **2020-5-18 09:10:56**  
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
