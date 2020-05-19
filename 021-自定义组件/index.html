@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HelloWorld</title>
+</head>
+<body>
+  <img is="my-img" src="#" alt="自定义图片">
+  <my-component>Hello World</my-component>
+
+  <script type="module">
+    // 继承 HTML 的自定义组件
+    class MyImg extends HTMLImageElement {
+      constructor() {
+        super();
+        console.log(this); // <img is="my-img" src="#" alt="自定义图片">
+        setTimeout(() => {
+          this.src = 'http://img1.imgtn.bdimg.com/it/u=3181084459,791447142&fm=26&gp=0.jpg';
+        }, 2000);
+      }
+    }
+    customElements.define('my-img', MyImg, {
+      extends: 'img',
+    });
+
+    // 自定义组件
+    class MyDOM extends HTMLElement {
+      constructor() {
+        super();
+        console.log(this); // <my-component>Hello World</my-component>
+        this.innerHTML = 'jsliang';
+      }
+    }
+    customElements.define('my-component', MyDOM);
+  </script>
+</body>
+</html>
