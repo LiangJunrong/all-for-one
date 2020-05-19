@@ -25,6 +25,7 @@
       </div>
     </div> -->
     <button class="open-dialog">打开弹窗</button>
+    <button class="open-input-dialog">显示扩展对话框</button>
 
     <script type="module">
       import Dialog from './index.js';
@@ -47,10 +48,22 @@
         }
       });
 
-      const button = document.querySelector('.open-dialog');
-      button.onclick = () => {
+      const button1 = document.querySelector('.open-dialog');
+      button1.onclick = () => {
         dialog.openDialog();
       };
+
+      import { DialogInput } from './index.js';
+      const dialogInput = new DialogInput({
+        success: (e) => {
+          console.log('成功：');
+          console.log(e.detail);
+        },
+      });
+      const button2 = document.querySelector('.open-input-dialog');
+      button2.onclick = () => {
+        dialogInput.openDialog();
+      }
     </script>
   </body>
 </html>

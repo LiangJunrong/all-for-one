@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-05-18 07:43:23**  
-> Recently revised in **2020-5-18 09:10:56**  
+> Recently revised in **2020-5-19 08:35:36**  
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -284,6 +284,10 @@ export default Dialog;
 3. `modalDialog.addEventListener('click', (e) => {}`：弹窗内容点击触发对应的关闭或者确定事件
 4. `this.addEventListener('success', this.options.success)`：通过内置的 `EventTarget` 触发 `success` 事件监听
 5. `dragable()`：允许拖拽
+
+### 步骤四：拓展功能
+
+通过 `export class DialogInput extends Dialog { }`，添加了输入框的功能。
 
 ## <a name="chapter-three" id="chapter-three"></a>三 参考文献
 

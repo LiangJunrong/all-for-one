@@ -67,12 +67,14 @@ class Dialog extends EventTarget {
     });
   }
 
-  confirm() {
+  confirm(value) {
     this.close();
 
     // 原本可以通过直接回调，但是可以用 EventTarget 委托对象
     // this.options.success();
-    const success = new CustomEvent('success');
+    const success = new CustomEvent('success', {
+      detail: value,
+    });
     this.dispatchEvent(success);
   }
 
@@ -98,7 +100,6 @@ class Dialog extends EventTarget {
         </div>
         <div class="modal-body">
           <span>${this.options.content}</span>
-          <input class="input-inner" type="text" />
         </div>
         <div class="modal-footer">
           ${this.options.isCancel ? '<span class="modal-default">取消</span>' : ''}
@@ -139,6 +140,28 @@ class Dialog extends EventTarget {
       this.divElement.querySelector('.modal-wrapper').style.display = 'none';
     }
     this.divElement.style.display = 'block';
+  }
+}
+
+// 继承拓展功能
+export class DialogInput extends Dialog {
+  constructor(options) {
+    super(options);
+    this.createInput();
+  }
+
+  createInput() {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.classList.add('input-inner');
+    this.divElement.querySelector('.modal-body').appendChild(input);
+
+    this.input = input;
+  }
+
+  confirm() {
+    const value = this.input.value;
+    super.confirm(value);
   }
 }
 
