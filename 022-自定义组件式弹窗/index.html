@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>文本</title>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+
+  <body>
+    <!-- <div class="modal-wrapper"></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <span class="modal-title">提示</span>
+        <span class="modal-close">X</span>
+      </div>
+      <div class="modal-body">
+        <span>这是一段文本</span>
+        <input class="input-inner" type="text" />
+      </div>
+      <div class="modal-footer">
+        <span class="modal-default">取消</span>
+        <span class="modal-primary">确定</span>
+      </div>
+    </div> -->
+    <my-dialog
+      width="40"
+      title="jsliang 自定义标题"
+      content="jsliang 自定义内容"
+    >
+      我的自定义弹出层
+    </my-dialog>
+
+    <script type="module">
+      import Dialog from './index.js';
+    </script>
+  </body>
+</html>
