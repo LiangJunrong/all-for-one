@@ -4,15 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>HelloWorld</title>
+  <title>仿 jQuery</title>
 </head>
 <body>
+  <button class="btn1">点击1</button>
+  <button class="btn2">点击2</button>
+  <button class="btn3">点击3</button>
+  <button class="btn3">点击3</button>
   
-  <script type="module">
-    document.onclick = async function() {
-      const res = await import('./index.js');
-      console.log(res);
-    };
+  <script src="./index.js"></script>
+  <script>
+    jsliang(() => {
+      console.log('Hello World!');
+    })
+    jsliang('.btn1').click(() => {
+      console.log('回调1');
+    })
+    jsliang(document.querySelector('.btn2')).click(() => {
+      console.log('回调2');
+    })
+    jsliang(document.querySelectorAll('.btn3')).click(() => {
+      console.log('回调3');
+    })
   </script>
 </body>
 </html>
