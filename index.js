@@ -37,6 +37,18 @@ class JSLIANG {
       }
     }
   }
+  // 绑定事件
+  on(eventName, fn) {
+    // 'mousemove   mousedown    mouseover'
+    eventName = eventName.replace(/\s+/g, ' ');
+    const eventList = eventName.split(' ');
+    // 针对每个节点绑定事件
+    for (let i = 0; i < this.length; i++) {
+      for (let j = 0; j < eventList.length; j++) {
+        this[i].addEventListener(eventList[j], fn);
+      }
+    }
+  }
 }
 
 function jsliang(arg) {

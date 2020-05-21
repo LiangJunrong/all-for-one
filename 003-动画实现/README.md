@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-4-15 07:57:58**  
-> Recently revised in **2020-5-21 08:31:41**
+> Recently revised in **2020-5-21 09:12:06**
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -104,7 +104,7 @@ function jsliang(arg) {
 
 ---
 
-* 2、`$(function() { ... })`
+* 2、`$(fn)`
 
 然后基于此进行多样化拓展：
 
@@ -185,6 +185,8 @@ class JSLIANG {
         fn();
       }
     }
+    // 链式操作
+    return new JSLIANG(this);
   }
 }
 
@@ -197,7 +199,7 @@ function jsliang(arg) {
 
 ---
 
-* 3、`$('.box2').animate()`
+* 3、`$(elements).animate(style, time, fn)`
 
 甚至我们还可拓展更多方法，例如动画实现~
 
@@ -226,10 +228,48 @@ class JSLIANG {
       }
     });
     fn();
+    // 链式操作
     return new JSLIANG(this);
   }
   // ...代码省略
 }
+```
+
+---
+
+* `$(.btn).on('mouseover mousedown', fn)`
+
+> index.html
+
+```html
+<script>
+  jsliang('.btn').on('mousemove mousedown', () => {
+    console.log('event...');
+  })
+</script>
+```
+
+> index.js
+
+```js
+class JSLIANG {
+  // ...代码省略
+  on(eventName, fn) {
+    // 'mousemove   mousedown    mouseover'
+    eventName = eventName.replace(/\s+/g, ' ');
+    const eventList = eventName.split(' ');
+    // 针对每个节点绑定事件
+    for (let i = 0; i < this.length; i++) {
+      for (let j = 0; j < eventList.length; j++) {
+        this[i].addEventListener(eventList[j], fn);
+      }
+    }
+    // 链式操作
+    return new JSLIANG(this);
+  }
+  // ...代码省略
+}
+
 ```
 
 ---
