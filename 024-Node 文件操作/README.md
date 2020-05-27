@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-05-25 08:50:50**  
-> Recently revised in **2020-5-25 09:09:41**  
+> Recently revised in **2020-5-27 09:06:12**  
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -18,6 +18,8 @@
 > [返回目录](#chapter-one)
 
 * `const fs = require('fs');`
+
+看 `index.js`，执行增删改查操作。
 
 ---
 
