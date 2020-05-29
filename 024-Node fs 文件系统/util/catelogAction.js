@@ -24,6 +24,7 @@ const readdir = (catalog) => {
   const result = fs.readdirSync(catalog);
   console.log('---读取成功：');
   console.log(result);
+  return result;
 };
 
 // 删除（空文件夹/目录）
@@ -46,7 +47,7 @@ const stat = (catelog) => {
   const result = fs.statSync(catelog);
   console.log('---获取成功：');
   console.log(result);
-}
+};
 
 // 判断是文件还是目录
 const isFileOrCatalog = (catalog) => {
@@ -54,11 +55,32 @@ const isFileOrCatalog = (catalog) => {
     const statResult = fs.statSync(catalog);
     if (statResult.isFile()) {
       console.log('判断：文件');
+      return 'file';
     } else if (statResult.isDirectory()) {
       console.log('判断：目录');
+      return 'catalog';
     }
   }
-}
+};
+
+// 删除非空文件夹
+const deleteCatalog = (catalog) => {
+  const data = fs.readdirSync(catalog);
+
+  for (let i = 0; i < data.length; i++) {
+    const url = `${catalog}/${data[i]}`;
+    const stat = fs.statSync(url);
+    // 判断是目录还是文件，并删除它
+    if (stat.isDirectory()) {
+      deleteCatalog(url);
+    } else {
+      fs.unlinkSync(url);
+    }
+  }
+
+  // 删除空目录
+  fs.rmdirSync(catalog);
+};
 
 module.exports = {
   create,
@@ -68,4 +90,5 @@ module.exports = {
   exists,
   stat,
   isFileOrCatalog,
+  deleteCatalog,
 };

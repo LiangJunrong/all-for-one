@@ -76,4 +76,8 @@ catalogAction.stat(nextName);
 // 判断是文件还是目录
 catalogAction.isFileOrCatalog(nextFile); // 判断：文件
 catalogAction.isFileOrCatalog(nextName); // 判断：目录
+
+// 删除非空文件夹
+// 递归 -> 删除内部所有文件 -> 删除文件夹
+catalogAction.deleteCatalog(nextName);
 /* -------------- 文件目录操作结束 --------------*/
