@@ -1,0 +1,14 @@
+{
+  "name": "jsliang",
+  "version": "1.0.0",
+  "description": "jsliang 的 npm 包",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jsliang"
+  ],
+  "author": "jsliang",
+  "license": "ISC"
+}

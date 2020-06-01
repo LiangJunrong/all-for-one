@@ -1,0 +1,1 @@
+console.log('hello world! 初始化 jsliang 的 npm 包');
