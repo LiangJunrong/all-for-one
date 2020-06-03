@@ -1,0 +1,12 @@
+.text{
+    width: 640px;
+    margin: 0 auto;
+}
+.article-info{
+    color:#999;
+    font-size: 14px;
+}
+p{
+    font-size: 16px;
+    line-height: 30px;
+}
