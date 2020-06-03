@@ -1,8 +1,8 @@
-026 - Node
+026 - Node 深入
 ===
 
 > Create by **jsliang** on **2020-06-01 08:48:03**  
-> Recently revised in **2020-06-01 08:48:03**  
+> Recently revised in **2020-6-3 08:35:48**  
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -17,7 +17,12 @@
 
 > [返回目录](#chapter-one)
 
-test~
+1. 进入目录
+2. 启动文件：`nodemon`
+3. 打开浏览器：`localhost:8000`
+4. 成果如下：
+
+![](./img/result.png)
 
 ---
 
