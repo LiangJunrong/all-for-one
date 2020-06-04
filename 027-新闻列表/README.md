@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-06-03 08:45:11**  
-> Recently revised in **2020-6-3 09:11:05**  
+> Recently revised in **2020-6-4 08:30:59**  
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -17,7 +17,10 @@
 
 > [返回目录](#chapter-one)
 
-编写中
+Node 提供的一个小服务，用到了 cheerio 来管理 HTML。
+
+* https://www.jianshu.com/p/ebf065c010a2
+* https://www.npmjs.com/package/cheerio
 
 ---
 

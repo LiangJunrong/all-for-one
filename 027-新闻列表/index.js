@@ -11,12 +11,13 @@ const server = http.createServer((req, res) => {
   // 默认设置请求头为 html 格式
   res.setHeader('content-type', 'text/html; charset=utf-8');
 
-  const { pathname } = url.parse(req.url, true);
+  const { pathname, query } = url.parse(req.url, true);
   console.log('pathname：', pathname); // pathname： /js/main.js
 
   // 首页
   if (pathname === '/') {
-    res.end(news());
+    const p = query.p;
+    res.end(news(p));
   } else {
     // 静态文件加载，通过后缀拿到 mime
     if (req.url.includes('favicon')) {

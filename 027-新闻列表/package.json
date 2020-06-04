@@ -1,0 +1,19 @@
+{
+  "name": "027-news",
+  "version": "1.0.0",
+  "description": "027-新闻列表",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jsliang",
+    "node",
+    "新闻列表"
+  ],
+  "author": "jsliang",
+  "license": "ISC",
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.3"
+  }
+}
