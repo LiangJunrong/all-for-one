@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible" content="ie=edge")
+    title 文章信息展示
+    link(rel="stylesheet" type="text/css" href="css/index.css")
+  body
+    .wrap
+      ul.news-list
+        each data in newsData
+          li.news
+            a(href="/detail?id="+data.id)
+              img(src=data.imgUrl alt="")
+            div
+              h3
+                a(href="/detail?id="+data.id) #{data.title} 
+              .info
+                span.tips
+                  span #{data.from}
+                span.time |   #{data.newTime}
+      .pagination
+        a.prev(href="/news?p="+(Math.max(p-1,1))) ⌜
+        - for(let i=1; i<=pageCount; i++)
+          a(href="/news?p="+i) #{i}
+        a.next(href="/news?p="+(Math.min(p+1,pageCount))) ⌝
