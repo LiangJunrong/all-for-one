@@ -1,0 +1,16 @@
+{
+  "name": "koa-router",
+  "version": "1.0.0",
+  "description": "koa koa-router",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jsliang",
+    "koa",
+    "koa-router"
+  ],
+  "author": "jsliang",
+  "license": "ISC"
+}
