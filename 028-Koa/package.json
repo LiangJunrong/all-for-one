@@ -1,0 +1,15 @@
+{
+  "name": "028-koa",
+  "version": "1.0.0",
+  "description": "Koa 学习",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jsliang",
+    "koa"
+  ],
+  "author": "jsliang",
+  "license": "ISC"
+}
