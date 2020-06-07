@@ -1,45 +1,63 @@
-let str = '';
-let reg = '';
-
-// 1. 命名分组
-str = '2020-06-04';
-reg = /(?<year>\d*)-(?<month>\d*)-(?<date>\d*)/;
-const matchResult = str.match(reg);
-console.log(matchResult);
-/*
-[
-  '2020-06-04',
-  '2020',
-  '06',
-  '04',
-  index: 0,
-  input: '2020-06-04',
-  groups: [Object: null prototype] { year: '2020', month: '06', date: '04' },
-]
+/**
+* @name getHundred
+* @description 获取 0-999 的英文
 */
-console.log(matchResult.groups.year); // 2020
-console.log(matchResult.groups.month); // 06
-console.log(matchResult.groups.date); // 04
+const getHundred = (str) => {
+  // 不懂英文的先哭倒在厕所
+  const twenty = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen', 'Twenty'];
+  const hundred = ['', 'Ten', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
 
-// 2. 零宽断言：有需求如下
-str = 'version1version2version3versionn';
-reg = /version\d/g;
-console.log(str.replace(reg, '版本')); // 版本版本版本versionn
+  const num = Number(str);
 
-// 2.1 正向肯定零宽断言
-// 肯定
-reg = /version(?=\d)/g; // 类似浏览器 URL 的匹配
-console.log(str.replace(reg, '版本')); // 版本1版本2版本3versionn
+  let result = '';
+  if (num > 0 && num <= 20) {
+    result = twenty[num];
+  } else if (num > 20 && num < 100) {
+    result = `${hundred[Math.floor(num / 10)]} ${twenty[num % 10]}`;
+  } else if (num >= 100) {
+    result += `${twenty[Math.floor(num / 100)]} Hundred`;
+    const temp = getHundred(num % 100);
+    if (temp) {
+      result += ` ${temp}`;
+    }
+  }
+  return result.trim();
+};
 
-// 否定
-reg = /version(?!\d)/g;
-console.log(str.replace(reg, '版本')); // version1version2version3版本
+/**
+* @name numberToWords
+* @description 主入口
+*/
+const numberToWords = (num) => {
+  // 化身字符串
+  num = String(num);
 
-// 2.2 负向零宽断言
-str = '10px20px30pxnpx';
-// 肯定
-reg = /(?<=\d+)px/g;
-console.log(str.replace(reg, '像素')); // 10像素20像素30像素npx
-// 肯定
-reg = /(?<!\d+)px/g;
-console.log(str.replace(reg, '像素')); // 10px20px30pxn像素
+  // 不懂英文的先哭倒在厕所
+  const billion = ['', 'Thousand', 'Million', 'Billion'];
+
+  // 按照 千 百万 亿 划分
+  let splitStr = [];
+  let temp = '';
+  for (let i = num.length - 1; i >= 0; i--) {
+    temp = num[i] + temp;
+    if (temp && (temp.length % 3 === 0 || i === 0)) {
+      splitStr.push(temp);
+      temp = '';
+    }
+  }
+  
+  // 设置最终结果
+  let result = '';
+  for (let i = 0; i < splitStr.length; i++) {
+    // 如果返回的结果不是 '' 空字符串
+    // '' 字符串代表 0，除了一开始给的 Number 就是 0
+    // 否则我们不需要表示 'Zero'
+    if (getHundred(splitStr[i])) {
+      result = `${getHundred(splitStr[i])} ${billion[i]} ${result}`;
+    }
+  }
+  // 如果最终是空串，那么它就是 0
+  return result.trim() || 'Zero';
+};
+
+console.log(numberToWords(111));
