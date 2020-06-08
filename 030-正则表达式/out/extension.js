@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deactivate = exports.activate = void 0;
-const vscode = require("vscode");
+// import { regexPreviewProvider } from "./webview/regexPreviewProvider";
 function activate(context) {
     console.log('欢迎进入 jsliang 的正则表达式插件');
-    let disposable = vscode.commands.registerCommand('regex-study-and-practice.helloWorld', () => {
-        vscode.window.showInformationMessage('Hello World from regex-study-and-practice!');
-    });
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(
+    // regexPreviewProvider,
+    // vscode.window.createTreeView("regex", { treeDataProvider: regexTreeDataProvider, showCollapseAll: true }),
+    );
 }
 exports.activate = activate;
 function deactivate() { }
