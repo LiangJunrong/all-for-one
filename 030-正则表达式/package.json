@@ -31,7 +31,23 @@
 				"command": "regex-study-and-practice.helloWorld",
 				"title": "Hello World"
 			}
-		]
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "regexStudyPractice",
+					"title": "正则表达式学习和训练",
+					"icon": "images/regex.svg"
+				}
+			]
+		},
+		"views": {
+			"regexStudyPractice": [
+				{ "id": "title1", "name": "标题1" },
+				{ "id": "title2", "name": "标题2" },
+				{ "id": "title3", "name": "标题3" }
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
