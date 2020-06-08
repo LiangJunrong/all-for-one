@@ -2,7 +2,7 @@ jsliang 的正则表达式插件
 ===
 
 > Create by **jsliang** on **2020-06-08 08:02:57**  
-> Recently revised in **2020-06-08 08:02:57**  
+> Recently revised in **2020-6-8 08:54:54**  
 
 听说你在找我？扫描下面二维码加我微信：
 
@@ -22,14 +22,14 @@ jsliang 的正则表达式插件
 
 > [返回目录](#chapter-one)
 
+**本插件主要是为了学习 JavaScript 的正则表达式以及做相对应的练习。**
+
 在开发 Visio Studio Code 插件的过程中，查阅了很多插件，最让我看得舒适的是小茗同学的系列文章：
 
 * [【博客园】小茗同学《VSCode插件开发全攻略》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-overview.html)
 * [【GitHub】小茗同学《vscode-plugin-demo》](https://github.com/sxei/vscode-plugin-demo)
 
 当然，当中有一些点，因为时间差异，可能 VS Code 对此进行了变更，所以各位小伙伴自行找解决方案了。
-
-本插件主要是为解决个人工作的一些问题而开发。
 
 * 常用命令&网址
 
@@ -48,8 +48,21 @@ jsliang 的正则表达式插件
 
 > [返回目录](#chapter-one)
 
-正在开发
+正在开发：
+
+* [VS Code 插件：正则表达式匹配高亮](https://github.com/chrmarti/vscode-regex)
+* [VS Code 插件：LeetCode](https://github.com/LeetCode-OpenSource/vscode-leetcode)
 
 ---
+
+**不折腾的前端，和咸鱼有什么区别！**
+
+![图](https://github.com/LiangJunrong/document-library/blob/master/public-repertory/img/z-index-small.png?raw=true)
+
+**jsliang** 会每天更新一道 LeetCode 题解，从而帮助小伙伴们夯实原生 JS 基础，了解与学习算法与数据结构。
+
+**浪子神剑** 会每天更新面试题，以面试题为驱动来带动大家学习，坚持每天学习与思考，每天进步一点！
+
+扫描上方二维码，关注 **jsliang** 的公众号（左）和 **浪子神剑** 的公众号（右），让我们一起折腾！
 
 > <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">jsliang 的文档库</span> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/LiangJunrong/document-library" property="cc:attributionName" rel="cc:attributionURL">梁峻荣</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/LiangJunrong/document-library" rel="dct:source">https://github.com/LiangJunrong/document-library</a>上的作品创作。<br />本许可协议授权之外的使用权限可以从 <a xmlns:cc="http://creativecommons.org/ns#" href="https://creativecommons.org/licenses/by-nc-sa/2.5/cn/" rel="cc:morePermissions">https://creativecommons.org/licenses/by-nc-sa/2.5/cn/</a> 处获得。
