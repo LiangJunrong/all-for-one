@@ -2,7 +2,7 @@ jsliang 的正则表达式插件
 ===
 
 > Create by **jsliang** on **2020-06-08 08:02:57**  
-> Recently revised in **2020-06-08 12:52:40**  
+> Recently revised in **2020-6-10 01:57:00**  
 
 听说你在找我？扫描下面二维码加我微信：
 
@@ -17,21 +17,13 @@ jsliang 的正则表达式插件
 | [一 目录](#chapter-one) | 
 | <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
 | <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 功能列表](#chapter-three) |
+| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 参考文献](#chapter-four) |
 
 ## <a name="chapter-two" id="chapter-two"></a>二 前言
 
 > [返回目录](#chapter-one)
 
 **本插件主要是为了学习 JavaScript 的正则表达式以及做相对应的练习。**
-
-在开发 Visio Studio Code 插件的过程中，查阅了很多插件，最让我看得舒适的是小茗同学的系列文章：
-
-* [【博客园】小茗同学《VSCode插件开发全攻略》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-overview.html)
-* [【GitHub】小茗同学《vscode-plugin-demo》](https://github.com/sxei/vscode-plugin-demo)
-
-当然，当中有一些点，因为时间差异，可能 VS Code 对此进行了变更，所以各位小伙伴自行找解决方案了。
-
-* 常用命令&网址
 
 1. 安装 `yeoman` 脚手架工具：`npm i yo -g`
 2. 安装 VS Code 代码生成器：`npm i generator-code -g`
@@ -48,11 +40,25 @@ jsliang 的正则表达式插件
 
 > [返回目录](#chapter-one)
 
-正在开发：
+看完这个插件你可以学到：
 
+1. Node.js 读取操作文件
+2. Markdown 转 HTML
+3. VS Code 插件之左侧菜单栏开发
+4. VS Code 插件之 WebView
+
+## <a name="chapter-four" id="chapter-four"></a>四 参考文献
+
+> [返回目录](#chapter-one)
+
+* [【博客园】小茗同学《VSCode插件开发全攻略》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-overview.html)
+* [【GitHub】小茗同学《vscode-plugin-demo》](https://github.com/sxei/vscode-plugin-demo)
 * [VS Code 插件：正则表达式匹配高亮](https://github.com/chrmarti/vscode-regex)
 * [VS Code 插件：LeetCode](https://github.com/LeetCode-OpenSource/vscode-leetcode)
 * [VS Code API：侧边栏](https://code.visualstudio.com/api/extension-guides/tree-view)
+* [VS Code 插件全演示](https://github.com/microsoft/vscode-extension-samples)
+* [VS Code 中文文档（时效性）](https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/)
+* [【腾讯云】阿dai学长《将 markdown 文件转换成 html 格式》](https://cloud.tencent.com/developer/article/1521409)
 
 ---
 

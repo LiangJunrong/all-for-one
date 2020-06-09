@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Dependency = exports.Practice = void 0;
+exports.Dependency = exports.DepNodeProvider = void 0;
 const vscode = require("vscode");
 const fs = require("fs");
 const path = require("path");
-class Practice {
+class DepNodeProvider {
     constructor(workspaceRoot) {
         this.workspaceRoot = workspaceRoot;
         this._onDidChangeTreeData = new vscode.EventEmitter();
+        this.onDidChangeTreeData = this._onDidChangeTreeData.event;
     }
     refresh() {
         this._onDidChangeTreeData.fire();
@@ -17,22 +18,19 @@ class Practice {
     }
     getChildren(element) {
         if (!this.workspaceRoot) {
-            vscode.window.showInformationMessage('在空工作区没有依赖');
+            vscode.window.showInformationMessage('No dependency in empty workspace');
             return Promise.resolve([]);
         }
-        console.log('element：', element);
         if (element) {
             return Promise.resolve(this.getDepsInPackageJson(path.join(this.workspaceRoot, 'node_modules', element.label, 'package.json')));
         }
         else {
             const packageJsonPath = path.join(this.workspaceRoot, 'package.json');
-            console.log('packageJsonPath：', packageJsonPath);
             if (this.pathExists(packageJsonPath)) {
-                console.log(this.getDepsInPackageJson(packageJsonPath));
                 return Promise.resolve(this.getDepsInPackageJson(packageJsonPath));
             }
             else {
-                vscode.window.showInformationMessage('工作区没有 package.json');
+                vscode.window.showInformationMessage('Workspace has no package.json');
                 return Promise.resolve([]);
             }
         }
@@ -76,7 +74,7 @@ class Practice {
         return true;
     }
 }
-exports.Practice = Practice;
+exports.DepNodeProvider = DepNodeProvider;
 class Dependency extends vscode.TreeItem {
     constructor(label, version, collapsibleState, command) {
         super(label, collapsibleState);
@@ -84,7 +82,14 @@ class Dependency extends vscode.TreeItem {
         this.version = version;
         this.collapsibleState = collapsibleState;
         this.command = command;
+        this.contextValue = 'dependency';
+    }
+    get tooltip() {
+        return `${this.label}-${this.version}`;
+    }
+    get description() {
+        return this.version;
     }
 }
 exports.Dependency = Dependency;
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=nodeDependencies.js.map

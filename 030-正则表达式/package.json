@@ -67,8 +67,9 @@
 		"eslint": "^7.1.0"
 	},
 	"dependencies": {
-		"jsonc-parser": "^0.4.2",
 		"ftp": "^0.3.10",
+		"jsonc-parser": "^0.4.2",
+		"marked": "^1.1.0",
 		"mkdirp": "^0.5.1",
 		"rimraf": "^2.6.2"
 	}
