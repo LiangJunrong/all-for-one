@@ -7,8 +7,7 @@ export class Practice implements vscode.TreeDataProvider<Dependency> {
 	private _onDidChangeTreeData: vscode.EventEmitter<Dependency | undefined> = new vscode.EventEmitter<Dependency | undefined>();
 	readonly onDidChangeTreeData: vscode.Event<Dependency | undefined> = this._onDidChangeTreeData.event;
 
-	constructor(private workspaceRoot: string) {
-	}
+	constructor(private workspaceRoot: string) {}
 
 	refresh(): void {
 		this._onDidChangeTreeData.fire();
@@ -74,9 +73,9 @@ export class Practice implements vscode.TreeDataProvider<Dependency> {
 		} catch (err) {
 			return false;
 		}
-
 		return true;
-	}
+  }
+
 }
 
 export class Dependency extends vscode.TreeItem {
