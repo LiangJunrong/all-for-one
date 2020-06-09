@@ -3,7 +3,7 @@
 	"displayName": "regex-study-and-practice",
 	"publisher": "jsliang",
 	"description": "jsliang 制作的关于正则表达式的学习和练习的插件",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.42.0"
 	},
@@ -21,6 +21,7 @@
 		"type": "git",
 		"url": "https://github.com/LiangJunrong/all-for-one"
 	},
+	"icon": "images/icon.jpg",
 	"main": "./out/extension.js",
 	"activationEvents": [
 		"onView:study",
