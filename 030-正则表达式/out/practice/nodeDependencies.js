@@ -47,7 +47,7 @@ class DepNodeProvider {
                     return new Dependency(moduleName, version, vscode.TreeItemCollapsibleState.None, {
                         command: 'extension.openPackageOnNpm',
                         title: '',
-                        arguments: [moduleName]
+                        arguments: [moduleName, version]
                     });
                 }
             };

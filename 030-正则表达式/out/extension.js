@@ -6,10 +6,19 @@ const nodeDependencies_1 = require("./practice/nodeDependencies");
 const study_1 = require("./study");
 function activate(context) {
     console.log('欢迎进入 jsliang 的正则表达式插件');
-    Promise.resolve().then(() => require('./practice/nodeDependencies')).then();
     const nodeDependenciesProvider = new nodeDependencies_1.DepNodeProvider(vscode.workspace.rootPath || '');
     vscode.window.registerTreeDataProvider('practice', nodeDependenciesProvider);
-    vscode.commands.registerCommand('extension.openPackageOnNpm', moduleName => vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://www.npmjs.com/package/${moduleName}`)));
+    vscode.commands.registerCommand('extension.openPackageOnNpm', (moduleName, version) => {
+        const reg = /@shein-components/;
+        const v = version.replace('^', '');
+        if (reg.test(moduleName)) {
+            const name = moduleName.replace(reg, '');
+            vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://ue.dev.sheincorp.cn/component${name}/${v}`));
+        }
+        else {
+            vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://www.npmjs.com/package/${moduleName}`));
+        }
+    });
     // 学习模块
     const nodeStudy = new study_1.Study();
     vscode.window.registerTreeDataProvider('study', nodeStudy);
