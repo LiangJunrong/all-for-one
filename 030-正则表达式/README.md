@@ -2,7 +2,7 @@ jsliang 的正则表达式插件
 ===
 
 > Create by **jsliang** on **2020-06-08 08:02:57**  
-> Recently revised in **2020-06-10 19:04:46**  
+> Recently revised in **2020-06-10 19:29:12**  
 
 听说你在找我？扫描下面二维码加我微信：
 
@@ -56,6 +56,7 @@ jsliang 的正则表达式插件
 
 > [返回目录](#chapter-one)
 
+* [【炫酷】自动化构建](https://marketplace.visualstudio.com/items?itemName=aisc.teamix)
 * [【博客园】小茗同学《VSCode插件开发全攻略》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-overview.html)
 * [【GitHub】小茗同学《vscode-plugin-demo》](https://github.com/sxei/vscode-plugin-demo)
 * [VS Code 插件：正则表达式匹配高亮](https://github.com/chrmarti/vscode-regex)
