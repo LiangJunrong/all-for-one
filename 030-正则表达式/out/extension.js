@@ -13,7 +13,7 @@ function activate(context) {
         const v = version.replace('^', '');
         if (reg.test(moduleName)) {
             const name = moduleName.replace(reg, '');
-            vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://ue.dev.sheincorp.cn/component${name}/${v}`));
+            vscode.window.showInformationMessage('暂不支持 Shineout Pro 组件跳转');
         }
         else {
             vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://www.npmjs.com/package/${moduleName}`));

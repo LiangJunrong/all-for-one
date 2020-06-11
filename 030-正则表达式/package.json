@@ -3,7 +3,7 @@
 	"displayName": "regex-study-and-practice",
 	"publisher": "jsliang",
 	"description": "jsliang 制作的关于正则表达式的学习和练习的插件",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.42.0"
 	},
