@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-import * as fs from 'fs';
 
 import { DepNodeProvider } from './practice/nodeDependencies';
 import { Study } from './study';
@@ -15,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const v = version.replace('^', '');
 		if (reg.test(moduleName)) {
 			const name = moduleName.replace(reg, '');
-			vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://ue.dev.sheincorp.cn/component${name}/${v}`));
+			vscode.window.showInformationMessage('暂不支持 Shineout Pro 组件跳转');
 		} else {
 			vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://www.npmjs.com/package/${moduleName}`));
 		}
