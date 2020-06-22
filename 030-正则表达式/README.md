@@ -2,7 +2,7 @@ jsliang 的正则表达式插件
 ===
 
 > Create by **jsliang** on **2020-06-08 08:02:57**  
-> Recently revised in **2020-6-10 01:57:00**  
+> Recently revised in **2020-06-10 19:29:12**  
 
 听说你在找我？扫描下面二维码加我微信：
 
@@ -47,10 +47,16 @@ jsliang 的正则表达式插件
 3. VS Code 插件之左侧菜单栏开发
 4. VS Code 插件之 WebView
 
+需要注意的点：
+
+1. 在 \`\` 中需要还原的：` 以及 $ 以及 \
+2. 通过 `Command/Ctrl+Shift+P` 打开控制台，然后输入 `Toggle Developer Tools` 打开 VS Code 页面调试工具
+
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 
 > [返回目录](#chapter-one)
 
+* [【炫酷】自动化构建](https://marketplace.visualstudio.com/items?itemName=aisc.teamix)
 * [【博客园】小茗同学《VSCode插件开发全攻略》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-overview.html)
 * [【GitHub】小茗同学《vscode-plugin-demo》](https://github.com/sxei/vscode-plugin-demo)
 * [VS Code 插件：正则表达式匹配高亮](https://github.com/chrmarti/vscode-regex)

@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-import * as fs from 'fs';
 
 import { DepNodeProvider } from './practice/nodeDependencies';
 import { Study } from './study';
@@ -8,11 +7,18 @@ export function activate(context: vscode.ExtensionContext) {
 
 	console.log('欢迎进入 jsliang 的正则表达式插件');
 
-	import('./practice/nodeDependencies').then()
-
 	const nodeDependenciesProvider = new DepNodeProvider(vscode.workspace.rootPath || '');
 	vscode.window.registerTreeDataProvider('practice', nodeDependenciesProvider);
-	vscode.commands.registerCommand('extension.openPackageOnNpm', moduleName => vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://www.npmjs.com/package/${moduleName}`)));
+	vscode.commands.registerCommand('extension.openPackageOnNpm', (moduleName, version) => {
+		const reg = /@shein-components/;
+		const v = version.replace('^', '');
+		if (reg.test(moduleName)) {
+			const name = moduleName.replace(reg, '');
+			vscode.window.showInformationMessage('暂不支持 Shineout Pro 组件跳转');
+		} else {
+			vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://www.npmjs.com/package/${moduleName}`));
+		}
+	});
 	
 	// 学习模块
 	const nodeStudy = new Study();

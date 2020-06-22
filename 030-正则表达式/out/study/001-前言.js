@@ -7,64 +7,54 @@ const one = () => {
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-      <meta name="author" content="Yaofeng">
       <title>文档</title>
-      <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/github-markdown-css/4.0.0/github-markdown.css">
-      <style>
-        body {
-          background: #fff !important,
-        }
-      </style>
     </head>
-    <body class="markdown-body" style="background: #fff !important">
-      <h2 id="前言">前言</h2>
-  <p>正则表达式内容</p>
-  <ol>
-  <li>查找</li>
-  <li>替换</li>
-  <li>验证</li>
-  <li>分割</li>
-  </ol>
-  <p>假设我们有一个查找数字的代码：</p>
-  <blockquote>
-  <p>index.js</p>
-  </blockquote>
-  <pre><code class="language-js">const getNumber = (str) =&gt; {
-    const result = [];
-    let temp = &#39;&#39;;
-    for (let i = 0; i &lt; str.length; i++) {
-      if (!isNaN(str[i])) {
-        temp += str[i];
-      } else if (isNaN(str[i]) &amp;&amp; temp) {
-        result.push(temp);
-        temp = &#39;&#39;;
-      }
-    }
-    if (temp) {
-      result.push(temp);
-    }
-    return result;
-  }
-  
-  const str = &#39;fajioeruqeriuq213jflajdfi7t8jfakljfka321&#39;;
-  console.time(&#39;查看普通查找时间&#39;);
-  console.log(getNumber(str)); // [ &#39;213&#39;, &#39;7&#39;, &#39;8&#39;, &#39;321&#39; ]
-  console.timeEnd(&#39;查看普通查找时间&#39;); // 查看普通查找时间: 5.616ms</code></pre>
-  <p>那如果我们使用正则去匹配，会是怎样的呢？</p>
-  <blockquote>
-  <p>index.js</p>
-  </blockquote>
-  <pre><code class="language-js">const regGetNumber = (str) =&gt; {
-    return str.match(/\d+/g);
-  }
-  
-  const str = &#39;fajioeruqeriuq213jflajdfi7t8jfakljfka321&#39;;
-  console.time(&#39;查看正则匹配时间&#39;);
-  console.log(regGetNumber(str)); // [ &#39;213&#39;, &#39;7&#39;, &#39;8&#39;, &#39;321&#39; ]
-  console.timeEnd(&#39;查看正则匹配时间&#39;); // 查看正则匹配时间: 0.741ms</code></pre>
-  
+    <body style="background: #fff !important">
+      <section id="nice" data-tool="mdnice编辑器" data-website="https://www.mdnice.com" style="padding: 0 10px; word-spacing: 0px; word-wrap: break-word; text-align: left; font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; margin-top: -10px; line-height: 1.6; letter-spacing: .034em; color: rgb(63, 63, 63); font-size: 16px; word-break: all;"><h2 data-tool="mdnice编辑器" style="padding: 0px; font-weight: bold; color: black; font-size: 22px; display: block; text-align: center; background-image: url(http://img.xiaogangzai.cn/title.png); background-position: center center; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; background-size: 50px; margin-top: 1em; margin-bottom: 10px;"><span class="prefix" style="display: none;"></span><span class="content" style="text-align: center; display: inline-block; height: 38px; line-height: 42px; color: #48b378; background-position: left center; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; background-size: 63px; margin-top: 38px; font-size: 18px; margin-bottom: 10px;">前言</span><span class="suffix"></span></h2>
+      <p data-tool="mdnice编辑器" style="font-size: 16px; padding-bottom: 8px; margin: 0; padding-top: 1em; color: rgb(74,74,74); line-height: 1.75em;">正则表达式内容</p>
+      <ol data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: decimal;">
+      <li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">查找</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">替换</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">验证</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">分割</section></li></ol>
+      <p data-tool="mdnice编辑器" style="font-size: 16px; padding-bottom: 8px; margin: 0; padding-top: 1em; color: rgb(74,74,74); line-height: 1.75em;">假设我们有一个查找数字的代码：</p>
+      <blockquote data-tool="mdnice编辑器" style="font-size: 0.9em; overflow: auto; overflow-scrolling: touch; background: rgba(0, 0, 0, 0.05); color: #6a737d; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; padding: 15px 20px; line-height: 27px; background-color: #FBF9FD; border-left: 3px solid #35b378; display: block;">
+      <p style="padding-bottom: 8px; padding-top: 1em; margin: 0px; line-height: 26px; padding: 0px; font-size: 15px; color: rgb(89,89,89);">index.js</p>
+      </blockquote>
+      <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://imgkr.cn-bj.ufileos.com/97e4eed2-a992-4976-acf0-ccb6fb34d308.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">const</span> getNumber = <span class="hljs-function" style="line-height: 26px;">(<span class="hljs-params" style="color: #5c2699; line-height: 26px;">str</span>) =&gt;</span> {
+      <span/>  <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">const</span> result = [];
+      <span/>  <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">let</span> temp = <span class="hljs-string" style="color: #c41a16; line-height: 26px;">''</span>;
+      <span/>  <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">for</span> (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">let</span> i = <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">0</span>; i &lt; str.length; i++) {
+      <span/>    <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">if</span> (!<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">isNaN</span>(str[i])) {
+      <span/>      temp += str[i];
+      <span/>    } <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">else</span> <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">if</span> (<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">isNaN</span>(str[i]) &amp;&amp; temp) {
+      <span/>      result.push(temp);
+      <span/>      temp = <span class="hljs-string" style="color: #c41a16; line-height: 26px;">''</span>;
+      <span/>    }
+      <span/>  }
+      <span/>  <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">if</span> (temp) {
+      <span/>    result.push(temp);
+      <span/>  }
+      <span/>  <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">return</span> result;
+      <span/>}
+      <span/>
+      <span/><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">const</span> str = <span class="hljs-string" style="color: #c41a16; line-height: 26px;">'fajioeruqeriuq213jflajdfi7t8jfakljfka321'</span>;
+      <span/><span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">console</span>.time(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">'查看普通查找时间'</span>);
+      <span/><span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">console</span>.log(getNumber(str)); <span class="hljs-comment" style="color: #007400; line-height: 26px;">// [ '213', '7', '8', '321' ]</span>
+      <span/><span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">console</span>.timeEnd(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">'查看普通查找时间'</span>); <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 查看普通查找时间: 5.616ms</span>
+      <span/></code></pre>
+      <p data-tool="mdnice编辑器" style="font-size: 16px; padding-bottom: 8px; margin: 0; padding-top: 1em; color: rgb(74,74,74); line-height: 1.75em;">那如果我们使用正则去匹配，会是怎样的呢？</p>
+      <blockquote data-tool="mdnice编辑器" style="font-size: 0.9em; overflow: auto; overflow-scrolling: touch; background: rgba(0, 0, 0, 0.05); color: #6a737d; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 10px; margin-bottom: 20px; margin-top: 20px; padding: 15px 20px; line-height: 27px; background-color: #FBF9FD; border-left: 3px solid #35b378; display: block;">
+      <p style="padding-bottom: 8px; padding-top: 1em; margin: 0px; line-height: 26px; padding: 0px; font-size: 15px; color: rgb(89,89,89);">index.js</p>
+      </blockquote>
+      <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://imgkr.cn-bj.ufileos.com/97e4eed2-a992-4976-acf0-ccb6fb34d308.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">const</span> regGetNumber = <span class="hljs-function" style="line-height: 26px;">(<span class="hljs-params" style="color: #5c2699; line-height: 26px;">str</span>) =&gt;</span> {
+      <span/>  <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">return</span> str.match(<span class="hljs-regexp" style="color: #0E0EFF; line-height: 26px;">/\\d+/g</span>);
+      <span/>}
+      <span/>
+      <span/><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">const</span> str = <span class="hljs-string" style="color: #c41a16; line-height: 26px;">'fajioeruqeriuq213jflajdfi7t8jfakljfka321'</span>;
+      <span/><span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">console</span>.time(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">'查看正则匹配时间'</span>);
+      <span/><span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">console</span>.log(regGetNumber(str)); <span class="hljs-comment" style="color: #007400; line-height: 26px;">// [ '213', '7', '8', '321' ]</span>
+      <span/><span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">console</span>.timeEnd(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">'查看正则匹配时间'</span>); <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 查看正则匹配时间: 0.741ms</span>
+      <span/></code></pre>
+      <p id="nice-suffix-juejin-container" class="nice-suffix-juejin-container" data-tool="mdnice编辑器" style="font-size: 16px; padding-bottom: 8px; margin: 0; padding-top: 1em; color: rgb(74,74,74); line-height: 1.75em; margin-top: 20px !important;">本文使用 <a href="https://mdnice.com" style="word-wrap: break-word; font-weight: bold; color: #48b378; text-decoration: none; border-bottom: 1px solid #48b378;">mdnice</a> 排版</p></section>
     </body>
-    <script></script>
   </html>
   `;
 };
