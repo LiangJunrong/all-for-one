@@ -1,8 +1,8 @@
-029 - Koa 中间件
+koa-views
 ===
 
-> Create by **jsliang** on **2020-06-05 08:37:36**  
-> Recently revised in **2020-6-23 09:00:31**  
+> Create by **jsliang** on **2020-06-23 08:37:40**  
+> Recently revised in **2020-06-23 08:37:40**  
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
@@ -17,20 +17,9 @@
 
 > [返回目录](#chapter-one)
 
-* `npm init`
-* `npm i koa koa-router`
-* `npm i koa koa-body`
-* `npm i koa koa-views pug`
-* `npm i koa koa-static`
+展示效果：
 
-每个中间件学习需要安装对应的包，自行对应进行安装。
-
-学习以下四块内容：
-
-1. koa-router
-2. koa-restful
-3. koa-views
-4. koa-static
+![](./img/koa-views-1.png)
 
 ---
 

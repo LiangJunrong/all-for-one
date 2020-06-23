@@ -12,5 +12,8 @@
     "koa-router"
   ],
   "author": "jsliang",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "koa-views": "^6.3.0"
+  }
 }

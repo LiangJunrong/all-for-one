@@ -8,7 +8,6 @@ const router = new Router();
 app.use(koaBody());
 
 const mockData = require('./mock');
-const { users } = require('./mock');
 
 // 用户 做增删改查：
 // * addUser
