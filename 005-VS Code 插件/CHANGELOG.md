@@ -1,7 +1,11 @@
 更新日志
 ===
 
-## 【0.0.8】2020-05-09 16:25:50
+## 【0.0.10】2020-08-03 09:54:17
+
+* [x] 更新 Markdown 模板
+
+## 【0.0.9】2020-05-09 16:25:50
 
 * [x] 添加了类型转换功能，快捷键 `Command/Ctrl + Shift + J`，转换顺序：`text_style -> textStyle -> TextStyle -> TEXT_STYLE -> text-style`
 

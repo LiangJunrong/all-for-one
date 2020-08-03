@@ -5,8 +5,8 @@
 			"文章标题",
 			"===",
 			"",
-			"> Create by **jsliang** on **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**  ",
-			"> Recently revised in **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**  ",
+			"> Create by **jsliang** on **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**",
+			"> Recently revised in **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**",
 			"",
 			"## <a name=\"chapter-one\" id=\"chapter-one\"></a>一 目录",
 			"",
@@ -32,11 +32,17 @@
 	"time": {
 		"prefix": "time",
 		"body": [
-			"> Create by **jsliang** on **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**  ",
-			"> Recently revised in **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**  ",
-			""
+			"> Create by **jsliang** on **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**",
+			"> Recently revised in **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**"
 		],
 		"description": "jsliang 时间注释"
+	},
+	"update_time": {
+		"prefix": "update_time",
+		"body": [
+			"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}"
+		],
+		"description": "当前时间"
 	},
 	"category": {
 		"prefix": "category",
@@ -82,11 +88,11 @@
 	"leetcode_template": {
 		"prefix": "leetcode_template",
 		"body": [
-			"面试题03 - 数组中重复的数字",
+			"LeetCode 题目名称",
 			"===",
 			"",
-			"> Create by **jsliang** on **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**  ",
-			"> Recently revised in **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**  ",
+			"> Create by **jsliang** on **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**",
+			"> Recently revised in **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**",
 			"",
 			"## <a name=\"chapter-one\" id=\"chapter-one\"></a>一 目录",
 			"",
@@ -97,8 +103,7 @@
 			"| [一 目录](#chapter-one) |",
 			"| <a name=\"catalog-chapter-two\" id=\"catalog-chapter-two\"></a>[二 题目](#chapter-two) |",
 			"| <a name=\"catalog-chapter-three\" id=\"catalog-chapter-three\"></a>[三 解题思路](#chapter-three) |",
-			"| <a name=\"catalog-chapter-four\" id=\"catalog-chapter-four\"></a>[四 统计分析](#chapter-four) |",
-			"| <a name=\"catalog-chapter-five\" id=\"catalog-chapter-five\"></a>[五 解题套路](#chapter-five) |",
+			"| <a name=\"catalog-chapter-four\" id=\"catalog-chapter-four\"></a>[四 解题套路](#chapter-four) |",
 			"",
 			"## <a name=\"chapter-two\" id=\"chapter-two\"></a>二 题目",
 			"",
@@ -118,15 +123,9 @@
 			"",
 			"> [返回目录](#chapter-one)",
 			"",
-			"## <a name=\"chapter-four\" id=\"chapter-four\"></a>四 统计分析",
 			"",
-			"> [返回目录](#chapter-one)",
 			"",
-			"| 解法 | 执行用时 / 击败率 | 内存消耗 / 击败率 |",
-			"| --- | --- | --- |",
-			"| 解法 1 | 240 ms / 100.00%  | 41.8 MB / 100.00% |",
-			"",
-			"## <a name=\"chapter-five\" id=\"chapter-five\"></a>五 套路分析",
+			"## <a name=\"chapter-four\" id=\"chapter-four\"></a>四 套路分析",
 			"",
 			"> [返回目录](#chapter-one)",
 			"",
