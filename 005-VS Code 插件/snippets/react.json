@@ -4,7 +4,7 @@
 		"body": [
       "import React, { Component } from 'react';",
       "",
-      "export class App extends Component {",
+      "export class $TM_FILENAME_BASE extends Component {",
       "  render() {",
       "    return (",
       "      <div>",
@@ -14,14 +14,14 @@
       "  }",
       "}",
       "",
-      "export default App;"
+      "export default $TM_FILENAME_BASE;"
 		],
 		"description": "React 模板"
   },
   "import": {
     "prefix": "import",
     "body": [
-      "import App from './App';"
+      "import $TM_FILENAME_BASE from './$TM_FILENAME_BASE';"
     ],
     "description": "import 导入"
   }

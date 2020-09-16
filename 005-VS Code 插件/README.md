@@ -2,7 +2,7 @@ jsliang 的插件
 ===
 
 > Create by **jsliang** on **2020-4-30 15:26:16**  
-> Recently revised in **2020-05-11 11:10:31**
+> Recently revised in **2020-09-16 16:15:59**
 
 听说你在找我？扫描下面二维码加我微信：
 
@@ -29,6 +29,8 @@ jsliang 的插件
 * [【GitHub】小茗同学《vscode-plugin-demo》](https://github.com/sxei/vscode-plugin-demo)
 
 当然，当中有一些点，因为时间差异，可能 VS Code 对此进行了变更，所以各位小伙伴自行找解决方案了。
+
+* [VS Code 文档](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax)
 
 本插件主要是为解决个人工作的一些问题而开发。
 
