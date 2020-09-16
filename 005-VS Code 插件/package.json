@@ -3,7 +3,7 @@
 	"displayName": "jsliang",
 	"publisher": "jsliang",
 	"description": "jsliang 开发的插件，欢迎定制需求",
-	"version": "0.0.12",
+	"version": "0.0.13",
 	"engines": {
 		"vscode": "^1.44.0"
 	},
@@ -39,6 +39,10 @@
 			{
 				"language": "markdown",
 				"path": "./snippets/markdown.json"
+			},
+			{
+				"language": "javascriptreact",
+				"path": "./snippets/react.json"
 			}
 		],
 		"keybindings": [

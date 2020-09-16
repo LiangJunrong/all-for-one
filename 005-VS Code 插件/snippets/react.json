@@ -1,0 +1,28 @@
+{
+  "template": {
+		"prefix": "template",
+		"body": [
+      "import React, { Component } from 'react';",
+      "",
+      "export class App extends Component {",
+      "  render() {",
+      "    return (",
+      "      <div>",
+      "",
+      "      </div>",
+      "    )",
+      "  }",
+      "}",
+      "",
+      "export default App;"
+		],
+		"description": "React 模板"
+  },
+  "import": {
+    "prefix": "import",
+    "body": [
+      "import App from './App';"
+    ],
+    "description": "import 导入"
+  }
+}
