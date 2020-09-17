@@ -1,6 +1,6 @@
 {
-  "template": {
-		"prefix": "template",
+  "jsx": {
+		"prefix": "jsx",
 		"body": [
       "import React, { Component } from 'react';",
       "",
@@ -8,7 +8,7 @@
       "  render() {",
       "    return (",
       "      <div>",
-      "",
+      "        $1",
       "      </div>",
       "    )",
       "  }",
@@ -16,7 +16,7 @@
       "",
       "export default $TM_FILENAME_BASE;"
 		],
-		"description": "React 模板"
+		"description": "React 类组件"
   },
   "import": {
     "prefix": "import",
