@@ -8,21 +8,27 @@ jsliang 的插件
 
 ![](https://github.com/LiangJunrong/document-library/blob/master/public-repertory/img/z-small-wechat.jpeg?raw=true)
 
+<!-- 目录开始 -->
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
 **不折腾的前端，和咸鱼有什么区别**
 
 | 目录 |
-| --- | 
-| [一 目录](#chapter-one) | 
+| --- |
+| [一 目录](#chapter-one) |
 | <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
 | <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 功能列表](#chapter-three) |
+| &emsp;[3.1 snippets 提示](#chapter-three-one) |
+| &emsp;[3.2 快捷键](#chapter-three-two) |
+| &emsp;[3.3 跳转功能](#chapter-three-three) |
+| &emsp;[3.4 Markdown 自动生成目录](#chapter-three-four) |
 | <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 参考文献](#chapter-four) |
+<!-- 目录结束 -->
 
 ## <a name="chapter-two" id="chapter-two"></a>二 前言
 
 > [返回目录](#chapter-one)
-
+    
 本插件主要是为解决个人写文章或者工作中的一些问题而开发。
 
 * 常用命令 & 网址
@@ -41,11 +47,11 @@ jsliang 的插件
 ## <a name="chapter-three" id="chapter-three"></a>三 功能列表
 
 > [返回目录](#chapter-one)
-
+    
 ### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 snippets 提示
 
 > [返回目录](#chapter-one)
-
+    
 * `snippets` 提示：
 
 ![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/01-html-snippets.gif?raw=true)
@@ -88,7 +94,7 @@ jsliang 的插件
 ### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 快捷键
 
 > [返回目录](#chapter-one)
-
+    
 ![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/02-fnComment.gif?raw=true)
 
 1. `Ctrl/Command + Shift + I`：对函数进行注释。
@@ -97,7 +103,7 @@ jsliang 的插件
 ### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 跳转功能
 
 > [返回目录](#chapter-one)
-
+    
 ![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/03-openFile.gif?raw=true)
 
 在 VS Code 的 JSX 文件中，用户可以通过 `Ctrl/Command + 点击` 跳转到对应的 JS 文件，但是无法跳转到 CSS 文件，对此，**jsliang** 的插件进行了拓展，支持跳转到对应的插件上。
@@ -111,8 +117,10 @@ jsliang 的插件
 3. `import ... from 'index'`    —— `js` 文件不添加后缀的（`index.js`）
 4. `import ... from 'Table'`    —— `jsx` 文件引用 `jsx` 文件的时候不添加后缀
 
-### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 Markdown 自动生成模板
+### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 Markdown 自动生成目录
 
+> [返回目录](#chapter-one)
+    
 ![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/04-buildDirectory.gif?raw=true)
 
 在你 Markdown 乱七八糟的目录下，点击右键，选择【生成目录】，那么可以直接生成一个新的目录，而且具备导向功能。
@@ -126,7 +134,7 @@ jsliang 的插件
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 
 > [返回目录](#chapter-one)
-
+    
 在开发 Visio Studio Code 插件的过程中，查阅了很多插件，最让我看得舒适的是小茗同学的系列文章：
 
 * [【博客园】小茗同学《VSCode插件开发全攻略》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-overview.html)
