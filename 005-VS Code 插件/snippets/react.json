@@ -1,6 +1,7 @@
 {
   "jsx": {
-		"prefix": "jsx",
+    "description": "React 类组件",
+		"prefix": "react_class",
 		"body": [
       "import React, { Component } from 'react';",
       "",
@@ -15,14 +16,13 @@
       "}",
       "",
       "export default $TM_FILENAME_BASE;"
-		],
-		"description": "React 类组件"
+		]
   },
   "import": {
+    "description": "import 导入",
     "prefix": "import",
     "body": [
       "import $TM_FILENAME_BASE from './$TM_FILENAME_BASE';"
-    ],
-    "description": "import 导入"
+    ]
   }
 }

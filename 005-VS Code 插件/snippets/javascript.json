@@ -1,18 +1,7 @@
 {
-  "@fnComments": {
-		"prefix": "@fnComments",
-		"body": [
-			"/**",
-			"* @name ${1:函数名称}",
-      "* @description ${2:函数名字}",
-      "* @param { ${3|Object,Array,Boolean,Number,String|} } ${4:参数名称}",
-			"* @return ${5:接口返回}",
-			"*/\n"
-		],
-		"description": "函数注释"
-	},
 	"js": {
-		"prefix": "js",
+    "description": "React 无状态组件",
+		"prefix": "react_template",
 		"body": [
       "import React from 'react';",
       "",
@@ -25,7 +14,6 @@
       "}",
       "",
       "export default $TM_FILENAME_BASE;"
-		],
-		"description": "React 无状态组件"
+		]
   }
 }

@@ -23,18 +23,9 @@ jsliang 的插件
 
 > [返回目录](#chapter-one)
 
-在开发 Visio Studio Code 插件的过程中，查阅了很多插件，最让我看得舒适的是小茗同学的系列文章：
+本插件主要是为解决个人写文章或者工作中的一些问题而开发。
 
-* [【博客园】小茗同学《VSCode插件开发全攻略》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-overview.html)
-* [【GitHub】小茗同学《vscode-plugin-demo》](https://github.com/sxei/vscode-plugin-demo)
-
-当然，当中有一些点，因为时间差异，可能 VS Code 对此进行了变更，所以各位小伙伴自行找解决方案了。
-
-* [VS Code 文档](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax)
-
-本插件主要是为解决个人工作的一些问题而开发。
-
-* 常用命令&网址
+* 常用命令 & 网址
 
 1. 安装 `yeoman` 脚手架工具：`npm i yo -g`
 2. 安装 VS Code 代码生成器：`npm i generator-code -g`
@@ -51,79 +42,30 @@ jsliang 的插件
 
 > [返回目录](#chapter-one)
 
-* [x] 输入 `@fnComments` 出现 `snippets` 代码提示（用于常用代码配置）
-* [x] 输入 `!!` 快速生成 H5 常用文件代码
-* [x] 在功能函数或者接口函数中使用快捷键 `Ctrl/Command + Shift + I` 在 JS/JSX 文件中快速注释
-* [x] 在 JSX 文件中通过 `import ... from ...` 导入的 CSS，支持通过 `Ctrl/Command + 点击` 跳转到对应文件中。
-* [x] 在 JSX 文件中通过 `import ... from 'src/...'` 形式导入的内容，支持 `Ctrl/Command + 点击` 跳转到对应文件中。（注意，是项目根路径下存在 `src` 文件夹）
-* [x] Markdown 模板自动生成，通过 `template`、`time`、`category`、`ads` 这四个关键字生成模板，详细开启看 3.6 章节的讲解。
-* [x] 在任何文件中选中特定格式的单词，通过 `Ctrl/Command + Shift + J` 命令将其按照 `text_style -> textStyle -> TextStyle -> TEXT_STYLE -> text-style` 的顺序进行变更。
-
-### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 代码：@fnComments
+### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 snippets 提示
 
 > [返回目录](#chapter-one)
 
-在 JS 文件输入 `@fnComments` 插入 `snippets` 代码片段：
+* `snippets` 提示：
 
-![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/01-fn-snippets.gif?raw=true)
+![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/01-html-snippets.gif?raw=true)
 
-### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 代码：!!
+> 【生效文件】`snippets 提示`：功能
 
-> [返回目录](#chapter-one)
+1. 【html】`!!`：生成 H5 代码模板
+2. 【js】`react_template`：生成 React 无状态组件代码模板
+3. 【jsx】`react_class`：生成 React 类组件代码模板
+4. 【jsx】`import`：生成 `import` 导入代码模板
+5. 【md】`template`：生成 **jsliang** 日常文章模板
+6. 【md】`leetcode_template`：生成 **jsliang** 刷 LeetCode 每日一题的文章模板
+7. 【md】`time`：生成时间注释
+8. 【md】`update_time`：生成最新时间
+9. 【md】`ads`：公众号 + 文档声明
+10. 【md】`js`：js 代码块
+11. 【md】`html`：html 代码块
+12. 【md】`css`：css 代码块
 
-在 HTML 文件输入 `!!` 插入 `snippets` 代码片段：
-
-![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/02-html-snippets.gif?raw=true)
-
-### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 快捷键：Ctrl/Command + Shift + I
-
-> [返回目录](#chapter-one)
-
-当光标聚集于方法体的时候，使用快捷键 `Command/Ctrl + Shift + I`，会给该方法添加注释：
-
-![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/03-fnComment.gif?raw=true)
-
-### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 自定义跳转
-
-> [返回目录](#chapter-one)
-
-在 VS Code JSX 文件中，用户可以通过 `Ctrl/Command + 点击` 跳转到对应的 JS 文件，但是无法跳转到 CSS 文件，对此，**jsliang** 的插件进行了拓展，支持跳转到对应的插件上。
-
-在 JSX 文件中通过 `import ... from ...` 导入的 CSS，通过 `Ctrl/Command + 点击` 跳转到对应文件中。
-
-同时，通过梳理调整，在 `src` 目录下，使用 `Command/Ctrl + 点击`，支持 4 种格式的跳转：
-
-1. `import ... from './../'`    —— 有相对路径
-2. `import ... from 'src/...'`  —— 有 `src` 的绝对路径
-3. `import ... from 'index'`    —— `js` 文件不添加后缀的（`index.js`）
-4. `import ... from 'Table'`    —— `jsx` 文件引用 `jsx` 文件的时候不添加后缀
-
-图：暂无
-
-### <a name="chapter-three-five" id="chapter-three-five"></a>3.5 变量类型转换：Ctrl/Command + Shift + J
-
-> [返回目录](#chapter-one)
-
-添加了变量类型转换功能，选中文本，通过快捷键 `Command/Ctrl + Shift + J`，可以快速转换变量类型。
-
-转换顺序为：`text_style -> textStyle -> TextStyle -> TEXT_STYLE -> text-style`
-
-支持 5 种格式的互相转换。
-
-图：暂无
-
-### <a name="chapter-three-six" id="chapter-three-six"></a>3.6 Markdown 模板自动生成
-
-> [返回目录](#chapter-one)
-
-在 Markdown 的 `.md` 后缀文件中，通过以下快捷键能快速搭建文档：
-
-* `template`：jsliang 的文章模板
-* `time`：jsliang 的时间注释
-* `category`：jsliang 的目录生成
-* `ads`：jsliang 的广告 + 文档声明
-
-注意：由于 VS Code 默认每页开启 Markdown 的提示，所以不仅仅是这个插件，原本它内置的提示内容，例如 `link` 等都不会出现（很奇怪的点，花了几个钟才解决）。
+注意：由于 VS Code 默认没有开启 Markdown 的提示，所以不仅仅是这个插件，原本它内置的提示内容，例如 `link` 等都不会出现（很奇怪的点，花了几个钟才解决）。
 
 所以需要通过 `Ctrl/Command + Shift + P`，然后输入 `setting`，找到【首选项：打开工作区设置（JSON）】，然后进行设置：
 
@@ -143,16 +85,70 @@ jsliang 的插件
 
 这样它就可以开启 Markdown 的提示了~
 
-图：暂无
+### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 快捷键
+
+> [返回目录](#chapter-one)
+
+![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/02-fnComment.gif?raw=true)
+
+1. `Ctrl/Command + Shift + I`：对函数进行注释。
+2. `Ctrl/Command + Shift + J`：格式转换 `text_style -> textStyle -> TextStyle -> TEXT_STYLE -> text-style`（需选中对应文本，再进行转换）。
+
+### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 跳转功能
+
+> [返回目录](#chapter-one)
+
+![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/03-openFile.gif?raw=true)
+
+在 VS Code 的 JSX 文件中，用户可以通过 `Ctrl/Command + 点击` 跳转到对应的 JS 文件，但是无法跳转到 CSS 文件，对此，**jsliang** 的插件进行了拓展，支持跳转到对应的插件上。
+
+在 JSX 文件中通过 `import ... from ...` 导入的 CSS，通过 `Ctrl/Command + 点击` 跳转到对应文件中。
+
+同时，通过梳理调整，在 `src` 目录下，使用 `Command/Ctrl + 点击`，支持 4 种格式的跳转：
+
+1. `import ... from './../'`    —— 有相对路径
+2. `import ... from 'src/...'`  —— 有 `src` 的绝对路径
+3. `import ... from 'index'`    —— `js` 文件不添加后缀的（`index.js`）
+4. `import ... from 'Table'`    —— `jsx` 文件引用 `jsx` 文件的时候不添加后缀
+
+### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 Markdown 自动生成模板
+
+![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/04-buildDirectory.gif?raw=true)
+
+在你 Markdown 乱七八糟的目录下，点击右键，选择【生成目录】，那么可以直接生成一个新的目录，而且具备导向功能。
+
+如果你更新了文章内容，添加或者删除了标题，那么再点击【生成目录】，它会帮你更新你的旧目录。
+
+`all is well!`
+
+就跟你用 Word 一键生成目录一样方便！
 
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 
 > [返回目录](#chapter-one)
 
+在开发 Visio Studio Code 插件的过程中，查阅了很多插件，最让我看得舒适的是小茗同学的系列文章：
+
+* [【博客园】小茗同学《VSCode插件开发全攻略》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-overview.html)
+* [【GitHub】小茗同学《vscode-plugin-demo》](https://github.com/sxei/vscode-plugin-demo)
+
+当然，当中有一些点，因为时间差异，可能 VS Code 对此进行了变更，所以各位小伙伴自行找解决方案了。
+
+* [VS Code 文档](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax)
+
+**整体参考文献**：
+
 * 本插件开发文档：[plm-snippet 开发](https://github.com/LiangJunrong/document-library/tree/master/other-library/tool/Visio%20Studio%20Code)
 * [【博客园】小茗同学《VSCode插件开发全攻略（一）概览》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-overview.html)
 * [【Visio Studio Code】插件市场](https://marketplace.visualstudio.com/vscode)
 * [【Visio Studio Code】插件开发 API](https://code.visualstudio.com/api)
+
+**自动生成目录参考文献**：
+
+* [VSCode插件开发全攻略（二）HelloWord](http://blog.haoji.me/vscode-plugin-hello-world.html)
+* [VSCode插件开发全攻略（四）命令、菜单、快捷键](http://blog.haoji.me/vscode-plugin-command-and-menu.html)
+* [使用 nodejs 的 readline 模块按行读取文件](https://www.v2ex.com/t/352348)
+* [nodejs实践录：按行处理文件数据的示例](https://blog.csdn.net/subfate/article/details/98331655)
 
 ---
 

@@ -3,20 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
-const util_1 = require("./util");
 class OpenFile {
     provideDefinition(document, position, token) {
         const fileName = document.fileName;
         const workDir = path.dirname(fileName);
         const word = document.getText(document.getWordRangeAtPosition(position));
         const lineText = document.lineAt(position).text;
-        const projectPath = util_1.default.getProjectPath(document);
+        // const projectPath = util.getProjectPath(document);
         console.log('====== 关键字段列表 ======');
         console.log('当前文件名     ：' + fileName);
         console.log('当前文件所在目录：' + workDir);
         console.log('当前光标所在单词：' + word);
         console.log('当前光标所在行  ：' + lineText);
-        console.log('当前工程目录    ：' + projectPath);
+        // console.log('当前工程目录    ：' + projectPath);
         let targetPath = workDir;
         // 1. 根据 ES6 的 'import ... from ...' 来查找路径
         if (lineText.includes('import') && lineText.includes('from')) {
@@ -53,10 +52,11 @@ class OpenFile {
                 }
                 // 3.3 可以省略后缀 .js 或者 .jsx
                 const pathList = [
-                    targetPath + '.js',
-                    targetPath + '.jsx',
-                    targetPath,
+                    targetPath + '\\' + fragment[0] + '.js',
+                    targetPath + '\\' + fragment[0] + '.jsx',
+                    targetPath + '\\' + fragment[0],
                 ];
+                console.log(pathList);
                 for (let i = 0; i < pathList.length; i++) {
                     if (fs.existsSync(pathList[i])) {
                         targetPath = pathList[i];

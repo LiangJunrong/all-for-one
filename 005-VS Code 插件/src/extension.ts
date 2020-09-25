@@ -13,6 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 	require('./functionNotes')(context); // 代码注释功能：Command/Ctrl + Shift + I
 	require('./variableFormatConversion')(context); // 代码大小写类型转换：Command/Ctrl + Shift + J
 	require('./openFile')(context); // 打开文件功能：Command/Ctrl + 点击
+	require('./buildDirectory')(context); // 自动生成目录
 }
 
 // 当你的拓展被停用时会调用这个钩子

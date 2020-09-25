@@ -21,9 +21,7 @@
 	],
 	"icon": "images/icon.jpg",
 	"activationEvents": [
-		"onCommand:jsliang.functionComments",
-		"onCommand:jsliang.variableFormatConversion",
-		"onLanguage:javascriptreact"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -58,7 +56,22 @@
 				"mac": "cmd+shift+j",
 				"when": "editorHasSelection"
 			}
-		]
+		],
+		"commands": [
+			{
+				"command": "jsliang.buildDirectory",
+				"title": "生成目录"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "resourceLangId == markdown",
+					"command": "jsliang.buildDirectory",
+					"group": "navigation"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

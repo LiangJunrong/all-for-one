@@ -13,14 +13,14 @@ class OpenFile implements vscode.DefinitionProvider {
     const workDir     = path.dirname(fileName);
     const word        = document.getText(document.getWordRangeAtPosition(position));
     const lineText    = document.lineAt(position).text;
-    const projectPath = util.getProjectPath(document);
+    // const projectPath = util.getProjectPath(document);
 
     console.log('====== 关键字段列表 ======');
     console.log('当前文件名     ：' + fileName);
     console.log('当前文件所在目录：' + workDir);
     console.log('当前光标所在单词：' + word);
     console.log('当前光标所在行  ：' + lineText);
-    console.log('当前工程目录    ：' + projectPath);
+    // console.log('当前工程目录    ：' + projectPath);
 
     let targetPath = workDir;
 
@@ -29,6 +29,7 @@ class OpenFile implements vscode.DefinitionProvider {
 
       // 2. 匹配单引号里面的内容
       const fragment = lineText.match(/(?<=').*?(?=')/);
+
       // 3. 如果有匹配，并且匹配次数为 1 -> 才能构成路径
       if (fragment && fragment.length === 1) {
         const matchContent = fragment[0];
@@ -63,10 +64,11 @@ class OpenFile implements vscode.DefinitionProvider {
 
         // 3.3 可以省略后缀 .js 或者 .jsx
         const pathList = [
-          targetPath + '.js',
-          targetPath + '.jsx',
-          targetPath,
+          targetPath + '\\' + fragment[0] + '.js',
+          targetPath + '\\' + fragment[0] + '.jsx',
+          targetPath + '\\' + fragment[0],
         ];
+        console.log(pathList);
         for (let i = 0; i < pathList.length; i++) {
           if (fs.existsSync(pathList[i])) {
             targetPath = pathList[i];
