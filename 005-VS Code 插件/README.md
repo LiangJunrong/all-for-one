@@ -2,7 +2,7 @@ jsliang 的插件
 ===
 
 > Create by **jsliang** on **2020-4-30 15:26:16**  
-> Recently revised in **2020-09-16 16:15:59**
+> Recently revised in **2020-09-26 03:18:47**
 
 听说你在找我？扫描下面二维码加我微信：
 
@@ -66,10 +66,11 @@ jsliang 的插件
 6. 【md】`leetcode_template`：生成 **jsliang** 刷 LeetCode 每日一题的文章模板
 7. 【md】`time`：生成时间注释
 8. 【md】`update_time`：生成最新时间
-9. 【md】`ads`：公众号 + 文档声明
-10. 【md】`js`：js 代码块
-11. 【md】`html`：html 代码块
-12. 【md】`css`：css 代码块
+9. 【md】`category`：生成目录模板
+10. 【md】`ads`：公众号 + 文档声明
+11. 【md】`js`：js 代码块
+12. 【md】`html`：html 代码块
+13. 【md】`css`：css 代码块
 
 注意：由于 VS Code 默认没有开启 Markdown 的提示，所以不仅仅是这个插件，原本它内置的提示内容，例如 `link` 等都不会出现（很奇怪的点，花了几个钟才解决）。
 

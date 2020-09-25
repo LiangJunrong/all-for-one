@@ -113,6 +113,23 @@
 			"> Recently revised in **${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}**"
 		]
 	},
+	"category": {
+		"description": "初始化目录",
+		"prefix": "category",
+		"body": [
+			"<!-- 目录开始 -->",
+			"## <a name=\"chapter-one\" id=\"chapter-one\"></a>一 目录",
+			"",
+			"**不折腾的前端，和咸鱼有什么区别**",
+			"",
+			"| 目录 |",
+			"| --- |",
+			"| [一 目录](#chapter-one) |",
+			"| <a name=\"catalog-chapter-two\" id=\"catalog-chapter-two\"></a>[二 前言](#chapter-two) |",
+			"<!-- 目录结束 -->",
+			""
+		]
+	},
 	"ads": {
 		"description": "公众号 + 文档声明",
 		"prefix": "ads",
