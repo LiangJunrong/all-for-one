@@ -79,7 +79,7 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
                 categoryLine.push(`#### <a name="chapter-${englishHash[twoCategory]}-${englishHash[threeCategory]}-${englishHash[fourCategory]}" id="chapter-${englishHash[twoCategory]}-${englishHash[threeCategory]}-${englishHash[fourCategory]}"></a>${twoCategory}.${threeCategory}.${fourCategory} ${categoryName}
 
 > [返回目录](#chapter-one)
-  `);
+`);
                 // 追加目录
                 category += `| &emsp;&emsp;[${twoCategory}.${threeCategory}.${fourCategory} ${categoryName}](#chapter-${englishHash[twoCategory]}-${englishHash[threeCategory]}-${englishHash[fourCategory]}) |\r\n`;
             }
@@ -100,7 +100,7 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
                 categoryLine.push(`### <a name="chapter-${englishHash[twoCategory]}-${englishHash[threeCategory]}" id="chapter-${englishHash[twoCategory]}-${englishHash[threeCategory]}"></a>${twoCategory}.${threeCategory} ${categoryName}
 
 > [返回目录](#chapter-one)
-  `);
+`);
                 // 追加目录
                 category += `| &emsp;[${twoCategory}.${threeCategory} ${categoryName}](#chapter-${englishHash[twoCategory]}-${englishHash[threeCategory]}) |\r\n`;
             }
@@ -119,7 +119,7 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
                 categoryLine.push(`## <a name="chapter-${englishHash[twoCategory]}" id="chapter-${englishHash[twoCategory]}"></a>${chineseHash[twoCategory]} ${categoryName}
 
 > [返回目录](#chapter-one)
-  `);
+`);
                 // 追加目录
                 category += `| <a name="catalog-chapter-${englishHash[twoCategory]}" id="catalog-chapter-${englishHash[twoCategory]}"></a>[${chineseHash[twoCategory]} ${categoryName}](#chapter-${englishHash[twoCategory]}) |\r\n`;
             }
