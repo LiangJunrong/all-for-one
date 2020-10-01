@@ -28,7 +28,7 @@ jsliang 的插件
 ## <a name="chapter-two" id="chapter-two"></a>二 前言
 
 > [返回目录](#chapter-one)
-    
+
 本插件主要是为解决个人写文章或者工作中的一些问题而开发。
 
 * 常用命令 & 网址
@@ -47,7 +47,7 @@ jsliang 的插件
 ## <a name="chapter-three" id="chapter-three"></a>三 功能列表
 
 > [返回目录](#chapter-one)
-    
+  
 ### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 snippets 提示
 
 > [返回目录](#chapter-one)
@@ -95,7 +95,7 @@ jsliang 的插件
 ### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 快捷键
 
 > [返回目录](#chapter-one)
-    
+
 ![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/02-fnComment.gif?raw=true)
 
 1. `Ctrl/Command + Shift + I`：对函数进行注释。
@@ -104,7 +104,7 @@ jsliang 的插件
 ### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 跳转功能
 
 > [返回目录](#chapter-one)
-    
+
 ![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/03-openFile.gif?raw=true)
 
 在 VS Code 的 JSX 文件中，用户可以通过 `Ctrl/Command + 点击` 跳转到对应的 JS 文件，但是无法跳转到 CSS 文件，对此，**jsliang** 的插件进行了拓展，支持跳转到对应的插件上。
@@ -121,7 +121,7 @@ jsliang 的插件
 ### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 Markdown 自动生成目录
 
 > [返回目录](#chapter-one)
-    
+
 ![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/04-buildDirectory.gif?raw=true)
 
 在你 Markdown 乱七八糟的目录下，点击右键，选择【生成目录】，那么可以直接生成一个新的目录，而且具备导向功能。
@@ -135,7 +135,7 @@ jsliang 的插件
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 
 > [返回目录](#chapter-one)
-    
+
 在开发 Visio Studio Code 插件的过程中，查阅了很多插件，最让我看得舒适的是小茗同学的系列文章：
 
 * [【博客园】小茗同学《VSCode插件开发全攻略》](https://www.cnblogs.com/liuxianan/p/vscode-plugin-overview.html)
@@ -158,6 +158,15 @@ jsliang 的插件
 * [VSCode插件开发全攻略（四）命令、菜单、快捷键](http://blog.haoji.me/vscode-plugin-command-and-menu.html)
 * [使用 nodejs 的 readline 模块按行读取文件](https://www.v2ex.com/t/352348)
 * [nodejs实践录：按行处理文件数据的示例](https://blog.csdn.net/subfate/article/details/98331655)
+
+**终端监听自定义命令**：
+
+* [VS Code 插件开发文档](https://github.com/Liiked/VS-Code-Extension-Doc-ZH)
+* [VS Code 插件中文文档](https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/)
+* [VS Code api](https://code.visualstudio.com/api/references/vscode-api)
+* [xmake-vscode插件开发过程记录](https://tboox.org/cn/2017/10/11/xmake-vscode/)
+* [vscode-扩展插件-调用系统程序](https://blog.csdn.net/yangxuan0261/article/details/84029331)
+* [VS Code 插件 - Terminal Tools](https://marketplace.visualstudio.com/items?itemName=lglong519.terminal-tools)
 
 ---
 

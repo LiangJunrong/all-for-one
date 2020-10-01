@@ -61,6 +61,14 @@
 			{
 				"command": "jsliang.buildDirectory",
 				"title": "生成目录"
+			},
+			{
+				"command": "jsliang.terminalCommit",
+				"title": "git commit 提交"
+			},
+			{
+				"command": "jsliang.terminalCommitSuccess",
+				"title": "git commit 完成提交"
 			}
 		],
 		"menus": {
@@ -68,6 +76,16 @@
 				{
 					"when": "resourceLangId == markdown",
 					"command": "jsliang.buildDirectory",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceLangId == markdown && editorHasSelection",
+					"command": "jsliang.terminalCommit",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceLangId == markdown && editorHasSelection",
+					"command": "jsliang.terminalCommitSuccess",
 					"group": "navigation"
 				}
 			]

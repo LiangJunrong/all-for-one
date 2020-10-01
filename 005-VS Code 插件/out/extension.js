@@ -11,6 +11,8 @@ function activate(context) {
     require('./variableFormatConversion')(context); // 代码大小写类型转换：Command/Ctrl + Shift + J
     require('./openFile')(context); // 打开文件功能：Command/Ctrl + 点击
     require('./buildDirectory')(context); // 自动生成目录
+    require('./terminal/terminalCommit')(context); // git commit 提交 -> git add 当前文本 + git commit -m "选中文本"
+    require('./terminal/terminalCommitSuccess')(context); // git commit 完成提交 -> git add 当前文本 + git commit -m "完成 - 选中文本"
 }
 exports.activate = activate;
 // 当你的拓展被停用时会调用这个钩子
