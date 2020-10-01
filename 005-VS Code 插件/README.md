@@ -146,7 +146,16 @@ git add .
 git commit -m "xxx"
 ```
 
-那就右键提交或者直接到 VS Code 右下角的状态栏点击 `commitSuccess` 或者 `commit` 吧，直接帮你保存当前文件，并且 `commit` 当前文件你是否完成，然后你只需要再轻轻输入 `git push` 并回车即可！
+那就右键提交或者直接到 VS Code 右下角的状态栏点击 `commitSuccess` 或者 `commit` 吧。
+
+它会帮你保存当前的 .md 文件（注意当前仅仅开发了 Markdown 文件），然后将第一行作为 `commit` 信息：
+
+```
+git add xxx.md
+git commit -m "文章标题"
+```
+
+在你干完活之后，你只需要再轻轻输入 `git push` 并回车即可！
 
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 
