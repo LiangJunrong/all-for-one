@@ -1,0 +1,1 @@
+{"version":3,"file":"action.js","sourceRoot":"","sources":["../../src/statusBar/action.ts"],"names":[],"mappings":";;AAAA,iCAAiC;AAEjC,UAAU;AACV,MAAM,SAAS,GAAG,MAAM,CAAC,QAAQ,CAAC,eAAe,CAAC,mBAAmB,EAAE,GAAG,EAAE;AAE5E,CAAC,CAAC,CAAC;AAEH,MAAM,CAAC,OAAO,GAAG,CAAC,OAAgC,EAAE,EAAE;IACpD,OAAO,CAAC,aAAa,CAAC,IAAI,CAAC,SAAS,CAAC,CAAC;AACxC,CAAC,CAAC"}

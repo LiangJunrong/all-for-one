@@ -79,12 +79,12 @@
 					"group": "navigation"
 				},
 				{
-					"when": "resourceLangId == markdown && editorHasSelection",
+					"when": "resourceLangId == markdown",
 					"command": "jsliang.terminalCommit",
 					"group": "navigation"
 				},
 				{
-					"when": "resourceLangId == markdown && editorHasSelection",
+					"when": "resourceLangId == markdown",
 					"command": "jsliang.terminalCommitSuccess",
 					"group": "navigation"
 				}

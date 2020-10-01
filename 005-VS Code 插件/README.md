@@ -2,7 +2,7 @@ jsliang 的插件
 ===
 
 > Create by **jsliang** on **2020-4-30 15:26:16**  
-> Recently revised in **2020-09-26 03:18:47**
+> Recently revised in **2020-10-01 21:27:00**
 
 听说你在找我？扫描下面二维码加我微信：
 
@@ -22,6 +22,7 @@ jsliang 的插件
 | &emsp;[3.2 快捷键](#chapter-three-two) |
 | &emsp;[3.3 跳转功能](#chapter-three-three) |
 | &emsp;[3.4 Markdown 自动生成目录](#chapter-three-four) |
+| &emsp;[3.5 快速 git commit](#chapter-three-five) |
 | <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 参考文献](#chapter-four) |
 <!-- 目录结束 -->
 
@@ -131,6 +132,21 @@ jsliang 的插件
 `all is well!`
 
 就跟你用 Word 一键生成目录一样方便！
+
+### <a name="chapter-three-five" id="chapter-three-five"></a>3.5 快速 git commit
+
+> [返回目录](#chapter-one)
+
+![](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/05-gitCommit.gif?raw=true)
+
+当你厌烦了修改一个文件提交一次，需要下面这般恶心的命令之后：
+
+```
+git add .
+git commit -m "xxx"
+```
+
+那就右键提交或者直接到 VS Code 右下角的状态栏点击 `commitSuccess` 或者 `commit` 吧，直接帮你保存当前文件，并且 `commit` 当前文件你是否完成，然后你只需要再轻轻输入 `git push` 并回车即可！
 
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 

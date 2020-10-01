@@ -1,25 +1,26 @@
 import * as vscode from 'vscode';
 
 // 监听自定义命令
-const terminalCommit = vscode.commands.registerCommand('jsliang.terminalCommit', () => {
-  // 获取当前终端 || undefined
-  const terminal = vscode.window.activeTerminal;
+const terminalCommit = vscode.commands.registerCommand('jsliang.terminalCommit', async () => {
+  // 获取当前（终端 || undefined） -> 如果没有则创建
+  const terminal = vscode.window.activeTerminal || vscode.window.createTerminal("jsliang 终端");;
   
   // 获取当前文本路径
   const activeTextEditor:any = vscode.window.activeTextEditor;
   const path = activeTextEditor._documentData._uri.fsPath;
+  const text = activeTextEditor._documentData._lines[0];
 
-  console.log(terminal);
-  console.log(path);
+  // 保存当前文件
+  await vscode.window.activeTextEditor?.document.save();
 
-  // 如果当前存在其他终端
-  if (terminal) {
-    console.log(1);
-    terminal.sendText('git add .');
-    terminal.sendText(`git commit -m "${path}"`);
-  } else {
-    console.log(2);
-  }
+  console.log('======git commit 记录======');
+  console.log('当前终端 terminal：', terminal);
+  console.log('当前路径 path：', path);
+  console.log('第一行文本 text：', text);
+
+  terminal.show();
+  terminal.sendText(`git add "${path}"`);
+  terminal.sendText(`git commit -m "${text}"`);
 });
 
 module.exports = (context: vscode.ExtensionContext) => {

@@ -130,14 +130,9 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
     let newMarkdown = '';
     // 设置判断是否存在目录
     let hasCategory = false;
-    console.log(category);
-    console.log(categoryLine);
     // 查找文本/更新文本、添加新目录/删除旧目录
     for (let i = 0; i < lines.length; i++) {
         let lineText = lines[i];
-        console.log('------');
-        console.log(i);
-        console.log(lineText.includes('##'));
         if (lineText.includes('目录开始')) { // 如果原本存在目录，那么更新它
             newMarkdown += category;
             hasCategory = true;
@@ -149,21 +144,16 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
                 newMarkdown += category;
                 hasCategory = true;
             }
-            console.log(categoryLine);
             newMarkdown += categoryLine.shift();
-            console.log(newMarkdown);
-            console.log('123');
             // 如果已经生成过返回目录的跳转，那么就不在生成了
             if (i + 2 <= lines.length - 1 && lines[i + 2].includes('返回目录')) {
                 i += 2;
             }
-            console.log('456');
         }
         else { // 如果当前行不是目录
             newMarkdown += `${lineText}${i !== lines.length - 1 ? '\r\n' : ''}`;
         }
     }
-    console.log('newMarkdown：', newMarkdown);
     fs.writeFile(fsPath, newMarkdown, (err) => {
         console.log('写入成功！');
     });

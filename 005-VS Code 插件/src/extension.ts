@@ -17,6 +17,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 	require('./terminal/terminalCommit')(context); // git commit 提交 -> git add 当前文本 + git commit -m "选中文本"
 	require('./terminal/terminalCommitSuccess')(context); // git commit 完成提交 -> git add 当前文本 + git commit -m "完成 - 选中文本"
+
+	require('./statusBar/init')(context); // 初始化右下角状态栏
 }
 
 // 当你的拓展被停用时会调用这个钩子
