@@ -80,7 +80,7 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
 
         // 如果原本存在四级标题的，那么应该消除掉
         // 不要超过 20.20.20，否则不会剔除原目录
-        for (let j = 2; j < 21; j++) {
+        for (let j = 20; j > 2; j--) {
           for (let k = 20; k > 0; k--) {
             for (let l = 20; l > 0; l--) {
               if (categoryName.includes(`${j}.${k}.${l} `)) {
@@ -108,7 +108,7 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
         // 如果原本存在三级标题的，那么应该消除掉
         // 不要超过 20.20，否则不会剔除原目录
         // 反序，避免 20.20 删了 20.2 剩余 0 在哪
-        for (let j = 2; j < 21; j++) {
+        for (let j = 20; j > 1; j--) {
           for (let k = 20; k > 0; k--) {
             if (categoryName.includes(`${j}.${k} `)) {
               categoryName = categoryName.replace(`${j}.${k} `, '');

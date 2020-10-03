@@ -67,8 +67,8 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
                 // 如果原本存在四级标题的，那么应该消除掉
                 // 不要超过 20.20.20，否则不会剔除原目录
                 for (let j = 2; j < 21; j++) {
-                    for (let k = 1; k < 21; k++) {
-                        for (let l = 1; l < 21; l++) {
+                    for (let k = 20; k > 0; k--) {
+                        for (let l = 20; l > 0; l--) {
                             if (categoryName.includes(`${j}.${k}.${l} `)) {
                                 categoryName = categoryName.replace(`${j}.${k}.${l} `, '');
                             }
@@ -89,8 +89,9 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
                 fourCategory = 0;
                 // 如果原本存在三级标题的，那么应该消除掉
                 // 不要超过 20.20，否则不会剔除原目录
+                // 反序，避免 20.20 删了 20.2 剩余 0 在哪
                 for (let j = 2; j < 21; j++) {
-                    for (let k = 1; k < 21; k++) {
+                    for (let k = 20; k > 0; k--) {
                         if (categoryName.includes(`${j}.${k} `)) {
                             categoryName = categoryName.replace(`${j}.${k} `, '');
                         }
@@ -110,11 +111,12 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
                 threeCategory = 0;
                 fourCategory = 0;
                 // 如果原本存在目录的，那么应该消除掉
-                chineseHash.forEach(item => {
-                    if (categoryName.includes(`${item} `)) {
-                        categoryName = categoryName.replace(`${item} `, '');
+                // 反序，避免十一的时候，删了十而剩下一
+                for (let j = chineseHash.length - 1; j >= 0; j--) {
+                    if (categoryName.includes(`${chineseHash[j]} `)) {
+                        categoryName = categoryName.replace(`${chineseHash[j]} `, '');
                     }
-                });
+                }
                 // 将本次的新目录添加进数组
                 categoryLine.push(`## <a name="chapter-${englishHash[twoCategory]}" id="chapter-${englishHash[twoCategory]}"></a>${chineseHash[twoCategory]} ${categoryName}
 
