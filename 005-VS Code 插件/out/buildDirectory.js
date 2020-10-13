@@ -1,11 +1,23 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const vscode = require("vscode");
 const fs = require("fs");
 // 自动生成目录
-const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildDirectory', (textEditor, edit) => {
+const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildDirectory', (textEditor, edit) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const lines = textEditor._documentData._lines; // 所有文本以 数组 形式展示
     const fsPath = textEditor._documentData._uri.fsPath; // 当前文本绝对路径
+    // 保存当前文件
+    yield ((_a = vscode.window.activeTextEditor) === null || _a === void 0 ? void 0 : _a.document.save());
     console.log('======自动生成目录信息======');
     console.log('所有文本：', lines);
     console.log('文本路径：', fsPath);
@@ -49,6 +61,37 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
     let fourCategory = 0;
     // 设置新的目录行
     const categoryLine = [];
+    // 查找并清空原目录
+    const clearCategory = (categoryName) => {
+        // 如果原本存在四级标题的，那么应该消除掉
+        // 不要超过 20.20.20，否则不会剔除原目录
+        for (let j = 20; j > 1; j--) {
+            for (let k = 20; k > 0; k--) {
+                for (let l = 20; l > 0; l--) {
+                    if (categoryName.includes(`${j}.${k}.${l} `)) {
+                        return categoryName.replace(`${j}.${k}.${l} `, '');
+                    }
+                }
+            }
+        }
+        // 如果原本存在三级标题的，那么应该消除掉
+        // 不要超过 20.20，否则不会剔除原目录
+        // 反序，避免 20.20 删了 20.2 剩余 0 在哪
+        for (let j = 20; j > 1; j--) {
+            for (let k = 20; k > 0; k--) {
+                if (categoryName.includes(`${j}.${k} `)) {
+                    return categoryName.replace(`${j}.${k} `, '');
+                }
+            }
+        }
+        // 如果原本存在目录的，那么应该消除掉
+        // 反序，避免十一的时候，删了十而剩下一
+        for (let j = chineseHash.length - 1; j > 0; j--) {
+            if (categoryName.includes(`${chineseHash[j]} `)) {
+                return categoryName.replace(`${chineseHash[j]} `, '');
+            }
+        }
+    };
     // 查找并目录文本、添加目录行
     for (let i = 0; i < lines.length; i++) {
         let lineText = lines[i];
@@ -60,21 +103,12 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
             const lineArr = lineText.split(' ');
             // 获取目录名 [1, n]
             let categoryName = lineArr.slice(1).join(' ');
+            // 清空原标题
+            categoryName = clearCategory(categoryName);
             // 注意：超过四级标题不生成目录
             if (lineText.includes('####')) { // 如果当前行是四级标题
                 // 行数累加
                 fourCategory++;
-                // 如果原本存在四级标题的，那么应该消除掉
-                // 不要超过 20.20.20，否则不会剔除原目录
-                for (let j = 2; j < 21; j++) {
-                    for (let k = 20; k > 0; k--) {
-                        for (let l = 20; l > 0; l--) {
-                            if (categoryName.includes(`${j}.${k}.${l} `)) {
-                                categoryName = categoryName.replace(`${j}.${k}.${l} `, '');
-                            }
-                        }
-                    }
-                }
                 // 将本次的新目录添加进数组
                 categoryLine.push(`#### <a name="chapter-${englishHash[twoCategory]}-${englishHash[threeCategory]}-${englishHash[fourCategory]}" id="chapter-${englishHash[twoCategory]}-${englishHash[threeCategory]}-${englishHash[fourCategory]}"></a>${twoCategory}.${threeCategory}.${fourCategory} ${categoryName}
 
@@ -87,16 +121,6 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
                 // 行数累加，碰到三级标题清空四级标题累加
                 threeCategory++;
                 fourCategory = 0;
-                // 如果原本存在三级标题的，那么应该消除掉
-                // 不要超过 20.20，否则不会剔除原目录
-                // 反序，避免 20.20 删了 20.2 剩余 0 在哪
-                for (let j = 2; j < 21; j++) {
-                    for (let k = 20; k > 0; k--) {
-                        if (categoryName.includes(`${j}.${k} `)) {
-                            categoryName = categoryName.replace(`${j}.${k} `, '');
-                        }
-                    }
-                }
                 // 将本次的新目录添加进数组
                 categoryLine.push(`### <a name="chapter-${englishHash[twoCategory]}-${englishHash[threeCategory]}" id="chapter-${englishHash[twoCategory]}-${englishHash[threeCategory]}"></a>${twoCategory}.${threeCategory} ${categoryName}
 
@@ -110,13 +134,6 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
                 twoCategory++;
                 threeCategory = 0;
                 fourCategory = 0;
-                // 如果原本存在目录的，那么应该消除掉
-                // 反序，避免十一的时候，删了十而剩下一
-                for (let j = chineseHash.length - 1; j >= 0; j--) {
-                    if (categoryName.includes(`${chineseHash[j]} `)) {
-                        categoryName = categoryName.replace(`${chineseHash[j]} `, '');
-                    }
-                }
                 // 将本次的新目录添加进数组
                 categoryLine.push(`## <a name="chapter-${englishHash[twoCategory]}" id="chapter-${englishHash[twoCategory]}"></a>${chineseHash[twoCategory]} ${categoryName}
 
@@ -159,7 +176,7 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
     fs.writeFile(fsPath, newMarkdown, (err) => {
         console.log('写入成功！');
     });
-});
+}));
 module.exports = (context) => {
     context.subscriptions.push(buildDirectory);
 };
