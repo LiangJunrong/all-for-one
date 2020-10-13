@@ -54,7 +54,7 @@ const statisticsLog = vscode.commands.registerTextEditorCommand('jsliang.statist
     // 统计小写 x
     const smallXTime = (logText.match(/x{1}/g) || []).length;
     // 统计 * [x] 的情况
-    const completeTime = (logText.match(/\*\s\[x\]{1}/g) || []).length;
+    const completeTime = (logText.match(/\[x\]{1}/g) || []).length;
     // 统计 ! 的情况
     const otherTime = (logText.match(/(\!|！){1}/g) || []).length;
     // 今日制定番茄
