@@ -157,6 +157,20 @@ git commit -m "文章标题"
 
 在你干完活之后，你只需要再轻轻输入 `git push` 并回车即可！
 
+## 日志模板和自动统计日志完成
+
+* **功能 1：在 md 文件输入 `log`，自动生成当天日志模板**
+
+![图](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/06-statisticsLog-1.gif?raw=true)
+
+* **功能 2：右键菜单栏，点击【日志统计】可以统计当天日志完成情况**
+
+![图](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/06-statisticsLog-2.gif?raw=true)
+
+* **功能 3：右下角 bar 条，点击【日志统计】也可以统计当天日志完成情况**
+
+![图](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/06-statisticsLog-3.gif?raw=true)
+
 ## <a name="chapter-four" id="chapter-four"></a>四 参考文献
 
 > [返回目录](#chapter-one)

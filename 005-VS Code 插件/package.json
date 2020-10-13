@@ -3,7 +3,7 @@
 	"displayName": "jsliang",
 	"publisher": "jsliang",
 	"description": "jsliang 开发的插件，欢迎定制需求",
-	"version": "0.1.6",
+	"version": "0.2.0",
 	"engines": {
 		"vscode": "^1.44.0"
 	},
@@ -63,12 +63,8 @@
 				"title": "生成目录"
 			},
 			{
-				"command": "jsliang.terminalCommit",
-				"title": "git commit 提交"
-			},
-			{
-				"command": "jsliang.terminalCommitSuccess",
-				"title": "git commit 完成提交"
+				"command": "jsliang.statisticsLog",
+				"title": "统计日志"
 			}
 		],
 		"menus": {
@@ -80,12 +76,7 @@
 				},
 				{
 					"when": "resourceLangId == markdown",
-					"command": "jsliang.terminalCommit",
-					"group": "navigation"
-				},
-				{
-					"when": "resourceLangId == markdown",
-					"command": "jsliang.terminalCommitSuccess",
+					"command": "jsliang.statisticsLog",
 					"group": "navigation"
 				}
 			]

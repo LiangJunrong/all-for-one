@@ -16,6 +16,8 @@ const createBar = (
 
 const statusBar = () => {
   createBar('|');
+  createBar('统计日志', 'jsliang.statisticsLog', '统计番茄数', '#00fbc3');
+  createBar('|');
   createBar('commit', 'jsliang.terminalCommit', 'git commit -m "xxx"', 'yellow');
   createBar('|');
   createBar('commitSuccess', 'jsliang.terminalCommitSuccess', 'git commit -m "完成 - xxx"', 'cyan');

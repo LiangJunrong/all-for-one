@@ -13,6 +13,7 @@ function activate(context) {
     require('./buildDirectory')(context); // 自动生成目录
     require('./terminal/terminalCommit')(context); // git commit 提交 -> git add 当前文本 + git commit -m "选中文本"
     require('./terminal/terminalCommitSuccess')(context); // git commit 完成提交 -> git add 当前文本 + git commit -m "完成 - 选中文本"
+    require('./statisticsLog')(context); // 统计日志
     require('./statusBar/init')(context); // 初始化右下角状态栏
 }
 exports.activate = activate;

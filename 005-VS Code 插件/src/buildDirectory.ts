@@ -89,6 +89,7 @@ const buildDirectory = vscode.commands.registerTextEditorCommand('jsliang.buildD
         return categoryName.replace(`${chineseHash[j]} `, '');
       }
     }
+    return categoryName;
   };
 
   // 查找并目录文本、添加目录行
