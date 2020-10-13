@@ -23,7 +23,7 @@ jsliang 的插件
 | &emsp;[3.3 跳转功能](#chapter-three-three) |
 | &emsp;[3.4 Markdown 自动生成目录](#chapter-three-four) |
 | &emsp;[3.5 快速 git commit](#chapter-three-five) |
-| &emsp;[3.6 四 日志模板和自动统计日志完成](#chapter-three-six) |
+| &emsp;[3.6 日志模板和自动统计日志完成](#chapter-three-six) |
 | <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 参考文献](#chapter-four) |
 <!-- 目录结束 -->
 
@@ -158,7 +158,7 @@ git commit -m "文章标题"
 
 在你干完活之后，你只需要再轻轻输入 `git push` 并回车即可！
 
-### <a name="chapter-three-six" id="chapter-three-six"></a>3.6 四 日志模板和自动统计日志完成
+### <a name="chapter-three-six" id="chapter-three-six"></a>3.6 日志模板和自动统计日志完成
 
 > [返回目录](#chapter-one)
 
