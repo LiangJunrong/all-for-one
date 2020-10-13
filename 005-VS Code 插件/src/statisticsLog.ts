@@ -63,7 +63,7 @@ const statisticsLog = vscode.commands.registerTextEditorCommand('jsliang.statist
   // 计划内的番茄
   lines[getIndex('* 计划内的番茄')] = `* 计划内的番茄(X) : ${bigXTime} 个`;
   // 计划外的番茄
-  lines[getIndex('* 计划外的番茄')] = `* 计划外的番茄(x) : ${smallXTime} 个`;
+  lines[getIndex('* 计划外的番茄')] = `* 计划外的番茄(x) : ${smallXTime - completeTime} 个`;
   // 多余规划番茄
   lines[getIndex('* 多余规划番茄')] = `* 多余规划番茄(!) : ${otherTime} 个`;
 
