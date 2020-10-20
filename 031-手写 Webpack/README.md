@@ -13,6 +13,9 @@
 | --- |
 | [一 目录](#chapter-one) |
 | <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
+| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 转换代码、生成依赖](#chapter-three) |
+| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 生成依赖图谱](#chapter-four) |
+| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 生成代码字符串](#chapter-five) |
 <!-- 目录结束 -->
 
 ## <a name="chapter-two" id="chapter-two"></a>二 前言
@@ -69,7 +72,9 @@ export const word = "hello";
 
 下面分 3 章尝试这个内容。
 
-## 转换代码、生成依赖
+## <a name="chapter-three" id="chapter-three"></a>三 转换代码、生成依赖
+
+> [返回目录](#chapter-one)
 
 这一步需要利用 `babel` 帮助我们进行转换，所以先装包：
 
@@ -198,7 +203,9 @@ SyntaxError: Unexpected token {
 
 也就是说我们执行到 `message.js`，但是它里面的内容没法运行，因为 `import` 是 `ES6` 内容嘛。
 
-## 生成依赖图谱
+## <a name="chapter-four" id="chapter-four"></a>四 生成依赖图谱
+
+> [返回目录](#chapter-one)
 
 既然我们只生成了一份：
 
@@ -343,7 +350,9 @@ exports.word = word;
 
 跟步骤一的解析差不多，不过这样子的内容是没法运行的，毕竟我们塞到同一个文件中了，所以需要步骤三咯。
 
-## 生成代码字符串
+## <a name="chapter-five" id="chapter-five"></a>五 生成代码字符串
+
+> [返回目录](#chapter-one)
 
 最后一步我们实现下面代码：
 
