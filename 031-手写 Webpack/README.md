@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2020-10-20 15:24:02**  
-> Recently revised in **2020-10-20 15:24:02**
+> Recently revised in **2020-10-20 17:44:33**
 
 <!-- 目录开始 -->
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
@@ -13,9 +13,9 @@
 | --- |
 | [一 目录](#chapter-one) |
 | <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
-| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 转换代码、生成依赖](#chapter-three) |
-| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 生成依赖图谱](#chapter-four) |
-| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 生成代码字符串](#chapter-five) |
+| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 第一步 转换代码、生成依赖](#chapter-three) |
+| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 第二步 生成依赖图谱](#chapter-four) |
+| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 第三步 生成代码字符串](#chapter-five) |
 <!-- 目录结束 -->
 
 ## <a name="chapter-two" id="chapter-two"></a>二 前言
@@ -29,12 +29,17 @@ Webpack 的本质就是一个模块打包器，工作就是将每个模块打包
 **首先**，我们需要准备目录：
 
 ```
-+ 文件夹
-  - index.js
-  - message.js
-  - word.js
-  - bundler.js
++ 项目根路径 || 文件夹
+  - index.js      - 主入口
+  - message.js    - 主入口依赖文件
+  - word.js       - 主入口依赖文件的依赖文件
+  - bundler.js    - 打包器
+  - bundle.js     - 打包后存放代码的文件
 ```
+
+最终的项目地址：[all-for-one - 031-手写 Webpack](https://github.com/LiangJunrong/all-for-one)
+
+如果小伙伴懒得敲，那可以看上面仓库的最终代码。
 
 **然后**，我们 `index.js`、`message.js`、`word.js` 内容如下：
 
@@ -62,7 +67,7 @@ export default message;
 export const word = "hello";
 ```
 
-**最后**，我们实现一个 `bundler.js` 文件即可！
+**最后**，我们实现一个 `bundler.js` 文件，将 `index.js` 当成入口，将里面牵扯的文件都转义并执行即可！
 
 实现思路：
 
@@ -72,7 +77,7 @@ export const word = "hello";
 
 下面分 3 章尝试这个内容。
 
-## <a name="chapter-three" id="chapter-three"></a>三 转换代码、生成依赖
+## <a name="chapter-three" id="chapter-three"></a>三 第一步 转换代码、生成依赖
 
 > [返回目录](#chapter-one)
 
@@ -169,6 +174,8 @@ fs.writeFile('bundle.js', one.code, () => {
 > bundler.js
 
 ```js
+// ...代码省略
+
 fs.writeFile('bundle.js', one.code, () => {
   console.log('写入成功');
 });
@@ -203,11 +210,11 @@ SyntaxError: Unexpected token {
 
 也就是说我们执行到 `message.js`，但是它里面的内容没法运行，因为 `import` 是 `ES6` 内容嘛。
 
-## <a name="chapter-four" id="chapter-four"></a>四 生成依赖图谱
+## <a name="chapter-four" id="chapter-four"></a>四 第二步 生成依赖图谱
 
 > [返回目录](#chapter-one)
 
-既然我们只生成了一份：
+既然我们只生成了一份转义后的文件：
 
 ```
 --- step one ---
@@ -230,7 +237,7 @@ SyntaxError: Unexpected token {
 }
 ```
 
-那么我们可以根据其中的 `dependencies` 进行递归，将整个依赖图谱都找出来啊：
+那么我们可以根据其中的 `dependencies` 进行递归，将整个依赖图谱都找出来：
 
 > bundler.js
 
@@ -276,7 +283,8 @@ fs.writeFile('bundle.js', word, () => {
 
 所以当我们 `node bundler.js` 的时候，会打印：
 
-```js
+```
+--- step two ---
 {
   './index.js': {
     dependencies: { './message.js': './message.js' },
@@ -297,7 +305,7 @@ fs.writeFile('bundle.js', word, () => {
 
 可以看到我们将整个依赖关系中的文件都搜索出来，并通过 `babel` 进行了转换，然后 **jsliang** 通过 `Node` 的 `fs` 模块将其写进了 `bundle.js` 中：
 
-> bundle.js
+> bundler.js
 
 ```js
 let word = '';
@@ -350,7 +358,7 @@ exports.word = word;
 
 跟步骤一的解析差不多，不过这样子的内容是没法运行的，毕竟我们塞到同一个文件中了，所以需要步骤三咯。
 
-## <a name="chapter-five" id="chapter-five"></a>五 生成代码字符串
+## <a name="chapter-five" id="chapter-five"></a>五 第三步 生成代码字符串
 
 > [返回目录](#chapter-one)
 
@@ -361,7 +369,7 @@ exports.word = word;
 ```js
 // 下面是生成代码字符串的操作
 function stepThree(entry){
-  // 要先把对象转换为字符串，不然在下面的模板字符串中会默认调取对象的 toString 方法，参数变成 [Object object],显然不行
+  // 要先把对象转换为字符串，不然在下面的模板字符串中会默认调取对象的 toString 方法，参数变成 [Object object]，显然不行
   const graph = JSON.stringify(stepTwo(entry))
   return `(function(graph) {
   // require 函数的本质是执行一个模块的代码，然后将相应变量挂载到 exports 对象上
@@ -390,7 +398,7 @@ fs.writeFile('bundle.js', three, () => {
 });
 ```
 
-可以看到，`stepThree` 返回的是一个立即执行函数：
+可以看到，`stepThree` 返回的是一个立即执行函数，需要传递 `graph`：
 
 ```js
 (function(graph) {
@@ -398,7 +406,7 @@ fs.writeFile('bundle.js', three, () => {
 })(graph)
 ```
 
-通过 `stepTwo(entry)` 拿到了依赖图谱。
+那么图谱（`graph`）怎么来？需要通过 `stepTwo(entry)` 拿到了依赖图谱。
 
 但是，因为步骤二返回的是对象啊，如果直接传进去对象，那么就会被转义，所以需要 `JSON.stringify()`：
 
@@ -415,21 +423,27 @@ const graph = JSON.stringify(stepTwo(entry));
 
 ```js
 // 转变前
-function require(module) {
-  // ...具体内容
-}
-require('${entry}')
+const graph = JSON.stringify(stepTwo(entry));
+(function(graph) {
+  function require(module) {
+    // ...具体内容
+  }
+  require('${entry}')
+})(graph)
 
 /* --- 分界线 --- */
 
 // 转变后
-function require(module) {
-  // ...具体内容
-}
-require('./index.js')
+const graph = JSON.stringify(stepTwo(entry));
+(function(graph) {
+  function require(module) {
+    // ...具体内容
+  }
+  require('./index.js')
+})(graph)
 ```
 
-再看里面具体内容：
+这样我们就清楚了，从 `index.js` 入手，然后再看里面具体内容：
 
 ```js
 function require(module) {
@@ -446,7 +460,9 @@ function require(module) {
 require('./index.js')
 ```
 
-其中细节我们就不一一赘述了。
+`eval` 是指 JavaScript 可以运行里面的字符串代码，`eval('2 + 2')` 会出来结果 `4`，所以 `eval(code)` 就跟我们第一步的时候，`node bundle.js` 一样，执行 `code` 里面的代码。
+
+至于其中细节我们就不一一赘述了，小伙伴们可以自行断点调试，这里面的代码口头描述的话讲不清楚。
 
 最后我们看看输出整理后的 `bundle.js`：
 
