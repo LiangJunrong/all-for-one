@@ -2,7 +2,7 @@ jsliang 的插件
 ===
 
 > Create by **jsliang** on **2020-4-30 15:26:16**  
-> Recently revised in **2020-10-01 21:27:00**
+> Recently revised in **2020-11-02 17:23:06**
 
 听说你在找我？扫描下面二维码加我微信：
 
@@ -133,6 +133,19 @@ jsliang 的插件
 `all is well!`
 
 就跟你用 Word 一键生成目录一样方便！
+
+> 2020-11-02 更新
+
+基于上面功能，进行了补充：
+
+![图](https://github.com/LiangJunrong/all-for-one/blob/master/005-VS%20Code%20%E6%8F%92%E4%BB%B6/images/04-buildDirectory-2.png?raw=true)
+
+![图](./images/04-buildDirectory-2.png)
+
+* **MD：初始化序列号**：序列化文档，不会生成目录
+* **MD：生成简化版目录**：让文档支持不适配 `<a>` 标签的网站
+* **MD：生成目录**：原生成目录的方式
+* **MD：统计日志**：番茄统计法的内容
 
 ### <a name="chapter-three-five" id="chapter-three-five"></a>3.5 快速 git commit
 

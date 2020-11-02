@@ -13,12 +13,15 @@ export function activate(context: vscode.ExtensionContext) {
 	require('./functionNotes')(context); // 代码注释功能：Command/Ctrl + Shift + I
 	require('./variableFormatConversion')(context); // 代码大小写类型转换：Command/Ctrl + Shift + J
 	require('./openFile')(context); // 打开文件功能：Command/Ctrl + 点击
-	require('./buildDirectory')(context); // 自动生成目录
+	
+	/* Markdown 相关功能 */
+	require('./markdown/initDirectory')(context); // 自动序列化文章
+	require('./markdown/buildSimpleDirectory')(context); // 自动生成简化版目录
+	require('./markdown/buildDirectory')(context); // 自动生成目录
+	require('./markdown/statisticsLog')(context); // 统计日志
 
 	require('./terminal/terminalCommit')(context); // git commit 提交 -> git add 当前文本 + git commit -m "选中文本"
 	require('./terminal/terminalCommitSuccess')(context); // git commit 完成提交 -> git add 当前文本 + git commit -m "完成 - 选中文本"
-
-	require('./statisticsLog')(context); // 统计日志
 	
 	require('./statusBar/init')(context); // 初始化右下角状态栏
 }

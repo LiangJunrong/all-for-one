@@ -3,7 +3,7 @@
 	"displayName": "jsliang",
 	"publisher": "jsliang",
 	"description": "jsliang 开发的插件，欢迎定制需求",
-	"version": "0.2.5",
+	"version": "0.2.6",
 	"engines": {
 		"vscode": "^1.44.0"
 	},
@@ -59,25 +59,43 @@
 		],
 		"commands": [
 			{
+				"command": "jsliang.initDirectory",
+				"title": "MD：初始化序列号"
+			},
+			{
+				"command": "jsliang.buildSimpleDirectory",
+				"title": "MD：生成简化版目录"
+			},
+			{
 				"command": "jsliang.buildDirectory",
-				"title": "生成目录"
+				"title": "MD：生成目录"
 			},
 			{
 				"command": "jsliang.statisticsLog",
-				"title": "统计日志"
+				"title": "MD：统计日志"
 			}
 		],
 		"menus": {
 			"editor/context": [
 				{
 					"when": "resourceLangId == markdown",
+					"command": "jsliang.initDirectory",
+					"group": "navigation@1"
+				},
+				{
+					"when": "resourceLangId == markdown",
+					"command": "jsliang.buildSimpleDirectory",
+					"group": "navigation@2"
+				},
+				{
+					"when": "resourceLangId == markdown",
 					"command": "jsliang.buildDirectory",
-					"group": "navigation"
+					"group": "navigation@3"
 				},
 				{
 					"when": "resourceLangId == markdown",
 					"command": "jsliang.statisticsLog",
-					"group": "navigation"
+					"group": "navigation@4"
 				}
 			]
 		}
