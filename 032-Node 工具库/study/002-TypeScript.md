@@ -109,6 +109,8 @@ Error: Cannot find module 'F:\jsliang\index.ts'
 
 > 合在一块执行：`npm i @types/node typescript ts-node -D`
 
+> 【2021-06-12 16:42:05】发现一个漏点，照着自己这篇文章，安装这几个包之后，如果执行 `node src/index.ts` 还是会报：`SyntaxError: Unexpected identifier`，所以应该安装 `npm i ts-node -g`，然后再执行 `ts-node src/index.ts`
+
 此时再执行 `node src/index.ts`，会发现 `path` 的信息打印出来了，可行，计划通~
 
 > 此时会生成 `node_modules` 和 `package-lock.json`，这 2 个详细不介绍，请自行 Google
@@ -359,6 +361,38 @@ module.exports = {
 ```
 
 相应的内容在上面我们也讲解过了，当前执行 `node src/index.ts` 也可以运行起来，TS 构造完毕。
+
+最后贴一下 `package.json` 当前内容，避免小伙伴们走错路：
+
+```js
+{
+  "name": "jsliang",
+  "version": "1.0.0",
+  "description": "Fe-util, Node 工具库",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jsliang",
+    "Node 工具库",
+    "Node"
+  ],
+  "author": "jsliang",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^15.12.2",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
+    "eslint": "^7.28.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}
+
+```
+
+那么我们下期见~
 
 ## <a name="chapter-six" id="chapter-six"></a>六 参考文献
 
