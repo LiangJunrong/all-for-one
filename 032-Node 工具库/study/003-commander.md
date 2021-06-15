@@ -262,8 +262,9 @@ Options:
     "commander": "^7.2.0"
   }
 }
-
 ```
+
+> 注意 `scripts` 改变了，记得复制过去
 
 然后简单写写 `index.ts` 里面内容
 

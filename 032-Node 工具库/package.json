@@ -4,7 +4,7 @@
   "description": "Fe-util, Node 工具库",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sort": "ts-node ./src/index.ts sort"
   },
   "keywords": [
     "jsliang",
