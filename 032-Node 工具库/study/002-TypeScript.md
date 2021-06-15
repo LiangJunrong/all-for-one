@@ -1,8 +1,17 @@
-TypeScript
+002 - TypeScript
 ===
 
 > Create by **jsliang** on **2021-05-12 11:00:03**  
-> Recently revised in **2021-05-22 14:51:53**
+> Recently revised in **2021-06-12 16:58:04**
+
+——————————☆☆☆——————————
+
+Node 系列相应地址：
+
+* 代码仓库：https://github.com/LiangJunrong/all-for-one
+* 文章仓库：https://github.com/LiangJunrong/document-library/tree/master/系列-前端资料/Node
+
+——————————☆☆☆——————————
 
 TypeScript 是 JavaScript 的超集，为语言增加了新的功能（下面简称 TS）。
 

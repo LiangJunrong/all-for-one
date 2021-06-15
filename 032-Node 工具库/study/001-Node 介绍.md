@@ -2,7 +2,16 @@
 ===
 
 > Create by **jsliang** on **2018-11-22 08:21:23**  
-> Recently revised in **2021-04-15 07:39:38**
+> Recently revised in **2021-06-12 16:48:11**
+
+——————————☆☆☆——————————
+
+Node 系列相应地址：
+
+* 代码仓库：https://github.com/LiangJunrong/all-for-one
+* 文章仓库：https://github.com/LiangJunrong/document-library/tree/master/系列-前端资料/Node
+
+——————————☆☆☆——————————
 
 什么，作为一枚前端复制粘贴工程师，你居然还不会 Node.js？
 
