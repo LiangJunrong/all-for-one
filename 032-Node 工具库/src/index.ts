@@ -1,4 +1,8 @@
-import path from 'path';
+import program from 'commander';
 
-console.log('jsliang 的 Node 工具库');
-console.log(path);
+program
+  .version('0.0.1')
+  .description('小工具指令清单')
+  .option('-s, --sort <path>', '排序功能', '')
+
+program.parse(process.argv);
