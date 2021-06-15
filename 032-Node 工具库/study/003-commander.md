@@ -392,7 +392,7 @@ OK，准备完毕，就可以耍起来了。
 
 而我们运行 `npm run sort "docs"` 后，新目录列表变成了：
 
-```shell
+```
 - 1.文章a.md
 - 2.文章b.md
 - 3.目录c
@@ -402,13 +402,15 @@ OK，准备完毕，就可以耍起来了。
 - 4.文章d.md
 ```
 
-这样，我们简单的案例就做好啦！
+![图](./img/commander-02.png)
+
+这样，我们简单的案例就做好啦！是不是非常简单！
 
 ## <a name="chapter-five" id="chapter-five"></a>五 常用 commander 配置
 
 > [返回目录](#chapter-one)
 
-下面例举下常见的 `commander` 配置：
+下面例举下我们非常不想看，但是正常使用又常见的 `commander` 配置：
 
 * `version`：版本。用来设置命令程序的版本号
   * 用法：`.version('x.y.z')`
@@ -434,6 +436,8 @@ OK，准备完毕，就可以耍起来了。
 * `parse`：解析 `process.argv`
   * 用法：`program.parse(process.argv)`
   * 这个 API 一般在最后调用，用来解析 `process.argv`
+
+OK，`commander` 的简单介绍到此结束，我们下期见！
 
 ## <a name="chapter-six" id="chapter-six"></a>六 参考文献
 
