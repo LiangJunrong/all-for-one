@@ -2,7 +2,7 @@
 ===
 
 > Create by **jsliang** on **2021-05-12 10:59:52**  
-> Recently revised in **2021-06-15 22:04:19**
+> Recently revised in **2021-06-15 22:20:02**
 
 ——————————☆☆☆——————————
 
@@ -39,7 +39,7 @@ Node 系列相应地址：
 
 经过前面 TypeScript 环境的搭建和 `commander.js` 的配合，我们现在可以在 `.ts` 文件中编写对应指令，然后通过 `npm run xxx` 来运行项目了，但是这种方式有个 Bug：
 
-* 当指令过多的时候，我们记不住那么多的指令！
+* 当指令过多的时候，我们压根记不住那么多的指令！
 
 所以，就需要一个智能提示，将指令简化并可视化。
 
@@ -58,7 +58,7 @@ Node 系列相应地址：
 
 **然后**。我们就可以开始耍起来了，接入前面的 TypeScript 和 `commander.js`，拿起 `index.ts` 和 `package.json` 就是一顿修改：
 
-> index.ts
+> src/index.ts
 
 ```js
 import program from 'commander';
@@ -123,7 +123,7 @@ program
 program.parse(process.argv);
 ```
 
-注意这里 `sort` 改成 `jsliang` 了。
+注意这里 `sort` 改成 `jsliang` 了（人不要脸天下无敌）。
 
 > package.json
 
@@ -157,7 +157,6 @@ program.parse(process.argv);
     "inquirer": "^8.1.0"
   }
 }
-
 ```
 
 于是就有了效果：
@@ -177,7 +176,7 @@ OK，一一解决问题，咱们先讲解下 `Inquirer.js` 里面的一些操作
 
 > [返回目录](#chapter-one)
 
-在上面的代码中，通过 `.prompt(Array<Object>)` 可以传递对应信息，然后通过回调获取答案，举例一个输入框：
+在上面的代码中，通过 `.prompt(Array<Object>)` 可以传递多个问题信息，然后通过回调获取答案，举例一个输入框：
 
 ```js
 inquirer.prompt([
@@ -539,7 +538,7 @@ npm ERR!     C:\Users\wps\AppData\Roaming\npm-cache\_logs\2021-06-08T11_46_58_00
 
 顺带给个目录图吧：
 
-![图]()
+![图](./img/Inquirer-12.png)
 
 > src/base/inquirer.ts
 
@@ -663,6 +662,8 @@ const common = (): void => {
 
 export default common;
 ```
+
+传递问题数组，然后回调函数处理内容，满足我当前的需求，咱就不再改造了。
 
 其他详细文件内容如下：
 
