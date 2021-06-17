@@ -27,6 +27,7 @@
     "colors": "^1.4.0",
     "commander": "^7.2.0",
     "inquirer": "^8.1.0",
+    "puppeteer": "^10.0.0",
     "rxjs": "^5.5.12"
   }
 }

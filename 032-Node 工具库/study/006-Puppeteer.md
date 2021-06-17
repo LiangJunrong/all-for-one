@@ -40,7 +40,7 @@ Puppeteer 是一个 Node 库，它提供了一个高级 API 来通过 DevTools �
 
 ## Puppeteer
 
-* 安装：
+* 安装：`npm i puppeteer`
 
 安装的时候报错：
 
@@ -50,19 +50,75 @@ Puppeteer 是一个 Node 库，它提供了一个高级 API 来通过 DevTools �
 
 注意这里有 2 种方法升级，一种是下载最新版覆盖安装，另一种是通过 `nvm/nvmw` 方式去管理。
 
-**jsliang** 网络还不错，直接下载个最新文档版吧：[]()
+**jsliang** 网络还不错，直接下载个最新文档版吧：[Node 官网](https://nodejs.org/zh-cn/)
 
-TODO: 明天继续！
+查看下最新版本：
+
+* `node -v`：`v14.17.1`
+
+这时候再安装 Puppeteer，显示安装成功，`package.json` 显示：`"puppeteer": "^10.0.0"`
 
 ### 抓取快照
 
-我们简单拿抓取页面快照举例：
+我们拿抓取页面快照做个简单举例：
 
 > src/index.ts
 
 ```js
+import program from 'commander';
+import common from './common';
+import './base/console';
+import puppeteer from 'puppeteer';
 
+program
+  .version('0.0.1')
+  .description('工具库')
+
+program
+  .command('jsliang')
+  .description('jsliang 帮助指令')
+  .action(() => {
+    common();
+  });
+
+program
+  .command('test')
+  .description('测试频道')
+  .action(async () => {
+    // 启动浏览器
+    const browser = await puppeteer.launch({
+      headless: false, // 打开实体浏览器
+    });
+
+    // 创建新标签页并打开
+    const page = await browser.newPage();
+    await page.goto('https://www.baidu.com/s?wd=jsliang');
+
+    // 获取快照并存储到本地
+    await page.screenshot({
+      path: './src/baidu.png',
+    });
+
+    // 关闭窗口
+    await browser.close();
+  });
+
+program.parse(process.argv);
 ```
+
+这时候 `src` 文件夹里面会出现图片文件 `baidu.png`，打开展示如下：
+
+![图](./img/puppeteer-01.png)
+
+> 实测 科学上网工具 或者 360 安全卫士会对这操作造成影响，珍爱生命，远离不科学
+
+这样我们就初步了解 Puppeteer 啦，当然它还可以导出 PDF 等，自行翻下文【参考文献】中的内容吧。
+
+### 获取在线文件
+
+既然我们可以获取到截图，那么我们能操作 DOM 也就不足为奇，咱们获取下线上的文件吧！
+
+TODO: 拿金山文档举例，我们直接将 Excel 下载下来
 
 ## 参考文献
 

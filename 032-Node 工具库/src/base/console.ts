@@ -7,7 +7,7 @@ let consoleIndex = 1;
 // 重写 console.log
 const log = console.log;
 console.log = (...args: any) => {
-  log(`\n---${consoleIndex++}---`);
+  log(colors.cyan(`\n---${consoleIndex++}---`));
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (['String', 'Number', 'Boolean'].includes(getType(arg))) {
