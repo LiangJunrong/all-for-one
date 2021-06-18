@@ -3,12 +3,12 @@ import { Result } from '../base/interface';
 import { sortCatalog } from './sortCatalog';
 
 const common = (): void => {
-  // 测试新特性
+  // 问题路线：看 questionList.ts
   const questionList = [
     {
       type: 'list',
       message: '请问需要什么服务？',
-      choices: ['公共服务', '其他']
+      choices: ['公共服务', '文件管理']
     },
     {
       type: 'list',
@@ -20,6 +20,10 @@ const common = (): void => {
       message: '需要排序的文件夹为？（绝对路径）',
       default: 'D:/xx',
     },
+    {
+      type: 'list',
+      message: ''
+    }
   ];
 
   const answerList = [
