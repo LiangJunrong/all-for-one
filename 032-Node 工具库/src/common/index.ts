@@ -1,7 +1,7 @@
 import { inquirer } from '../base/inquirer';
 import { Result } from '../base/interface';
 import { sortCatalog } from './sortCatalog';
-import { downLoadExcel } from './downLoadExcel';
+import { downLoadExcel } from './language/download';
 
 const common = (): void => {
   // 问题路线：看 questionList.ts

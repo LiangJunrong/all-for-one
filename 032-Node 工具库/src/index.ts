@@ -23,15 +23,24 @@ program
     
     // 导出数据
     const data = [
-      [1, 2, 3],
-      [true, false, null, 'sheetjs'],
-      ['foo', 'bar', new Date('2014-02-19T14:30Z'), '0.3'],
-      ['baz', null, 'qux'],
+      ['key', 'zh-CN', 'en-US', 'zh-TW', 'zh-GZ'],
+      ['noMoney', '我没钱啦！', 'I have no money', '我沒錢啦！', '我冇钱啦！'],
     ];
-    const buffer = xlsx.build([{name: "mySheetName", data: data}]); // 拿到文件 buffer
+    // 列宽设置
+    const options = {
+      '!cols': [
+        { wch: 10 },
+        { wch: 15 },
+        { wch: 15 },
+        { wch: 15 },
+        { wch: 15 },
+      ]
+    }
+    // 生成 buffer
+    const buffer = xlsx.build([{ name: "jsliang", data: data }], options); // 拿到文件 buffer
 
     // 写入文件
-    fs.writeFileSync(`${__dirname}/common/dist/test-sheet.xlsx`, Buffer.from(buffer));
+    fs.writeFileSync(`${__dirname}/common/dist/Excel 导出文件.xlsx`, Buffer.from(buffer));
   });
 
 program.parse(process.argv);
