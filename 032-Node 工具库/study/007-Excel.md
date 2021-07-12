@@ -263,7 +263,7 @@ program.parse(process.argv);
       - download.ts
       - export.ts
       - import.ts
-      - source.ts
+      - source.json
     - index.ts
     - questionList.ts
     - sortCatalog.ts
@@ -438,24 +438,24 @@ export default common;
 
 ```
 
-需要注意的是，我们如果要导入的话，肯定有个对应的资源文件，可以是 `.js` 或者是 `.json` 文件，这边就用 `source.ts` 演示：
+需要注意的是，我们如果要导入的话，肯定有个对应的资源文件，可以是 `.js` 或者是 `.json` 文件，这边就用 `source.json` 演示：
 
-> source.ts
+> source.json
 
 ```js
-export const language = {
-  'zh-CN': {
+{
+  "zh-CN": {
 
   },
-  'en-US': {
+  "en-US": {
 
   },
-  'zh-TW': {
+  "zh-TW": {
 
   },
-  'zh-GZ': {
+  "zh-GZ": {
 
-  },
+  }
 }
 ```
 
@@ -464,7 +464,7 @@ export const language = {
 > import.ts
 
 ```js
-TODO: 填充 source.ts 并且覆盖原有资源
+TODO: 填充 source.json 并且覆盖原有资源
 export const importLanguage = async (): Promise<boolean> => {
   // TODO: 填充内容
   return await true;
