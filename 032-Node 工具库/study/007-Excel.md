@@ -2,13 +2,35 @@ Node XLSX
 ===
 
 > Create by **jsliang** on **2021-06-03 17:55:35**  
-> Recently revised in **2021-06-08 09:13:33**
+> Recently revised in **2021-07-12 23:34:00**
 
 在通过 Puppeteer 操作浏览器下载到 Excel 之后，我们终于可以将预备将多语言的操作玩出花来了。
 
 本篇我们将通过 `node-xlsx`，对 Excel 进行多语言导入导出的操作。
 
-## 前言
+<!-- 目录开始 -->
+## <a name="chapter-one" id="chapter-one"></a>一 目录
+
+**不折腾的前端，和咸鱼有什么区别**
+
+| 目录 |
+| --- |
+| [一 目录](#chapter-one) |
+| <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
+| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 快速开始](#chapter-three) |
+| &emsp;[3.1 测试导入](#chapter-three-one) |
+| &emsp;[3.2 测试导出](#chapter-three-two) |
+| &emsp;[3.3 测试定制宽度](#chapter-three-three) |
+| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 多语言操作](#chapter-four) |
+| &emsp;[4.1 导入](#chapter-four-one) |
+| &emsp;[4.2 导出](#chapter-four-two) |
+| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 后续](#chapter-five) |
+| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 参考文献](#chapter-six) |
+<!-- 目录结束 -->
+
+## <a name="chapter-two" id="chapter-two"></a>二 前言
+
+> [返回目录](#chapter-one)
 
 在服务端的工作中，生成报表并送给运营、产品进行分析应该是一门简单手艺。
 
@@ -30,12 +52,16 @@ Node XLSX
 
 但是，我还是用我的 `node-xlsx` 吧，毕竟例子都在它仓库的 README.md 贴出来了！
 
-## 快速开始
+## <a name="chapter-three" id="chapter-three"></a>三 快速开始
+
+> [返回目录](#chapter-one)
 
 * 安装包：`npm i node-xlsx -S`
 * 安装 TypeScript：`npm i @types/node-xlsx -D`
 
-### 测试导入
+### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 测试导入
+
+> [返回目录](#chapter-one)
 
 > src/index.ts
 
@@ -127,7 +153,9 @@ program.parse(process.argv);
 
 OK，都能正常导入~
 
-### 测试导出
+### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 测试导出
+
+> [返回目录](#chapter-one)
 
 ```js
 import program from 'commander';
@@ -179,7 +207,9 @@ program.parse(process.argv);
 
 好的，导出也 OK 了~
 
-### 测试定制宽度
+### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 测试定制宽度
+
+> [返回目录](#chapter-one)
 
 当然，有时候产品非常懒，需要我们将表格宽度给做好成每一列都能宽一点，那就要定制下页面宽度：
 
@@ -244,11 +274,15 @@ program.parse(process.argv);
 
 安逸，满屏飘满 no money~
 
-## 多语言操作
+## <a name="chapter-four" id="chapter-four"></a>四 多语言操作
+
+> [返回目录](#chapter-one)
 
 在我们简单了解 `node-xlsx` 之后，我们就可以通过它完成多语言的导入导出，以及下一章会讲解如何获取需要的资源。
 
-### 导入
+### <a name="chapter-four-one" id="chapter-four-one"></a>4.1 导入
+
+> [返回目录](#chapter-one)
 
 接「006 - Puppeteer」，我们在上一篇文章已经完成了资源的下载，实际上我们应该一条龙服务，从下载到导入统统给安排了。
 
@@ -550,39 +584,80 @@ export const exportLanguage = async (): Promise<boolean> => {
 
 > 当然，导入的过程中，还需要修复对齐 key（即某中文 key 情况下，其他资源未翻译；或者删除 key 资源），这些就不哆嗦列举了，需要的时候补充写一写，也不难~
 
-### 导出
+### <a name="chapter-four-two" id="chapter-four-two"></a>4.2 导出
+
+> [返回目录](#chapter-one)
 
 导入尚且如此，导出就更轻松了：
 
 > export.ts
 
 ```js
+import xlsx from 'node-xlsx';
+import fs from 'fs';
+import path from 'path';
 
+export const exportLanguage = async (): Promise<boolean> => {
+  const languageData = JSON.parse(fs.readFileSync(path.join(__dirname, './source.json'), 'utf8'));
+
+  // 组装头部数据
+  const header = Object.keys(languageData);
+
+  // 组装内容数据
+  const chineseKeyList = Object.keys(languageData['zh-CN']);
+  const body: any[] = [];
+  for (let i = 0; i < chineseKeyList.length; i++) {
+    const nowKey = chineseKeyList[i];
+    const nowFloor = [nowKey];
+    console.log(nowFloor, nowKey);
+    for (let j = 0; j < header.length; j++) {
+      const nowLanguage = header[j];
+      nowFloor.push(languageData[nowLanguage][nowKey]);
+    }
+    body.push(nowFloor);
+  }
+
+  // 导出数据
+  const data = [
+    ['keys', ...header],
+    ...body,
+  ];
+  const buffer = xlsx.build([{ name: "jsliang", data: data }]); // 拿到文件 buffer
+
+  // 写入文件
+  fs.writeFileSync(path.join(__dirname, './dist/Excel 导出文件.xlsx'), Buffer.from(buffer));
+
+  return await true;
+};
 ```
 
 执行 `npm run jsliang`，按流程点点：
 
-![图](流程图)
+![图](./img/Excel-10.png)
 
 然后就看下 `dist` 目录有没有对应的文件：
 
-![图](目录图)
+![图](./img/Excel-11.png)
 
 在打开文件看看：
 
-![图](导出文件详细图)
+![图](./img/Excel-12.png)
 
 OK，搞定，收工~
 
-TODO: 能不能自动上传呢？
+## <a name="chapter-five" id="chapter-five"></a>五 后续
 
-## 后续
+> [返回目录](#chapter-one)
 
-那么，Excel 的操作流程我们就安排得明明白白了，下一章我们会讲解多语言机翻（机器自动翻译）和人工翻译问题的解决，从而完成多语言处理。
+那么，Excel 的操作流程我们就安排得明明白白了。
 
-再在后面，也就是下下章，**jsliang** 可能开启 Node 服务，完成简单网站的搭建，不过 **jsliang** 于 2018 年写过一篇 Node 从 0 基础到企业官网了，所以咱们尝试搞个小游戏吧，嘿嘿~
+再往下一章，**jsliang** 可能开启 Node 服务，完成简单网站的搭建，不过 **jsliang** 于 2018 年写过一篇 Node 从 0 基础到企业官网的文章了，所以咱们尝试搞个小游戏吧，嘿嘿~
 
-## 参考文献
+> 当前阶段算上 Node 初篇完毕，主要也没啥内容，后续会补充开启服务，WebSocket 等内容，冲鸭~
+
+## <a name="chapter-six" id="chapter-six"></a>六 参考文献
+
+> [返回目录](#chapter-one)
 
 * [nodejs 实现导出 excel 报表](https://cloud.tencent.com/developer/article/1653844)
 * [GitHub：SheetJS](https://github.com/SheetJS/sheetjs)
