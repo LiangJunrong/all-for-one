@@ -10,6 +10,7 @@ export const importLanguage = async (): Promise<boolean> => {
   );
   console.log(workSheetsFromBuffer[0].data);
   /**
+   * TODO: 根据资源进行导入
   [
     [ 'key', 'zh-CN', 'en-US', 'zh-TW', 'zh-GZ' ],
     [ 'noMoney', '我没钱啦！', 'I have no money', '我沒錢啦！', '我冇钱啦！' ]
