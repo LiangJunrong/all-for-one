@@ -1,4 +1,8 @@
-export const language = {
+interface anyObject {
+  [key: string]: any,
+}
+
+export const language: anyObject = {
   'zh-CN': {
 
   },
