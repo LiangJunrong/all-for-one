@@ -13,7 +13,6 @@ export const importLanguage = async (): Promise<boolean> => {
 
   const sheet1Data = workSheetsFromBuffer[0].data.map(i => i.map(j => String(j)));
 
-
   // 获取头部数据
   const header = sheet1Data[0];
   

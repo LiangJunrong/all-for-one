@@ -438,7 +438,7 @@ export default common;
 
 ```
 
-需要注意的是，我们如果要导入的话，肯定有个对应的资源文件，可以是 `.js` 或者是 `.json` 文件，这边就用 `source.json` 演示：
+需要注意的是，我们如果要导入的话，肯定有个对应的资源文件，这边就用 `source.json` 演示：
 
 > source.json
 
@@ -464,10 +464,66 @@ export default common;
 > import.ts
 
 ```js
-TODO: 填充 source.json 并且覆盖原有资源
+import xlsx from 'node-xlsx';
+import fs from 'fs';
+import path from 'path';
+
 export const importLanguage = async (): Promise<boolean> => {
-  // TODO: 填充内容
-  return await true;
+  const language = JSON.parse(fs.readFileSync(path.join(__dirname, './source.json'), 'utf8'));
+
+  const workSheetsFromBuffer = xlsx.parse(
+    fs.readFileSync(
+      path.join(__dirname, '/dist/Excel 试用文件.xlsx'),
+    ),
+  );
+
+  const sheet1Data = workSheetsFromBuffer[0].data.map(i => i.map(j => String(j)));
+
+  // 获取头部数据
+  const header = sheet1Data[0];
+  
+  // 查找 key 对应列
+  let keyIndex = 0;
+  for (let i = 0; i < header.length; i++) {
+    if (header[i] === 'key') {
+      keyIndex = i;
+      break;
+    }
+  }
+  if (keyIndex < 0) {
+    console.error('未找到 key 对应列！');
+    return false;
+  }
+
+  // 设置资源内容
+  const fullLanguage: any[] = [...Object.keys(language), ...header.filter((item: any) => item !== 'key')];
+  const filterFullLanguage = new Set();
+  for (let i = 0; i < fullLanguage.length; i++) {
+    if (!filterFullLanguage.has(fullLanguage[i])) {
+      filterFullLanguage.add(fullLanguage[i]);
+      // 如果没有该种语言，则新增
+      if (!language[fullLanguage[i]]) {
+        language[fullLanguage[i]] = {};
+      }
+    }
+  }
+
+  // 获取内容数据
+  const body = sheet1Data.slice(1);
+  for (let i = 0; i < body.length; i++) {
+
+    for (let j = 0; j < body[i].length; j++) {
+      if (j !== keyIndex) {
+        const nowLanguage = language[header[j]]; // 一个损耗性能的操作，每次都会读取新列表，但是我不想优化
+        const nowKey = body[i][keyIndex]; // 获取这一行的 key
+        nowLanguage[nowKey] = body[i][j]; // 替换 key
+      }
+    }
+  }
+
+  fs.writeFileSync(path.join(__dirname, './source.json'), JSON.stringify(language, null, 2), 'utf8');
+
+  return true;
 };
 ```
 
@@ -482,15 +538,17 @@ export const exportLanguage = async (): Promise<boolean> => {
 
 编写完毕，执行 `npm run jsliang`，按照提问逐个回车：
 
-![图](流程图)
+![图](./img/Excel-07.png)
 
 然后代码跑起来（姿势很帅），成功导入：
 
-![图](导入完毕图 1 - 目录图)
+![图](./img/Excel-08.png)
 
-![图](导入完毕图 2 - 内容图)
+![图](./img/Excel-09.png)
 
 这样导入流程就完毕了。
+
+> 当然，导入的过程中，还需要修复对齐 key（即某中文 key 情况下，其他资源未翻译；或者删除 key 资源），这些就不哆嗦列举了，需要的时候补充写一写，也不难~
 
 ### 导出
 
