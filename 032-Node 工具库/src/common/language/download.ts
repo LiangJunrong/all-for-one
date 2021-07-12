@@ -51,5 +51,5 @@ export const downLoadExcel = async (link: string): Promise<boolean> => {
   // 8. 关闭窗口
   await browser.close();
 
-  return await true;
+  return true;
 };
