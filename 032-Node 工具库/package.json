@@ -18,6 +18,7 @@
     "@types/inquirer": "^7.3.1",
     "@types/node": "^15.12.2",
     "@types/node-xlsx": "^0.15.1",
+    "@types/shelljs": "^0.8.9",
     "@typescript-eslint/eslint-plugin": "^4.26.1",
     "@typescript-eslint/parser": "^4.26.1",
     "eslint": "^7.28.0",
@@ -30,6 +31,7 @@
     "inquirer": "^8.1.0",
     "node-xlsx": "^0.16.1",
     "puppeteer": "^10.0.0",
-    "rxjs": "^5.5.12"
+    "rxjs": "^5.5.12",
+    "shelljs": "^0.8.4"
   }
 }

@@ -1,9 +1,16 @@
 import { inquirer } from '../base/inquirer';
 import { Result } from '../base/interface';
+
+// 系统操作
 import { sortCatalog } from './sortCatalog';
+
+// 多语言
 import { downLoadExcel } from './language/download';
 import { importLanguage } from './language/import';
 import { exportLanguage } from './language/export';
+
+// shell 操作
+import { closePort } from '../base/shell/closePort';
 
 // 问题记录器
 const answers = {
@@ -12,6 +19,7 @@ const answers = {
   q2: '',
   q3: '',
   q4: '',
+  q5: '',
 };
 
 const common = (): void => {
@@ -21,13 +29,13 @@ const common = (): void => {
     {
       type: 'list',
       message: '请问需要什么服务？',
-      choices: ['公共服务', '多语言']
+      choices: ['公共服务', '多语言'],
     },
     // q1
     {
       type: 'list',
       message: '当前公共服务有：',
-      choices: ['文件排序']
+      choices: ['文件排序', '关闭端口'],
     },
     // q2
     {
@@ -49,6 +57,11 @@ const common = (): void => {
       type: 'input',
       message: '资源下载地址（HTTP）？',
       default: 'https://www.kdocs.cn/l/sdwvJUKBzkK2',
+    },
+    // q5
+    {
+      type: 'input',
+      message: '你需要关闭的端口是？',
     }
   ];
 
@@ -69,8 +82,10 @@ const common = (): void => {
     // q1 - 当前公共服务有：
     async (result: Result, questions: any) => {
       answers.q1 = result.answer;
-      if (result.answer === '文件排序') {
-        questions[2]();
+      switch (result.answer) {
+        case '文件排序': questions[2](); break;
+        case '关闭端口': questions[5](); break;
+        default: break;
       }
     },
     // q2 - 需要排序的文件夹为？（绝对路径）
@@ -123,6 +138,15 @@ const common = (): void => {
           break;
       }
     },
+    // q5 - 你需要关闭的端口是？
+    async (result: Result, _questions: any, prompts: any) => {
+      answers.q5 = result.answer;
+      const closeResult = await closePort(result.answer);
+      if (closeResult) {
+        console.log('关闭成功');
+        prompts.complete();
+      }
+    }
   ];
 
   inquirer(questionList, answerList);
