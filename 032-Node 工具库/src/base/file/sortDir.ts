@@ -7,7 +7,7 @@
 */
 import fs from 'fs';
 import path from 'path';
-import { IGNORE_PATH } from '../base/config';
+import { IGNORE_PATH } from '../config';
 
 const recursion = (filePath: string, level = 0) => {
   const files = fs.readdirSync(filePath);

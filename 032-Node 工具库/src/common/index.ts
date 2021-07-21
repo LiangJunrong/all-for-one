@@ -2,7 +2,7 @@ import { inquirer } from '../base/inquirer';
 import { Result } from '../base/interface';
 
 // 系统操作
-import { sortCatalog } from './sortCatalog'; // TODO: 迁移到 file 文件夹
+import { sortCatalog } from '../base/file/sortDir';
 import { deleteDir } from '../base/file/deleteDir';
 
 // 多语言

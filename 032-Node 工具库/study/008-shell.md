@@ -547,47 +547,48 @@ export const deleteDir = async (path: string): Promise<boolean> => {
 
 ![图](./img/shell-02.png)
 
-搞定，收工！
+搞定，收工！因为不清楚 Node 操作和系统指令哪个比较快，所以暂定实用指数 ☆☆☆
 
 ## Git 操作
 
+那么最后，来到重头 Git 操作。
 
+想必有些小伙伴会跟 **jsliang** 一样懒？
 
-### Git 常见操作
+* `git add .`
+* `git commit -m "xxx"`
+* `git push`
 
-#### git commit 忽略 tslint
+已经到了麻木的状态了，**jsliang** 甚至开发了特定的 VS Code 插件：
 
-指令：`git commit -m "xxx" --no-verify`
+![图](./img/shell-03.png)
 
-#### git cherry-pick：迁移代码
+> 注：VS Code 也卷，更新太快了我插件接受不了（一定程度上最新 VS Code 用不了该插件），所以我版本锁死 `v1.53.2`，啥时候有空操作再更新我插件了
 
-对于多分支的代码库，将代码从一个分支转移到另一个分支。
+在 VS Code 插件中，进行快速的提交操作。
 
-指令：`git cherry-pick <commitHash>`
+所以在一些常规的 Git 操作我们还是希望能封装起来（不需要记指令，也不想点页面，让它自行跑起来吧）
 
-* [cherry-pick](http://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)
+### 工作中常用 Git 指令
 
-#### git reset：回退版本并保留内容
+**jsliang** 在工作中经常使用，并记住了的对应指令：
 
-* `git reset --soft HEAD^`
+* `git pull`：拉取代码并自动合并，**jsliang** 这边还会用 `git pull --rebase origin master`，表明拉取远程分支并基于该分支进行改动
+* `git checkout -b <newBranch>`：从当前分支切新分支
+* `git branch -D <branch>`：根据分支名删除指定分支
+* `git add <files>`：提交到暂存区
+* `git commit <description>`：提交到本地版本库。如果你们仓库有 `eslint` 检查之类的，强烈推荐 `git commit -m "xxx" --no-verify`（有时候真不想搞啥检查）
+* `git push`：提交到远程库。一般新分支操作为 `git push -- set upstream origin <branch>`
+* `git cherry-pick <commitHash>`：将指定的提交（`commit`）应用于其他分支
+* `git stash`：暂存内容。将暂存区的内容存储到栈中（多次 `stash` 可以通过多次 `pop` 推出来）
+* `git stash pop`：签出内容。将 `git stash` 中的内容推出来
+* `git reset --soft HEAD^`：回退版本并保留内容。这个 `HEAD^` 是指上一个版本，也可以写成 `HEAD~1`（就是 commit id）
 
-> `HEAD^` 是指上一个版本，也可以写成 `HEAD~1`
+---
 
-#### git stash：暂存内容
+值得一提的是，**jsliang** 之前还尝试用过：`git worktree`，它可以同时修改多个版本。
 
-* 暂存内容：`git stash`
-* 签出内容：`git stash pop`
-
-#### git --rebase：拉分支
-
-* 拉取远程分支并合并到本地
-
-1. `git fetch origin master`
-2. `git merge origin/master`
-
-* 拉取远程分支并基于该分支进行改动：`git pull --rebase origin master`
-
-#### git worktree：同时修改多个版本
+> 但是因为嫌麻烦（要记指令），所以就没用了
 
 同一个 Git 仓库，需要同时修改多个分支，或者需要在 A 分支上参照 B 分支的内容进行修改。
 
@@ -625,25 +626,15 @@ git worktree remove ../jsliang
 git worktree prune
 ```
 
-常用指令：
+常用 `git worktree` 指令：
 
 * 切出分支：`git worktree add ../jsliang abc`
 * 常用操作：`git add .`、`git commit -m "xxx"`、`git push`
 * 关闭分支：`git worktree prune`
 
+---
 
-* [ ] Git 连接 GitHub
-* [ ] 基础操作：`git add`、`git commit`、`git push`、`git pull`、`git fetch`、`git branch`
-* [ ] 工作常用：
-  * [ ] `git rebase`
-  * [ ] `git cherry-pick`
-  * [ ] `git revert`
-  * [ ] `git stash`
-  * [ ] `git alias`
-  * [ ] `git worktree`
-* TODO:
-
-#### Git 设置代理
+当然，还有 Git 设置代理
 
 科学上网情况下，有时候 Git 并没有生效，克隆或者 `push` 操作一样卡慢，就需要设置 Git 代理。
 
@@ -662,9 +653,17 @@ git worktree prune
 1. `git config --global --get http.proxy`
 1. `git config --global --get https.proxy`
 
-我拿现在用的科学代理工具，就设置了 `git config --global http.proxy http://127.0.0.1:10809`，Git 流畅度提升了挺多。
+我拿现在用的科学上网代理软件，就设置了 `git config --global http.proxy http://127.0.0.1:10809`，Git 流畅度提升了挺多。
 
-参考文献
+### 切换分支
+
+吧啦吧啦说了一通，下面开始干正活，咱们先从简单的切换分支开始：
+
+> src/common/index.ts
+
+```js
+
+```
 
 ## 参考文献
 
@@ -676,6 +675,7 @@ git worktree prune
 * [政企云前端团队：我在工作中是如何使用 Git 的](https://www.zoo.team/article/how-to-use-git)
 * [SegmentFault：Git 屠龙技：使用 Git Worktree 并行开发测试](https://segmentfault.com/a/1190000038508752)
 * [何方的编程之路：Git如何使用代理(VPN)](https://code.iamhefang.cn/content/how-to-make-git-auto-use-vpn.html)
+* [阮一峰：cherry-pick](http://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)
 
 ---
 
