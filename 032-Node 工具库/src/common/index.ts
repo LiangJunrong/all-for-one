@@ -2,7 +2,8 @@ import { inquirer } from '../base/inquirer';
 import { Result } from '../base/interface';
 
 // 系统操作
-import { sortCatalog } from './sortCatalog';
+import { sortCatalog } from './sortCatalog'; // TODO: 迁移到 file 文件夹
+import { deleteDir } from '../base/file/deleteDir';
 
 // 多语言
 import { downLoadExcel } from './language/download';
@@ -20,6 +21,7 @@ const answers = {
   q3: '',
   q4: '',
   q5: '',
+  q6: '',
 };
 
 const common = (): void => {
@@ -35,7 +37,7 @@ const common = (): void => {
     {
       type: 'list',
       message: '当前公共服务有：',
-      choices: ['文件排序', '关闭端口'],
+      choices: ['文件排序', '关闭端口', '删除文件夹'],
     },
     // q2
     {
@@ -62,6 +64,11 @@ const common = (): void => {
     {
       type: 'input',
       message: '你需要关闭的端口是？',
+    },
+    // q6
+    {
+      type: 'input',
+      message: '你需要删除的路径是？（全路径）'
     }
   ];
 
@@ -85,6 +92,7 @@ const common = (): void => {
       switch (result.answer) {
         case '文件排序': questions[2](); break;
         case '关闭端口': questions[5](); break;
+        case '删除文件夹': questions[6](); break;
         default: break;
       }
     },
@@ -146,7 +154,16 @@ const common = (): void => {
         console.log('关闭成功');
         prompts.complete();
       }
-    }
+    },
+    // q6 - 你需要删除的路径是？（全路径）
+    async (result: Result, _questions: any, prompts: any) => {
+      answers.q6 = result.answer;
+      const deleteResult = await deleteDir(result.answer);
+      if (deleteResult) {
+        console.log('删除成功');
+        prompts.complete();
+      }
+    },
   ];
 
   inquirer(questionList, answerList);

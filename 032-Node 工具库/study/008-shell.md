@@ -1,4 +1,4 @@
-008 - shell.js
+008 - ShellJS
 ===
 
 > Create by **jsliang** on **2021-07-20 20:40:58**  
@@ -52,13 +52,17 @@
 
 ## Node 编写 bash 脚本的解决方案
 
-其实关于这个解决方案，**jsliang** 还是嫌麻烦，所以直接上了 `shell.js`，如果小伙伴希望有个参考对比，可以看：
+其实关于这个解决方案，**jsliang** 还是嫌麻烦，所以直接上了 `ShellJS`：
 
-* [👏 nodejs写bash脚本终极方案！](https://juejin.cn/post/6979989936137043999)
+* [ShellJS - Unix shell commands for Node.js](https://github.com/shelljs/shelljs)
 
-作者比对了 Node 自带的 `child_process` API、`shell.js` 和 `zx`，最终采取了 `zx` 的方案。
+如果小伙伴觉得这样直接上方案有点唐突，希望有个参考对比，可以看：
 
-当然，**jsliang** 工作中用的还是 `shell.js`，不想再探索同类库了，所以就安装 `shell.js` 吧~
+* [Node.js 写 bash 脚本终极方案](https://juejin.cn/post/6979989936137043999)
+
+作者比对了 Node 自带的 `child_process` API、`ShellJS` 和 `zx`，最终采取了 `zx` 的方案。
+
+当然，**jsliang** 工作中用的还是 `ShellJS`，不想再探索同类库了，所以就安装 `ShellJS` 吧~
 
 * 安装：`npm i shelljs`
 * 安装 TS 编译：`npm i @types/shelljs -D`
@@ -278,6 +282,8 @@ export const questionList = {
 
 > src/base/shell/closePort.ts
 
+> shell 目录是新增的
+
 ```js
 import shell from 'shelljs';
 
@@ -291,6 +297,8 @@ export const closePort = async (port: string): Promise<boolean> => {
 };
 ```
 
+> 注：Windows 打印结果最末尾的为 PID 号
+
 当然，因为 `3001` 可能会有好几个 `ip` 对应的端口，所以后面那个步骤我们仅做了提示，而不是关闭了所有 `3001` 的端口（需要用户手动操作）。
 
 但是这样总好过我们去记忆这个指令（毕竟 Windows 和 Mac 等的操作指令还不通）
@@ -299,15 +307,251 @@ export const closePort = async (port: string): Promise<boolean> => {
 
 ![图](./img/shell-01.png)
 
-## Shell.js
+这样我们就封装好了关闭端口的，因为不是一键彻底关闭，实用指数给到 ☆☆☆
 
-### 删除文件/文件夹
+## 删除文件/文件夹
 
-删除文件/文件夹（举例 `node_modules`）
+为了研究 Windows 如何快速删除 `node_modules`，**jsliang** 还真研究了 3 种删除文件/文件夹的方式：
 
-1. `cmd.exe`：`rd /s /q 'path'`
-2. `PowerShell`：`rd -r 'path'`
-3. `Mac`：`rm -rf 'path'`
+1. `cmd.exe`：`rd /s /q <path>`
+2. `PowerShell`：`rd -r <path>`
+3. `Mac`：`rm -rf <path>`
+
+经过多次亲身体验，在公司中的 32G 内存，500 SSD 的台式电脑中，通过 `PowerShell` 的删除操作比 `cmd.exe` 的快（别问我为啥，反正就是快点，仅个人体验，不做科学支撑）。
+
+然后看了下 `ShellJS`，是有删除方式的：
+
+* ShellJS：`rm()` 删除文件，`rm('rf', <path>)` 删除文件夹
+
+当然！奔着探索精神，咱们看看它源码咋实现的：
+
+* [GitHub：ShellJS - rm.js](https://github.com/shelljs/shelljs/blob/master/src/rm.js)
+
+```js
+function rmdirSyncRecursive(dir, force, fromSymlink) {
+  
+  // 1. 先删除目录中的所有文件
+  let files = fs.readdirSync(dir);
+  for (var i = 0; i < files.length; i++) {
+    // 1.1 如果是目录则递归调用 rmdirSyncRecursive()
+    // 1.2 如果是文件则调用 fs.unlinkSync() 执行删除
+  }
+
+  // 2. 再删除目录
+  fs.rmdirSync();
+}
+```
+
+当然，里面有些细节还是写得不错的，这里就不展开详细讲解。
+
+所以，咱们就用 `ShellJS` 的方法吧！如果后面感觉不舒服再替换为系统指令。
+
+> src/common/index.ts
+
+```js
+import { inquirer } from '../base/inquirer';
+import { Result } from '../base/interface';
+
+// 系统操作
+import { sortCatalog } from './sortCatalog'; // TODO: 迁移到 file 文件夹
+import { deleteDir } from '../base/file/deleteDir';
+
+// 多语言
+import { downLoadExcel } from './language/download';
+import { importLanguage } from './language/import';
+import { exportLanguage } from './language/export';
+
+// shell 操作
+import { closePort } from '../base/shell/closePort';
+
+// 问题记录器
+const answers = {
+  q0: '',
+  q1: '',
+  q2: '',
+  q3: '',
+  q4: '',
+  q5: '',
+  q6: '',
+};
+
+const common = (): void => {
+  // 问题路线：看 questionList.ts
+  const questionList = [
+    // q0
+    {
+      type: 'list',
+      message: '请问需要什么服务？',
+      choices: ['公共服务', '多语言'],
+    },
+    // q1
+    {
+      type: 'list',
+      message: '当前公共服务有：',
+      choices: ['文件排序', '关闭端口', '删除文件夹'],
+    },
+    // q2
+    {
+      type: 'input',
+      message: '需要排序的文件夹为？（绝对路径）',
+    },
+    // q3
+    {
+      type: 'list',
+      message: '请问多语言需要什么支持？',
+      choices: [
+        '下载多语言资源',
+        '导入多语言资源',
+        '导出多语言资源',
+      ],
+    },
+    // q4
+    {
+      type: 'input',
+      message: '资源下载地址（HTTP）？',
+      default: 'https://www.kdocs.cn/l/sdwvJUKBzkK2',
+    },
+    // q5
+    {
+      type: 'input',
+      message: '你需要关闭的端口是？',
+    },
+    // q6
+    {
+      type: 'input',
+      message: '你需要删除的路径是？（全路径）'
+    }
+  ];
+
+  const answerList = [
+    // q0 - 请问需要什么服务？
+    async (result: Result, questions: any) => {
+      answers.q0 = result.answer;
+      switch (result.answer) {
+        case '公共服务':
+          questions[1]();
+          break;
+        case '多语言':
+          questions[3]();
+          break;
+        default: break;
+      }
+    },
+    // q1 - 当前公共服务有：
+    async (result: Result, questions: any) => {
+      answers.q1 = result.answer;
+      switch (result.answer) {
+        case '文件排序': questions[2](); break;
+        case '关闭端口': questions[5](); break;
+        case '删除文件夹': questions[6](); break;
+        default: break;
+      }
+    },
+    // q2 - 需要排序的文件夹为？（绝对路径）
+    async (result: Result, _questions: any, prompts: any) => {
+      answers.q2 = result.answer;
+      const sortResult = await sortCatalog(result.answer);
+      if (sortResult) {
+        console.log('排序成功！');
+        prompts.complete();
+      }
+    },
+    // q3 - 请问多语言需要什么支持？
+    async (result: Result, questions: any, prompts: any) => {
+      answers.q3 = result.answer;
+      switch (result.answer) {
+        case '下载多语言资源':
+        case '导入多语言资源':
+          questions[4]();
+          break;
+        case '导出多语言资源':
+          const exportResult = await exportLanguage();
+          if (exportResult) {
+            console.log('导出成功！');
+            prompts.complete();
+          }
+        default: break;
+      }
+    },
+    // q4 - 资源下载地址（HTTP）？
+    async (result: Result) => {
+      answers.q4 = result.answer;
+      const download = async (): Promise<any> => {
+        const downloadResult = await downLoadExcel(result.answer);
+        if (downloadResult) {
+          console.log('下载成功！');
+          return true;
+        }
+      };
+      switch (answers.q3) {
+        case '下载多语言资源':
+          await download();
+          break;
+        case '导入多语言资源':
+          await download();
+          const importResult = await importLanguage();
+          if (importResult) {
+            console.log('导入完毕！');
+          }
+        default:
+          break;
+      }
+    },
+    // q5 - 你需要关闭的端口是？
+    async (result: Result, _questions: any, prompts: any) => {
+      answers.q5 = result.answer;
+      const closeResult = await closePort(result.answer);
+      if (closeResult) {
+        console.log('关闭成功');
+        prompts.complete();
+      }
+    },
+    // q6 - 你需要删除的路径是？（全路径）
+    async (result: Result, _questions: any, prompts: any) => {
+      answers.q6 = result.answer;
+      const deleteResult = await deleteDir(result.answer);
+      if (deleteResult) {
+        console.log('删除成功');
+        prompts.complete();
+      }
+    },
+  ];
+
+  inquirer(questionList, answerList);
+};
+
+export default common;
+
+```
+
+> src/base/file/deleteDir.ts
+
+> file 目录是新增的
+
+```js
+import shell from 'shelljs';
+
+export const deleteDir = async (path: string): Promise<boolean> => {
+  /**
+   * cmd.exe：rd /s /q <path>
+   * PowerShell：rd -r <path>
+   * Mac：rm -rf <path>
+   * ShellJS：rm() 删除文件，rm('rf', <path>) 删除文件夹
+   */
+  await shell.rm('-rf', path);
+  return true;
+};
+```
+
+执行 `npm run jsliang`，打印内容如下：
+
+![图](./img/shell-02.png)
+
+搞定，收工！
+
+## Git 操作
+
+
 
 ### Git 常见操作
 
@@ -424,6 +668,7 @@ git worktree prune
 
 ## 参考文献
 
+* [GitHub：ShellJS - Unix shell commands for Node.js](https://github.com/shelljs/shelljs)
 * [掘金：👏 nodejs写bash脚本终极方案！](https://juejin.cn/post/6979989936137043999)
 * [GitHub：Git worktree 作用及使用](http://einverne.github.io/post/2019/03/git-worktree.html)
 * [简书：git worktree 的使用](https://www.jianshu.com/p/ffeb38d27f64)
