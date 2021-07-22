@@ -12,6 +12,7 @@ import { exportLanguage } from './language/export';
 
 // shell 操作
 import { closePort } from '../base/shell/closePort';
+import { gitCheckout } from '../base/shell/gitCheckout';
 
 // 问题记录器
 const answers = {
@@ -22,6 +23,8 @@ const answers = {
   q4: '',
   q5: '',
   q6: '',
+  q7: '',
+  q8: '',
 };
 
 const common = (): void => {
@@ -37,7 +40,7 @@ const common = (): void => {
     {
       type: 'list',
       message: '当前公共服务有：',
-      choices: ['文件排序', '关闭端口', '删除文件夹'],
+      choices: ['文件排序', '关闭端口', '删除文件夹', 'Git 操作'],
     },
     // q2
     {
@@ -68,8 +71,22 @@ const common = (): void => {
     // q6
     {
       type: 'input',
-      message: '你需要删除的路径是？（全路径）'
-    }
+      message: '你需要删除的路径是？（全路径）',
+    },
+    // q7
+    {
+      type: 'list',
+      message: '请问 Git 需要什么支持？',
+      choices: [
+        '切换分支',
+        // More...
+      ],
+    },
+    // q8
+    {
+      type: 'inupt',
+      message: 'Git 分支名是？',
+    },
   ];
 
   const answerList = [
@@ -93,6 +110,7 @@ const common = (): void => {
         case '文件排序': questions[2](); break;
         case '关闭端口': questions[5](); break;
         case '删除文件夹': questions[6](); break;
+        case 'Git 操作': questions[7](); break;
         default: break;
       }
     },
@@ -161,6 +179,20 @@ const common = (): void => {
       const deleteResult = await deleteDir(result.answer);
       if (deleteResult) {
         console.log('删除成功');
+        prompts.complete();
+      }
+    },
+    // q7 - 请问 Git 需要什么支持？
+    async (result: Result, questions: any) => {
+      answers.q7 = result.answer;
+      questions[8]();
+    },
+    // q8 - Git 分支名是？
+    async (result: Result, _questions: any, prompts: any) => {
+      answers.q8 = result.answer;
+      const checkoutResult = await gitCheckout(result.answer);
+      if (checkoutResult) {
+        console.log('切换成功');
         prompts.complete();
       }
     },
