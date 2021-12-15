@@ -1,0 +1,161 @@
+
+.container {
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+
+  /* 背景效果 */
+  position: relative;
+  text-align: center;
+  background: linear-gradient(
+    60deg,
+    rgba(84, 58, 183, 1) 0%,
+    rgba(0, 172, 193, 1) 100%
+  );
+  color: white;
+}
+body {
+  margin: 0;
+}
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+h1 {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  letter-spacing: 2px;
+  font-size: 35px;
+}
+input {
+  border: 1px solid #ccc;
+  padding: 7px 0px;
+  border-radius: 3px;
+  padding-left:5px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+}
+input:focus{
+  border-color: #66afe9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 抽奖 CSS */
+.lottery {
+  display: flex;
+  height: 85vh;
+}
+/* 抽奖行为 */
+.lotteryLeft {
+  width: 70%;
+  padding: 20px;
+}
+.numberStart, .numberEnd {
+  width: 100px;
+}
+.btn {
+  margin-left: 6px;
+  border: none;
+  padding: 6px 12px;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  background-color: rgb(8, 178, 184);
+  border-radius: 3px;
+}
+.start {
+  margin-top: 20px;
+  background-color: rgb(8, 178, 184);
+  padding: 8px 16px;
+  font-size: 20px;
+}
+.lotteryResult {
+  height: 30px;
+  text-align: center;
+  margin-top: 20px;
+}
+.lotteryResultItem {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  display: inline-block;
+}
+.lotteryResultNumber {
+  display: inline-block;
+  line-height: 30px;
+  text-align: center;
+  overflow: hidden;
+  background: rgb(8, 178, 184);
+  border: 1px solid #ccc;
+}
+.lotteryResultNumber i {
+  width: 30px;
+  height: 30px;
+  display: block;
+  text-align: center;
+  font-style: normal;
+}
+/* 抽奖结果 */
+.lotteryRight {
+  width: 30%;
+  padding: 20px;
+  border-left: 1px solid #ccc;
+}
+
+/* 别人做好的背景动态 */
+.waves {
+  position: relative;
+  width: 100%;
+  height: 15vh;
+  margin-bottom: -7px;
+  min-height: 100px;
+  max-height: 150px;
+}
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+/* 响应式-暂时不用管 */
+@media (max-width: 768px) {
+  .waves {
+    height: 40px;
+    min-height: 40px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+}

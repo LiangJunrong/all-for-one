@@ -5,177 +5,43 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>抽奖</title>
-  <style>
-    .container {
-      width: 900px;
-      margin: 0 auto;
-      display: flex;
-
-      /* 垃圾 CSS */
-      background: rgb(252, 67, 67);
-    }
-    .text-center {
-      text-align: center;
-    }
-    
-    /* leftLotteryAction - 抽检行为 */
-    .leftLotteryAction {
-      width: 70%;
-      padding: 20px;
-    }
-    .lotteryResult {
-      width: 100%;
-      height: 30px;
-      text-align: center;
-    }
-    .lotteryResultItem {
-      width: 30px;
-      height: 30px;
-      overflow: hidden;
-      display: inline-block;
-    }
-    .lotteryResultNumber {
-      display: inline-block;
-      line-height: 30px;
-      text-align: center;
-      overflow: hidden;
-      background: deepskyblue;
-      border: 1px solid #ccc;
-    }
-    .lotteryResultNumber i {
-      width: 30px;
-      height: 30px;
-      display: block;
-      text-align: center;
-      font-style: normal;
-    }
-
-    /* rightLotteryList - 抽奖结果 */
-    .rightLotteryList {
-      width: 30%;
-      padding: 20px;
-      border-left: 1px solid #ccc;
-    }
-  </style>
+  <link rel="stylesheet" href="./index.css">
 </head>
 <body>
   <div class="container">
-    <div class="leftLotteryAction">
-      <div>
-        <span>抽奖号码范围： </span>
-        <input class="numberStart" type="number">-<input class="numberEnd" type="number">
-        <button class="lockNumber">锁定</button>
-        <button class="unlockNumber">解锁</button>
+    <div class="lottery">
+      <div class="lotteryLeft">
+        <h1>夜跑团抽奖</h1>
+        <div class="flex-center">
+          <span>抽奖号码范围： </span>
+          <input class="numberStart" type="number">-<input class="numberEnd" type="number">
+          <button class="lockNumber btn">锁定</button>
+          <button class="unlockNumber btn">解锁</button>
+        </div>
+        <button class="start btn">开始</button>
+        <!-- 抽奖结果 -->
+        <div class="lotteryResult"></div>
       </div>
-      <button class="start">开始</button>
-      <!-- 抽奖结果 -->
-      <div class="lotteryResult"></div>
+      <div class="lotteryRight">
+        <div class="text-center">得奖号码清单</div>
+        <ul class="list"></ul>
+      </div>
     </div>
-    <div class="rightLotteryList">
-      <div class="text-center">得奖号码清单</div>
-      <ul class="list"></ul>
-    </div>
+
+    <!-- svg 动态效果 -->
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+      </g>
+    </svg>
   </div>
 
-  <script>
-    window.onload = () => {
-      // 步骤 1：获取元素
-      const numberStart = document.querySelector('.numberStart'),
-        numberEnd = document.querySelector('.numberEnd'),
-        start = document.querySelector('.start');
-        // lotteryResult = document.querySelector('#lotteryResult');
-        lockNumber = document.querySelector('.lockNumber');
-        unlockNumber = document.querySelector('.unlockNumber');
-        list = document.querySelector('.list');
-
-      let locked = false;
-      numberStart.value = localStorage.getItem('numberStart') || '';
-      numberEnd.value = localStorage.getItem('numberEnd') || '';
-
-      // 步骤 2：锁抽奖数字范围
-      lockNumber.onclick = () => {
-        locked = true;
-        const startValue = numberStart.value;
-        const endValue = numberEnd.value;
-        if (Number(startValue) > Number(endValue)) {
-          alert('开始范围请小于结束范围！');
-          return;
-        }
-        localStorage.setItem('numberStart', startValue);
-        localStorage.setItem('numberEnd', endValue);
-        numberStart.disabled = true;
-        numberEnd.disabled = true;
-      };
-      unlockNumber.onclick = () => {
-        locked = false;
-        localStorage.setItem('numberStart', '');
-        localStorage.setItem('numberEnd', '');
-        numberStart.disabled = false;
-        numberEnd.disabled = false;
-      };
-
-      // 步骤 3：开始抽奖
-
-      // 获取范围 start-end 的数字（包含 start 和 end）
-      const getRandom = (start, end) => {
-        return Math.floor(Math.random() * (end - start + 1)) + start;
-      };
-
-      // 滚动效果（支持小数）
-      const play = (result) => {     
-        // 返回 100 个随机的 0-9 的数字（包含 0-9）
-        const return100 = () => {
-          let h = '<span class="lotteryResultNumber">';
-          for (let i = 0; i < 100; i++) {
-            h += `<i>${getRandom(0, 9)}</i>`;
-          }
-          h += '</span>';
-          return h;
-        }
-        
-        // 制造滚动字幕
-        let scrollHTML = '';
-        const arrResult = String(result).split(''); // 强转 result 避免数字无法切割
-        for (let i = 0; i < arrResult.length; i++){
-          if (arrResult[i] === '.') { // 支持小数点
-            scrollHTML += '.';
-            continue;
-          }
-          scrollHTML += `<div class="lotteryResultItem" data-id="${i}">${return100()}</div>`;
-        }
-        document.querySelector('.lotteryResult').innerHTML = scrollHTML;
-
-        // 添加结果并制造滚动效果
-        const lotteryResultItems = document.querySelectorAll('.lotteryResultItem');
-        const spanHeight = lotteryResultItems[0].querySelector('span').offsetHeight;
-        for (let i = 0; i < lotteryResultItems.length; i++){
-          const newi = document.createElement('i');
-          newi.innerHTML = arrResult[lotteryResultItems[i].getAttribute('data-id')];
-          const nowSpan = lotteryResultItems[i].querySelector('span');
-          nowSpan.appendChild(newi);
-          nowSpan.style.webkitTransition = `all ${0.9 + i * 0.1}s ease-in 0.1s`;
-          nowSpan.style.webkitTransform = `translate3d(0, -${spanHeight}px, 0)`;
-        }
-      }
-
-      // 存储抽奖结果
-      const save = (result) => {
-        const newLi = document.createElement('li');
-        newLi.innerHTML = `<li>${result}</li>`;
-        list.appendChild(newLi);
-      };
-
-      // 点击开始
-      start.onclick = () => {
-        if (!locked) {
-          alert('请先锁定再抽奖，避免号码出错！');
-          return;
-        }
-        const result = getRandom(Number(numberStart.value), Number(numberEnd.value));
-        play(result); // run 起来
-        save(result); // save 起来
-      };
-    };
-  </script>
+  <script src="./index.js"></script>
 </body>
 </html>
