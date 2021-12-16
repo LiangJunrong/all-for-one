@@ -29,6 +29,12 @@ h1 {
   letter-spacing: 2px;
   font-size: 35px;
 }
+h2 {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  letter-spacing: 2px;
+  font-size: 28px;
+}
 input {
   border: 1px solid #ccc;
   padding: 7px 0px;
@@ -52,14 +58,17 @@ input:focus{
 }
 
 /* 抽奖 CSS */
+.content {
+  height: 85vh;
+  padding-top: 30px;
+}
 .lottery {
   display: flex;
-  height: 85vh;
+  justify-content: center;
 }
 /* 抽奖行为 */
 .lotteryLeft {
-  width: 70%;
-  padding: 20px;
+  padding: 20px 20px 0 20px;
 }
 .numberStart, .numberEnd {
   width: 100px;
@@ -71,12 +80,12 @@ input:focus{
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
-  background-color: rgb(8, 178, 184);
+  background-color: #08b2b8;
   border-radius: 3px;
 }
 .start {
   margin-top: 20px;
-  background-color: rgb(8, 178, 184);
+  background-color: #08b2b8;
   padding: 8px 16px;
   font-size: 20px;
 }
@@ -97,7 +106,6 @@ input:focus{
   text-align: center;
   overflow: hidden;
   background: rgb(8, 178, 184);
-  border: 1px solid #ccc;
 }
 .lotteryResultNumber i {
   width: 30px;
@@ -108,9 +116,44 @@ input:focus{
 }
 /* 抽奖结果 */
 .lotteryRight {
-  width: 30%;
-  padding: 20px;
-  border-left: 1px solid #ccc;
+  padding: 20px 20px 0 20px;
+}
+.list {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+}
+.list li {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.list .text {
+  width: 100px;
+  font-size: small;
+  background-color: #08b2b8;
+  height: 24px;
+  line-height: 1em;
+  padding: 0.8em 0.7em 0 0.7em;
+  border-radius: 0 4px 4px 0;
+}
+.list .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  background-color: #000000;
+  height: 24px;
+  line-height: 1em;
+  padding: 0.8em 0.7em 0 0.7em;
+  border-radius: 4px 0 0 4px;
 }
 
 /* 别人做好的背景动态 */

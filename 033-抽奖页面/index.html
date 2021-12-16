@@ -9,22 +9,23 @@
 </head>
 <body>
   <div class="container">
-    <div class="lottery">
-      <div class="lotteryLeft">
-        <h1>夜跑团抽奖</h1>
-        <div class="flex-center">
-          <span>抽奖号码范围： </span>
-          <input class="numberStart" type="number">-<input class="numberEnd" type="number">
-          <button class="lockNumber btn">锁定</button>
-          <button class="unlockNumber btn">解锁</button>
-        </div>
-        <button class="start btn">开始</button>
-        <!-- 抽奖结果 -->
-        <div class="lotteryResult"></div>
+    <div class="content">
+      <h1>夜跑团抽奖</h1>
+      <div class="flex-center">
+        <span>抽奖号码范围： </span>
+        <input class="numberStart" type="number">-<input class="numberEnd" type="number">
+        <button class="lockNumber btn">锁定</button>
+        <button class="unlockNumber btn">解锁</button>
       </div>
-      <div class="lotteryRight">
-        <div class="text-center">得奖号码清单</div>
-        <ul class="list"></ul>
+      <div class="lottery">
+        <div class="lotteryLeft">
+          <button class="start btn">开始</button>
+          <div class="lotteryResult"></div>
+        </div>
+        <div class="lotteryRight">
+          <h2 class="text-center">得奖号码清单</h2>
+          <ul class="list"></ul>
+        </div>
       </div>
     </div>
 

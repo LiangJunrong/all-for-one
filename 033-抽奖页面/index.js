@@ -82,7 +82,7 @@ window.onload = () => {
   // 存储抽奖结果
   const save = (result) => {
     const newLi = document.createElement('li');
-    newLi.innerHTML = `<li>${result}</li>`;
+    newLi.innerHTML = `<li><span class="badge">${resultList.size}</span><span class="text">${result}</span></li>`;
     list.appendChild(newLi);
   };
 
