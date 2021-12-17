@@ -87,7 +87,7 @@ window.onload = () => {
       list.appendChild(newLi);
       const allLi = list.querySelectorAll('li');
       allLi[allLi.length - 1].scrollIntoViewIfNeeded();
-    }, 1000);
+    }, 2000);
   };
 
   // 点击开始

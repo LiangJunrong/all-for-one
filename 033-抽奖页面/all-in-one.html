@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>抽奖</title>
+  <style>
+    /* 全局样式 */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-family: "Lato", sans-serif;
+      font-weight: 300;
+      letter-spacing: 2px;
+      font-size: 35px;
+    }
+    h2 {
+      font-family: "Lato", sans-serif;
+      font-weight: 300;
+      letter-spacing: 2px;
+      font-size: 28px;
+    }
+    input {
+      border: 1px solid #ccc;
+      padding: 7px 0px;
+      border-radius: 3px;
+      padding-left:5px;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+      -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+      transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+    }
+    input:focus{
+      border-color: #66afe9;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+    }
+
+    /* 通用样式 */
+    .container {
+      width: 100%;
+      height: 100vh;
+      margin: 0 auto;
+      overflow: hidden;
+
+      /* 背景效果 */
+      position: relative;
+      text-align: center;
+      background: linear-gradient(
+        60deg,
+        rgba(84, 58, 183, 1) 0%,
+        rgba(0, 172, 193, 1) 100%
+      );
+      color: white;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .text-left {
+      text-align: left;
+    }
+    .flex-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 抽奖 CSS */
+    .content {
+      width: 500px;
+      height: 85vh;
+      padding-top: 30px;
+      margin: 0 auto -30px;
+    }
+    .lottery {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .description {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    /* 抽奖行为 */
+    .lotteryLeft {
+      width: 200px;
+      padding: 20px 20px 0 20px;
+    }
+    .numberStart, .numberEnd {
+      width: 100px;
+    }
+    .btn {
+      margin-left: 6px;
+      border: none;
+      padding: 6px 12px;
+      font-size: 16px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: white;
+      background-color: #08b2b8;
+      border-radius: 3px;
+    }
+    .start {
+      background-color: #00bcd4;
+    }
+    .lotteryResult {
+      height: 30px;
+      text-align: center;
+    }
+    .lotteryResultItem {
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      display: inline-block;
+    }
+    .lotteryResultNumber {
+      display: inline-block;
+      line-height: 30px;
+      text-align: center;
+      overflow: hidden;
+      background: rgb(8, 178, 184);
+    }
+    .lotteryResultNumber i {
+      width: 30px;
+      height: 30px;
+      display: block;
+      text-align: center;
+      font-style: normal;
+    }
+    /* 抽奖结果 */
+    .lotteryRight {
+      width: 300px;
+      height: 440px;
+      padding: 20px 20px 0 20px;
+      overflow-y: auto;
+    }
+    .list {
+      margin: -10px 0 10px 0;
+      list-style-type: none;
+      padding: 0;
+      width: 15em;
+    }
+    .list li {
+      cursor: pointer;
+      position: relative;
+      left: 0;
+      margin: .5em;
+      padding: .3em 0;
+      height: 1.6em;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .list .text {
+      width: 100px;
+      font-size: small;
+      background-color: #08b2b8;
+      height: 24px;
+      line-height: 1em;
+      padding: 0.8em 0.7em 0 0.7em;
+      border-radius: 0 4px 4px 0;
+    }
+    .list .badge {
+      display: inline-block;
+      font-size: small;
+      color: white;
+      background-color: #000000;
+      height: 24px;
+      line-height: 1em;
+      padding: 0.8em 0.7em 0 0.7em;
+      border-radius: 4px 0 0 4px;
+    }
+
+    /* 好看的滚动条 */
+    ::-webkit-scrollbar-thumb:horizontal { /*水平滚动条的样式*/
+      width: 4px;
+      background-color: #CCCCCC;
+      -webkit-border-radius: 6px;
+    }
+    ::-webkit-scrollbar-track-piece {
+      background-color: #fff; /*滚动条的背景颜色*/
+      -webkit-border-radius: 0; /*滚动条的圆角宽度*/
+    }
+    ::-webkit-scrollbar {
+      width: 10px; /*滚动条的宽度*/
+      height: 8px; /*滚动条的高度*/
+    }
+    ::-webkit-scrollbar-thumb:vertical { /*垂直滚动条的样式*/
+      height: 50px;
+      background-color: #999;
+      -webkit-border-radius: 4px;
+      outline: 2px solid #fff;
+      outline-offset: -2px;
+      border: 2px solid #fff;
+    }
+    ::-webkit-scrollbar-thumb:hover { /*滚动条的hover样式*/
+      height: 50px;
+      background-color: #9f9f9f;
+      -webkit-border-radius: 4px;
+    }
+
+    /* 别人做好的背景动态 */
+    .waves {
+      position: relative;
+      width: 100%;
+      height: 15vh;
+      min-height: 100px;
+      max-height: 150px;
+    }
+    .parallax > use {
+      animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+    }
+    .parallax > use:nth-child(1) {
+      animation-delay: -2s;
+      animation-duration: 7s;
+    }
+    .parallax > use:nth-child(2) {
+      animation-delay: -3s;
+      animation-duration: 10s;
+    }
+    .parallax > use:nth-child(3) {
+      animation-delay: -4s;
+      animation-duration: 13s;
+    }
+    .parallax > use:nth-child(4) {
+      animation-delay: -5s;
+      animation-duration: 20s;
+    }
+    @keyframes move-forever {
+      0% {
+        transform: translate3d(-90px, 0, 0);
+      }
+      100% {
+        transform: translate3d(85px, 0, 0);
+      }
+    }
+    /* 响应式-暂时不用管 */
+    @media (max-width: 768px) {
+      .waves {
+        height: 40px;
+        min-height: 40px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <h1>夜跑团抽奖</h1>
+      <div class="flex-center">
+        <span>抽奖号码范围： </span>
+        <input class="numberStart" type="number">-<input class="numberEnd" type="number">
+        <button class="lockNumber btn">锁定</button>
+        <button class="unlockNumber btn">解锁</button>
+      </div>
+      <div class="description">
+        <button class="start btn">开始抽奖</button>
+        <h2 class="text-center">得奖号码清单</h2>
+      </div>
+      <div class="lottery">
+        <div class="lotteryLeft">
+          <div class="lotteryResult"></div>
+        </div>
+        <div class="lotteryRight">
+          <ul class="list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- svg 动态效果 -->
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+      </g>
+    </svg>
+  </div>
+
+  <script>
+    window.onload = () => {
+      // 步骤 1：获取元素
+      const numberStart = document.querySelector('.numberStart'),
+        numberEnd = document.querySelector('.numberEnd'),
+        start = document.querySelector('.start');
+        // lotteryResult = document.querySelector('#lotteryResult');
+        lockNumber = document.querySelector('.lockNumber');
+        unlockNumber = document.querySelector('.unlockNumber');
+        list = document.querySelector('.list');
+        resultList = new Set();
+
+      let locked = false;
+      numberStart.value = localStorage.getItem('numberStart') || '';
+      numberEnd.value = localStorage.getItem('numberEnd') || '';
+
+      // 步骤 2：锁抽奖数字范围
+      lockNumber.onclick = () => {
+        locked = true;
+        const startValue = numberStart.value;
+        const endValue = numberEnd.value;
+        if (Number(startValue) > Number(endValue)) {
+          alert('开始范围请小于结束范围！');
+          return;
+        }
+        localStorage.setItem('numberStart', startValue);
+        localStorage.setItem('numberEnd', endValue);
+        numberStart.disabled = true;
+        numberEnd.disabled = true;
+      };
+      unlockNumber.onclick = () => {
+        locked = false;
+        localStorage.setItem('numberStart', '');
+        localStorage.setItem('numberEnd', '');
+        numberStart.disabled = false;
+        numberEnd.disabled = false;
+      };
+
+      // 步骤 3：开始抽奖
+
+      // 获取范围 start-end 的数字（包含 start 和 end）
+      const getRandom = (start, end) => {
+        return Math.floor(Math.random() * (end - start + 1)) + start;
+      };
+
+      // 滚动效果（支持小数）
+      const play = (result) => {     
+        // 返回 100 个随机的 0-9 的数字（包含 0-9）
+        const return100 = () => {
+          let h = '<span class="lotteryResultNumber">';
+          for (let i = 0; i < 100; i++) {
+            h += `<i>${getRandom(0, 9)}</i>`;
+          }
+          h += '</span>';
+          return h;
+        }
+        
+        // 制造滚动字幕
+        let scrollHTML = '';
+        const arrResult = String(result).split(''); // 强转 result 避免数字无法切割
+        for (let i = 0; i < arrResult.length; i++){
+          if (arrResult[i] === '.') { // 支持小数点
+            scrollHTML += '.';
+            continue;
+          }
+          scrollHTML += `<div class="lotteryResultItem" data-id="${i}">${return100()}</div>`;
+        }
+        document.querySelector('.lotteryResult').innerHTML = scrollHTML;
+
+        // 添加结果并制造滚动效果
+        const lotteryResultItems = document.querySelectorAll('.lotteryResultItem');
+        const spanHeight = lotteryResultItems[0].querySelector('span').offsetHeight;
+        for (let i = 0; i < lotteryResultItems.length; i++){
+          const newi = document.createElement('i');
+          newi.innerHTML = arrResult[lotteryResultItems[i].getAttribute('data-id')];
+          const nowSpan = lotteryResultItems[i].querySelector('span');
+          nowSpan.appendChild(newi);
+          nowSpan.style.webkitTransition = `all ${0.9 + i * 0.1}s ease-in 0.1s`;
+          nowSpan.style.webkitTransform = `translate3d(0, -${spanHeight}px, 0)`;
+        }
+      }
+
+      // 存储抽奖结果
+      const save = (result) => {
+        const newLi = document.createElement('li');
+        newLi.innerHTML = `<li><span class="badge">${resultList.size}</span><span class="text">${result}</span></li>`;
+        setTimeout(() => {
+          list.appendChild(newLi);
+          const allLi = list.querySelectorAll('li');
+          allLi[allLi.length - 1].scrollIntoViewIfNeeded();
+        }, 2000);
+      };
+
+      // 点击开始
+      start.onclick = () => {
+        if (!locked) {
+          alert('请先锁定再抽奖，避免号码出错！');
+          return;
+        }
+        if (resultList.size === (Number(numberEnd.value - Number(numberStart.value) + 1))) {
+          alert('已抽取范围内所有号码，请重置页面！');
+          return;
+        }
+        let result = getRandom(Number(numberStart.value), Number(numberEnd.value));
+        // 去重，抽到不重复的为止
+        while (resultList.has(result)) {
+          result = getRandom(Number(numberStart.value), Number(numberEnd.value));
+        }
+        resultList.add(result);
+        play(result); // run 起来
+        save(result); // save 起来
+      };
+    };
+  </script>
+</body>
+</html>
