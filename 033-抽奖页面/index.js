@@ -83,7 +83,11 @@ window.onload = () => {
   const save = (result) => {
     const newLi = document.createElement('li');
     newLi.innerHTML = `<li><span class="badge">${resultList.size}</span><span class="text">${result}</span></li>`;
-    list.appendChild(newLi);
+    setTimeout(() => {
+      list.appendChild(newLi);
+      const allLi = list.querySelectorAll('li');
+      allLi[allLi.length - 1].scrollIntoViewIfNeeded();
+    }, 1000);
   };
 
   // 点击开始
