@@ -1,0 +1,16 @@
+{
+  "name": "feedback",
+  "version": "1.0.0",
+  "description": "jsliang 打造的一个简陋版客服系统，支持拓展",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jsliang",
+    "客服系统",
+    "乞丐版"
+  ],
+  "author": "jsliang",
+  "license": "MIT"
+}
