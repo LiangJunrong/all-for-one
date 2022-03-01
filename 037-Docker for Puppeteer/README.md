@@ -18,7 +18,7 @@ Docker for Puppeteer
   * 注：如果不能起来，则通过 `docker ps -a` 查看到 `CONTAINER ID`，再通过 `docker restart CONTAINER ID` 起服务
 * 查看容器（Container）运行情况：`docker ps -a`
 * 查看容器（Container）的日志：`docker logs -f dd420fc4267a`
-* 进入容器（Container）：`docker exec -it dd420fc4267a bash`
+* 进入容器（Container）：`docker exec -it dd420fc4267a sh`
 * 查看 README.md 文件：`cat -n README.md`
 * 退出容器（Container）：`exit`
 
@@ -27,25 +27,25 @@ Docker for Puppeteer
 * 将宿主机代码复制到容器：
 
 ```shell
-docker cp "E:/MyWeb/036-Docker for Node/README.md" 8e1910aa2a12:/usr/src/app/README.md
+docker cp "E:/MyWeb/036-Docker for Node/README.md" 8e1910aa2a12:/home/docker/we_render/README.md
 docker cp 宿主机的路径                                          容器名|容器 ID:容器中的文件路径
 ```
 
 > 注 1：如果是 Windows，且目录包含空格的话，最好通过 `"路径"` 包裹  
-> 注 2：目录的话最好后退一层，例如 `docker cp E:/MyWeb/036-Docker for Node/src /usr/src/app/`
+> 注 2：目录的话最好后退一层，例如 `docker cp E:/MyWeb/036-Docker for Node/src /home/docker/we_render/`
 > 注 3：`cp` 即 `copy`，拷贝的意思
 
 * 将容器代码复制到宿主机：
 
 ```shell
-docker cp 8e1910aa2a12:/usr/src/app/tsconfig.json E:\MyWeb\all-for-one
+docker cp 8e1910aa2a12:/home/docker/we_render/tsconfig.json E:\MyWeb\all-for-one
 docker cp 容器名       :容器中的文件路径            宿主机的路径
 ```
 
 * 让容器代码实时同步宿主机代码：
 
 ```shell
-docker run -d -v E:\MyWeb\all-for-one\src:/usr/src/app/src docker-node:1.0.0
+docker run -d -v E:\MyWeb\all-for-one\src:/home/docker/we_render/src docker-node:1.0.0
 docker run -d -v 容器中文件路径            :宿主机文件路径   容器名      :版本号
 ```
 
