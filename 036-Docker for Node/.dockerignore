@@ -1,0 +1,9 @@
+node_modules
+.dockerignore
+Dockerfile
+*-debug.log
+*-error.log
+.git
+.hg
+.svn
+.vscode
