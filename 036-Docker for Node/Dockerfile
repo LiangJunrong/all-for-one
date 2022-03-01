@@ -13,5 +13,9 @@ RUN npm install
 # 对外暴露本镜像的 80 端口
 EXPOSE 80
 
+# 设置 Docker 容器时区
+RUN apt-get install tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo Asia/Shanghai > /etc/timezone
+
 # 启动 Node 服务
 CMD ["npm", "run", "robot"];
