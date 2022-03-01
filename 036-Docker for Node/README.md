@@ -22,6 +22,39 @@ Docker for Node.js
 * 查看 README.md 文件：`cat -n README.md`
 * 退出容器（Container）：`exit`
 
+## 三、同步代码
+
+* 将宿主机代码复制到容器：
+
+```shell
+docker cp "E:/MyWeb/036-Docker for Node/README.md" 8e1910aa2a12:/usr/src/app/README.md
+docker cp 宿主机的路径                                          容器名|容器 ID:容器中的文件路径
+```
+
+> 注 1：如果是 Windows，且目录包含空格的话，最好通过 `"路径"` 包裹  
+> 注 2：目录的话最好后退一层，例如 `docker cp E:/MyWeb/036-Docker for Node/src /usr/src/app/`
+> 注 3：`cp` 即 `copy`，拷贝的意思
+
+* 将容器代码复制到宿主机：
+
+```shell
+docker cp 8e1910aa2a12:/usr/src/app/tsconfig.json E:\MyWeb\all-for-one
+docker cp 容器名       :容器中的文件路径            宿主机的路径
+```
+
+* 让容器代码实时同步宿主机代码：
+
+```shell
+docker run -d -v E:\MyWeb\all-for-one\src:/usr/src/app/src docker-node:1.0.0
+docker run -d -v 容器中文件路径            :宿主机文件路径   容器名      :版本号
+```
+
+我们需要知道的是：
+
+1. `-d`：后台运行
+2. `-v A:B`：将宿主机 A 路径的文件/文件夹挂载到容器 B 的路径上面（两者都是绝对路径）
+3. `docker-node:1.0.0`：即 `docker image ls` 查看到的 `REPOSITORY` 和 `TAG`
+
 ---
 
 **不折腾的前端，和咸鱼有什么区别！**
