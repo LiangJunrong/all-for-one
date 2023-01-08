@@ -2,22 +2,20 @@ Demo —— all for one
 ===
 
 > Create by **jsliang** on **2020-4-12 21:36:20**  
-> Recently revised in **2020-4-12 21:37:00**
+> Recently revised in **2023-01-08 17:41:34**
 
-## <a name="chapter-one" id="chapter-one"></a>一 目录
+偷懒，摆烂，不想建那么多仓库了，所有 Demo 内容丢这里吧~
 
-**不折腾的前端，和咸鱼有什么区别**
+**jsliang** 联系方式：
 
-| 目录 |
-| --- | 
-| [一 目录](#chapter-one) | 
-| <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
+* **哔哩哔哩**：[jsliang95](https://space.bilibili.com/289377747)
+* **微信公众号**：**飘飞的心灵**
 
-## <a name="chapter-two" id="chapter-two"></a>二 前言
+![微信公众号](./img/WeChat-01.png)
 
-> [返回目录](#chapter-one)
+* **个人微信**：**Liang123Gogo**
 
-偷懒，不建那么多仓库了，所有 Demo 内容丢这里！
+![个人微信](./img/WeChat-02.jpeg)
 
 ---
 
