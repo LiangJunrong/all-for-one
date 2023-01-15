@@ -105,7 +105,7 @@ const uploadCode = async() => {
   // 3. 推送到线上仓库
   await shell.exec('git push');
 
-  // 4. 回退上一层
+  // 4. 回退上一层（方便下一次执行的时候目录层级一致）
   await shell.cd(`../`);
 };
 
