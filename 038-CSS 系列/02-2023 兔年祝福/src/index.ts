@@ -93,8 +93,9 @@ const readExcel = async() => {
 // 步骤三：上传代码到 GitHub Page
 const uploadCode = async() => {
   // 1. 前往 GitHub Page 仓库
-  const GPCatalog = path.join(process.cwd(), './LiangJunrong.github.io');
-  await shell.exec(`cd ${GPCatalog}`);
+  // const GPCatalog = path.join(process.cwd(), './LiangJunrong.github.io');
+  // console.error('GPCatalog: ', GPCatalog);
+  await shell.exec(`cd LiangJunrong.github.io`);
 
   // 2. 执行修改命令
   await shell.exec(`git add .`);
@@ -117,7 +118,7 @@ program
     // await downloadExcel();
 
     // 步骤二：读取 Excel 并存储 JSON 数据
-    await readExcel();
+    // await readExcel();
 
     // 步骤三：上传代码到 GitHub Page
     await uploadCode();
