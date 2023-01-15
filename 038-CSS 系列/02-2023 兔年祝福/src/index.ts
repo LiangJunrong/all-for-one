@@ -3,11 +3,11 @@ import path from 'path';
 import fs from 'fs';
 import xlsx from 'node-xlsx';
 import shell from 'shelljs';
+import schedule from 'node-schedule';
 
 // 步骤一：下载 Excel
 const downloadExcel = async() => {
   // 1. 启动无头浏览器
-  console.log('Hello 2023~');
   const browser = await puppeteer.launch({
     // 是否打开实体浏览器
     headless: false,
@@ -22,15 +22,18 @@ const downloadExcel = async() => {
   // 3. 睡眠 6.66s（确保浏览器打开链接并加载页面）
   await page.waitForTimeout(6666);
 
-  // 4. 触发【更多菜单】按钮的点击
-  // @ts-ignore
+  // 4. 如果有遮罩弹窗，需要触发【x】按钮关闭掉
+  const closeBtn = await page.$('.modal-wrap .icons-16-close');
+  closeBtn?.click();
+
+  // 5. 触发【更多菜单】按钮的点击
   const moreBtn = await page.$('.header-more-btn');
   moreBtn?.click();
 
-  // 5. 睡眠 2s（确保更多菜单按钮点击到）
+  // 6. 睡眠 2s（确保更多菜单按钮点击到）
   await page.waitForTimeout(2000);
 
-  // 6. 设置下载路径（确保 Puppeteer 下载路径，避免【另存为】弹窗后不好处理）
+  // 7. 设置下载路径（确保 Puppeteer 下载路径，避免【另存为】弹窗后不好处理）
   const dist = path.join(__dirname, './dist');
   if (!fs.existsSync(dist)) {
     fs.mkdirSync(dist);
@@ -41,15 +44,15 @@ const downloadExcel = async() => {
     downloadPath: dist,
   });
 
-  // 7. 触发【下载】按钮的点击
+  // 8. 触发【下载】按钮的点击
   // @ts-ignore
   const downloadBtn = await page.$('div[data-key=Download]');
   downloadBtn?.click();
 
-  // 8. 睡眠 6.66s（确保资源下载到）
+  // 9. 睡眠 6.66s（确保资源下载到）
   await page.waitForTimeout(6666);
 
-  // 9. 关闭窗口
+  // 10. 关闭窗口
   await browser.close();
 }
 
@@ -93,8 +96,6 @@ const readExcel = async() => {
 // 步骤三：上传代码到 GitHub Page
 const uploadCode = async() => {
   // 1. 前往 GitHub Page 仓库
-  // const GPCatalog = path.join(process.cwd(), './LiangJunrong.github.io');
-  // console.error('GPCatalog: ', GPCatalog);
   await shell.cd(`LiangJunrong.github.io`);
 
   // 2. 执行修改命令
@@ -103,10 +104,28 @@ const uploadCode = async() => {
 
   // 3. 推送到线上仓库
   await shell.exec('git push');
+
+  // 4. 回退上一层
+  await shell.cd(`../`);
 };
 
 // 步骤四：设置定时器，定时上传代码
+const runCode = async() => {
+  console.log('Hello 2023~');
 
+  // scheduleJob: 秒 分 时 日 月 周几
+  schedule.scheduleJob('*/10 * * * *', async() => {
+    console.log('开始操作');
+    // 步骤一：下载 Excel
+    await downloadExcel();
+
+    // 步骤二：读取 Excel 并存储 JSON 数据
+    await readExcel();
+
+    // 步骤三：上传代码到 GitHub Page
+    await uploadCode();
+  });
+};
 
 const program = require('commander');
 program
@@ -114,17 +133,8 @@ program
   .description('2023 兔年祝福')
   .command('2023')
   .action(async() => {
-    // 步骤一：下载 Excel
-    // await downloadExcel();
-
-    // 步骤二：读取 Excel 并存储 JSON 数据
-    await readExcel();
-
-    // 步骤三：上传代码到 GitHub Page
-    await uploadCode();
-
     // 步骤四：设置定时器，定时上传代码
-
+    await runCode();
   });
 
 program.parse(process.argv);
