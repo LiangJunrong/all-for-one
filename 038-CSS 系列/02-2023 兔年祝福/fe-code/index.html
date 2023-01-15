@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>兔飞猛进</title>
+  <!-- 主体 -->
+  <link rel="stylesheet" href="./css/index.css">
+  <!-- 信封 -->
+  <link rel="stylesheet" href="./css/letter-image.css">
+  <!-- 提示 -->
+  <link rel="stylesheet" href="./css/tips.css">
+  <!-- 信 -->
+  <link rel="stylesheet" href="./css/letter-content.css">
+  <!-- 心 -->
+  <link rel="stylesheet" href="./css/heart.css">
+</head>
+<body>
+  <!-- 容器 - 一封信 -->
+  <div class="a-letter">
+    <!-- 信封 -->
+    <div class="letter-image">
+      <!-- 信封内容容器 -->
+      <div class="letter-image-mail">
+        <!-- 信封长方形底板 - 避免漏出底部白色背景 -->
+        <div class="letter-image-back-fold"></div>
+
+        <!-- 信件 -->
+        <div class="letter-image-content">
+          <!-- 信件头部小花边 -->
+          <div class="letter-image-content-border"></div>
+          <!-- 信件标题 -->
+          <div class="letter-image-content-title"></div>
+          <!-- 信件内容 -->
+          <div class="letter-image-content-context">点击打开信件</div>
+          <!-- 信件邮戳 -->
+          <div class="letter-image-content-stamp"></div>
+        </div>
+
+        <!-- 下面 3 个三角形构成一个长方形信封 -->
+        <!-- 上边三角形 -->
+        <div class="letter-image-top-fold"></div>
+        <!-- 左边三角形 -->
+        <div class="letter-image-left-fold"></div>
+        <!-- 右下三角形 -->
+        <div class="letter-image-body"></div>
+
+        <!-- 心 -->
+        <div class="heart"></div>
+      </div>
+      <!-- 阴影 -->
+      <div class="letter-image-shadow"></div>
+    </div>
+
+    <!-- 提示 -->
+    <p class="tips">
+      <span class="tips-info">
+        <!-- TODO: 1、提示 - 用户填充 -->
+      </span>
+      <span class="three-dots">
+        <span class="three-dots-element"></span>
+        <span class="three-dots-element"></span>
+        <span class="three-dots-element"></span>
+      </span>
+    </p>
+
+    <!-- 信 -->
+    <div class="letter-content">
+      <h1 class="letter-content-title">
+        <!-- TODO: 2、标题 - 用户填充 -->
+      </h1>
+      <div class="letter-content-main">
+        <!-- TODO: 2、信件内容 - 用户填充 -->
+      </div>
+      <div class="letter-content-footer">
+        <button class="letter-content-button">
+          <!-- TODO: 3、关闭按钮 - 用户填充 -->
+        </button>
+      </div>      
+    </div>
+  </div>
+
+  <script src="./js/index.js"></script>
+</body>
+</html>

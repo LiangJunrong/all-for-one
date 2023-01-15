@@ -1,0 +1,64 @@
+/* 信 */
+.letter-content {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  z-index: 0;
+  position: absolute;
+  top: calc(50% + 10px);
+  left: calc(50% + 10px);
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 16px;
+  border-radius: 16px;
+  border: 12px solid transparent;
+  background: linear-gradient(white,white) padding-box,repeating-linear-gradient(-45deg, deepskyblue 0, deepskyblue 12.5%, transparent 0, transparent 25%, orange 0, orange 37.5%, transparent 0, transparent 50%) 0/5em 5em;
+}
+/* 标题 */
+.letter-content-title {
+  height: 36px;
+  line-height: 30px;
+  padding-bottom: 6px;
+  font-size: 26px;
+  text-align: center;
+}
+
+/* 内容区 */
+.letter-content-main {
+  height: auto;
+  min-height: 200px;
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+}
+/* 下划线 */
+.letter-content h2,
+.letter-content p {
+  border-bottom: 1px solid #e0e0e0;
+}
+/* 优化滚动条样式 */
+.letter-content-main::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.letter-content-main::-webkit-scrollbar-thumb {
+  border: 2px solid #fff;
+  border-radius: 5px;
+  background: #d0d5db;
+}
+
+/* 底部 */
+.letter-content-footer {
+  height: 36px;
+  padding-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+}
+.letter-content-footer button {
+  border-radius: 8px;
+  background: rgb(255, 115, 0);
+  color: #fff;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}

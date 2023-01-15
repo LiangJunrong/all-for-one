@@ -1,0 +1,49 @@
+/* 参考文献 掘金 - KevinQ - 纯CSS制作跳动的心：https://juejin.cn/post/6999627144758296584 */
+/* 参考文献 博客园 - whys - CSS 画一个心：https://www.cnblogs.com/wyhlightstar/p/7729610.html */
+/* 实现思路 */
+/* 1、先实现一个 200*200 大小的正方形，并旋转 45° */
+/* 2、通过 ::before 绘制左边的半圆，设置 100*200 的矩形，并通过 border-radius 设置圆角，最后通过 position 定位 */
+/* 注意：这里的 ::before 和 ::after 会导致它们跟着主元素一起旋转 */
+/* 3、通过 ::after 绘制右边的半圆，设置 200*100 的矩形（反过来），并通过 border-radius 设置圆角，最后通过 position 定位 */
+.heart {
+  position: absolute;
+  left: calc(50% - 6px);
+  top: calc(50% + 18px);
+
+  width: 12px;
+  height: 12px;
+  background: rgb(255, 158, 2);
+  transform: rotate(45deg);
+  
+  /* 关键动画：让心跳动起来 */
+  /* animation: 动画名称 | 动画时间 | 动画是否反向播放 | 动画运行的次数 */
+  animation: heartjump 0.5s alternate infinite;
+
+  /* 层级 */
+  z-index: 4;
+}
+@keyframes heartjump {
+  0% {
+    transform: rotate(45deg) scale(0.8);
+  }
+  100% {
+    transform: rotate(45deg) scale(1);
+  }
+}
+.heart::before, .heart::after {
+  position: absolute;
+  content: '';
+  background: rgb(255, 158, 2);
+}
+.heart::before {
+  left: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 12px 0 0 12px;
+}
+.heart::after {
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 12px 12px 0 0;
+}

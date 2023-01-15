@@ -1,0 +1,143 @@
+/* 信封 - Opening Envelope */
+.letter-image {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
+/* 信封内容容器 */
+.letter-image-mail {
+  position: absolute;
+  width: 200px;
+  height: 150px;
+  transition: .4s;
+}
+/* 信封长方形底板 - 避免漏出底部白色背景 */
+.letter-image-back-fold {
+  position: absolute;
+  bottom: 0;
+  width: 200px;
+  height: 100px;
+  background: #cf4a43;
+  z-index: 2;
+}
+/* 上边三角形 */
+.letter-image-top-fold {
+  position: absolute;
+  top: 50px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 100px 0 100px;
+  border-color: #cf4a43 transparent transparent transparent;
+  transform-origin: 50% 0%;
+  transition: transform .4s .4s, z-index .2s .4s;
+  z-index: 4;
+}
+/* 左边三角形 */
+.letter-image-left-fold {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 0 50px 100px;
+  border-color: transparent transparent transparent #e15349;
+  z-index: 4;
+}
+/* 右下三角形 */
+.letter-image-body {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 100px 200px;
+  border-color: transparent transparent #e95f55 transparent;
+  z-index: 4;
+}
+/* 信件 */
+.letter-image-content {
+  left: 20px;
+  bottom: 0px;
+  position: absolute;
+  width: 160px;
+  height: 60px;
+  background: white;
+  z-index: 3;
+  overflow: hidden;
+  transition: .4s .2s;
+}
+/* 信件头部小花边 */
+.letter-image-content-border {
+  height: 10px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    -45deg,
+    #cb5a5e,
+    #cb5a5e 8px,
+    transparent 8px,
+    transparent 18px
+  );
+}
+/* 信件标题 */
+.letter-image-content-title {
+  margin-top: 10px;
+  margin-left: 5px;
+  height: 10px;
+  width: 40%;
+  background: #cb5a5e;
+}
+/* 信件内容 */
+.letter-image-content-context {
+  margin-top: 10px;
+  margin-left: 5px;
+  font-size: 14px;
+  padding: 4px;
+  width: 60%;
+  background: #cb5a5e;
+  color: #fff;
+}
+/* 信件邮戳 */
+.letter-image-content-stamp {
+  margin-top: 30px;
+  margin-left: 120px;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  background: #cb5a5e;
+  opacity: 0.3;
+}
+/* 阴影 */
+.letter-image-shadow {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  width: 400px;
+  height: 30px;
+  transition: .4s;
+  transform: translateX(-50%);
+  border-radius: 100%;
+  background: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.0), rgba(0,0,0,0.0));
+}
+
+/* 动画部分 - Start */
+/* step 1：信封往下沉 */
+.letter-image:hover .letter-image-mail {
+  transform: translateY(50px);
+}
+/* step 2：顶部三角形往上旋转 */
+.letter-image:hover .letter-image-mail .letter-image-top-fold {
+  transition: transform .4s, z-index .2s;
+  transform: rotateX(180deg);
+  z-index: 2;
+}
+/* step 3：信件高度变化 */
+.letter-image:hover .letter-image-mail .letter-image-content {
+  height: 180px;
+}
+/* step 4：阴影收缩 */
+.letter-image:hover .letter-image-shadow {
+  width: 250px;
+}
+/* 动画部分 - End */

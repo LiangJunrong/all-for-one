@@ -1,0 +1,58 @@
+
+/* 提示 - CSS Mouse Hover Transition Effect */
+.tips {
+  margin-top: 50px;
+  position: relative;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid deepskyblue;
+  color: #000;
+  transition: color .3s;
+  cursor: pointer;
+}
+.tips:hover {
+  color: #fff;
+}
+.tips:hover::before {
+  /* 动画 - 收起从左下开始 */
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.tips::before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/inset */
+  inset: 0 0 0 0;
+  background: deepskyblue;
+  border-radius: 8px;
+  z-index: -1;
+  
+  /* 动画 - 展开从右下开始 */
+  transition: transform 1s ease;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+}
+
+
+/* 三个点 - Three Dots Loading */
+.three-dots-element {
+  display: inline-block;
+  border-radius: 100%;
+  border: 1px solid deepskyblue;
+  margin: 1px;
+}
+.three-dots-element:nth-child(1) {
+  animation: three-dots-animation .6s ease-in-out alternate infinite;
+}
+.three-dots-element:nth-child(2) {
+  animation: three-dots-animation .6s ease-in-out alternate .2s infinite;
+}
+.three-dots-element:nth-child(3) {
+  animation: three-dots-animation .6s ease-in-out alternate .4s infinite;
+}
+@keyframes three-dots-animation {
+  100% {
+    transform: scale(2);
+  }
+}

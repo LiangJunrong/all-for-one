@@ -1,0 +1,21 @@
+/*------ 公共 Start ------*/
+html, body, h1, h2 {
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+/*------ 公共 End ------*/
+
+/*------ 信封 Start ------*/
+.a-letter {
+  width: calc(100vw - 17px);
+  height: calc(100vh - 17px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+/*------ 信封 End ------*/
