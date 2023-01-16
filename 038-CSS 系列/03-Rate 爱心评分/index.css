@@ -1,0 +1,59 @@
+/* 样式覆盖 */
+body, html { margin: 0; padding: 0; }
+body {
+  display: flex;
+  justify-content: center;
+}
+.container {
+  width: 220px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 2px #ccc;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+/* 关键样式 - Flex 布局 */
+.rate-container {
+  /* 这里 Flex 是关键 */
+  /* 如果用正常顺序的话，使用兄弟元素选择器 ~ */
+  /* 会导致 ❤ 的选择反过来 */
+  /* 所以需要 flex-direction 再翻转一遍 */
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+/* 去掉默认样式 */
+.rate {
+  position: relative;
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+/* 描绘爱心组件 */
+.rate::after {
+  position: absolute;
+  content: '❤';
+  font-size: 24px;
+}
+/* 元素 hover 效果 */
+.rate:hover,
+/* 元素 hover 后，兄弟元素跟着变 */
+/* 这里用 ~ 可以直接让后面所有元素跟着变 */
+/* 如果用 + 只会让后面一个元素跟着变 */
+.rate:hover ~ .rate,
+/* 元素选中后，变化同上 */
+.rate:checked,
+.rate:checked ~ .rate {
+  color: deeppink;
+}
+
+/* 评分文本居中显示 */
+.scoring {
+  display: flex;
+  justify-content: center;
+}
