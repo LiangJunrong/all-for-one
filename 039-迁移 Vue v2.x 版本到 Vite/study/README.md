@@ -12,10 +12,65 @@
 
 目标为：
 
-
+**步骤一**：创建项目
 
 * 安装 PNPM：`npm i pnpm -g`
-* 通过 PNPM 创建项目：`pnpm create vite`
+* 通过 PNPM 创建 Vite + Vue 项目：`pnpm create vite jsliang-plugin --template vue`
+  * 创建 Vite 项目：`pnpm create vite`
+  * 创建 Vite + Vue TypeScript 项目：`pnpm create vite jsliang-vue-plugin --template vue-ts`
+
+**步骤二**：初始化并运行
+
+* 安装 node_modules：`pnpm i`
+* 运行项目：`pnpm run dev`
+
+![图](./img/01.png)
+
+如图所示打开 `http://127.0.0.1:5173/` 即可，效果如图所示：
+
+![图](./img/02.png)
+
+如果需要外部可访问的话，需要加上 `--host`，即：
+
+> package.json
+
+```diff
+"scripts": {
+-  "dev": "vite",
++  "dev": "vite --host",
+  "build": "vite build",
+  "preview": "vite preview"
+},
+```
+
+**步骤三**：修改端口
+
+一般 Vite + Vue 提供的端口是 `5173`，像我这么靓的靓仔，肯定要 `1234`。
+
+那就直接修改 `vite.config.js` 吧：
+
+> vite.config.js
+
+> 为避免代码臃肿，第一次提的时候会写全代码，后面会写改动位置
+
+```diff
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [vue()],
++  server: {
++    port: 8888,
++  },
+})
+```
+
+**步骤四**：清场搞事
+
+该做的事我们都做了，下面我们删除 `src` 目录下所有无用代码，留下一个干净的 Vue 仓库：
+
+
 
 ## 迁移 - Vue CLI 方案
 
