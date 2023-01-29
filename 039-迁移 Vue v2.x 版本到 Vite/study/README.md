@@ -10,16 +10,14 @@
 
 下面我们将通过 Vite 进行多入口多出口的打包。
 
-目标为：
-
-**步骤一**：创建项目
+### 步骤一：创建项目
 
 * 安装 PNPM：`npm i pnpm -g`
 * 通过 PNPM 创建 Vite + Vue 项目：`pnpm create vite jsliang-plugin --template vue`
   * 创建 Vite 项目：`pnpm create vite`
   * 创建 Vite + Vue TypeScript 项目：`pnpm create vite jsliang-vue-plugin --template vue-ts`
 
-**步骤二**：初始化并运行
+### 步骤二：初始化并运行
 
 * 安装 node_modules：`pnpm i`
 * 运行项目：`pnpm run dev`
@@ -43,7 +41,7 @@
 },
 ```
 
-**步骤三**：修改端口
+### 步骤三：修改端口
 
 一般 Vite + Vue 提供的端口是 `5173`，像我这么靓的靓仔，肯定要 `1234`。
 
@@ -66,11 +64,189 @@ export default defineConfig({
 })
 ```
 
-**步骤四**：清场搞事
+### 步骤四：清场搞事
 
-该做的事我们都做了，下面我们删除 `src` 目录下所有无用代码，留下一个干净的 Vue 仓库：
+该做的事我们都做了，下面我们把 `src` 目录下所有代码删除，留下一个干净的 Vue 仓库。
 
+并依据下图创建文件夹及其文件
 
+![图](./img/03.png)
+
+我们代码的调用思路如上图所示。
+
+1. 先调用 `index.html`
+2. 再走 `a/entry.js` 或者 `b/entry.js`
+3. 接着走 `a/a.vue` 或者 `b/b.vue`
+4. 最后走 `utils/c.js` 这个公共模块
+
+### 步骤五：补充代码
+
+下面我们补充代码，使其最终展示如下：
+
+![图](./img/04.png)
+
+**首先**，我们修改 `index.html`，使其提供了一个类 `jsliang`，其中有一个方法 `addPlugin` 提供注入 HTML 的能力。
+
+> index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Vue</title>
+    <script>
+      class jsliang {
+        addPlugin({ pluginName, pluginObj }) {
+          const div = document.createElement('div');
+          div.classList.add('container');
+          div.innerHTML = `
+            <div>插件 ${pluginName} 加载成功：</div>
+          `;
+          document.body.appendChild(div);
+          document.body.appendChild(pluginObj());
+        }
+      }
+      window.jsliang = new jsliang();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/components/a/entry.js"></script>
+    <script type="module" src="/src/components/b/entry.js"></script>
+  </body>
+</html>
+```
+
+**然后**，我们这里引用了 2 个入口（因为是测试的，所以直接在 `pnpm run dev` 模式上测试）
+
+> src/components/a/entry.js
+
+```js
+// 这里引用了 a.vue 的代码
+import A from './a.vue';
+
+(function() {
+  console.log('jsliang 插件加载成功');
+
+  window.jsliang && window.jsliang.addPlugin && window.jsliang.addPlugin({
+    pluginName: 'jsliang',
+    pluginObj: A.methods.renderDOM,
+  });
+})();
+```
+
+> src/components/a/a.vue
+
+```vue
+<template>
+  <div id="container">
+    Hello jsliang
+  </div>
+</template>
+
+<script>
+// 引用公共模块 C
+import { c } from '../../utils/c';
+
+export default {
+  name: 'jsliang',
+  mounted() {
+    c();
+  },
+  methods: {
+    renderDOM: () => {
+      const div = document.createElement('div');
+      div.innerHTML = 'Hello jsliang';
+      return div;
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
+```
+
+> src/utils/c.js
+
+```js
+export const c = () => {
+  console.log('c 模块加载');
+};
+```
+
+同此，`src/components/b/entry.js` 和 `src/components/b/b.vue` 同上面代码。
+
+### 步骤六：库模式单入口单出口打包
+
+我们需要完成的最终目标是：**多入口多出口打包**。
+
+当前，我们执行 `pnpm run build`，产生的打包文件为：
+
+![图](./img/05.png)
+
+而实际上，我们需要的打包结构（打包成 JS 库）：
+
+```
+- dist
+  - A
+    - A.entry.xxx.js
+    - c.xxx.js
+  - B
+    - B.entry.xxx.js
+    - c.xxx.js
+```
+
+所以，就需要修改 `vite.config.js`：
+
+> vite.config.js
+
+```js
+export default defineConfig({
+  // ... 代码省略
+
+  // 打包模式
+  build: {
+    // 库模式
+    lib: {
+      // 设置入口文件
+      entry: 'src/components/a/entry.js',
+      // 打包后的包名称
+      name: 'A',
+      // 打包后的文件名
+      fileName: (format) => `A.entry.${format}.js`,
+    }
+  }
+});
+```
+
+**除此之外**，顺带删除项目下 `public` 目录（包含里面的 `vite.svg`，避免打包时参和进来。
+
+此时，我们再次执行 `pnpm run build`，打包内容如下：
+
+![图](./img/06.png)
+
+从而实现了单入口单出口打包。
+
+### 步骤六：库模式多入口多出口打包
+
+那么，如何进一步完善多入口多出口打包。
+
+```
+- dist
+  - A
+    - A.entry.xxx.js
+    - c.xxx.js
+  - B
+    - B.entry.xxx.js
+    - c.xxx.js
+```
+
+* [Vite Issue - Multiple entry points/output in library mode? #1736](https://github.com/vitejs/vite/discussions/1736)
 
 ## 迁移 - Vue CLI 方案
 
