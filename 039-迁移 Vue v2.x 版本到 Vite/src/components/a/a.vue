@@ -7,11 +7,13 @@
 <script>
 // 引用公共模块 C
 import { c } from '../../utils/c';
+import { d } from '../../utils/d';
 
 export default {
   name: 'jsliang',
   mounted() {
     c();
+    d();
   },
   methods: {
     renderDOM: () => {

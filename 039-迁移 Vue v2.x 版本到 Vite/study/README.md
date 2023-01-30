@@ -246,7 +246,58 @@ export default defineConfig({
     - c.xxx.js
 ```
 
-* [Vite Issue - Multiple entry points/output in library mode? #1736](https://github.com/vitejs/vite/discussions/1736)
+经过一番折腾，我们修改 Vite 配置如下：
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  // 加载插件
+  plugins: [vue()],
+  // 端口设置
+  server: {
+    port: 8888,
+  },
+  // 打包模式
+  build: {
+    // 库模式
+    lib: {
+      // 设置入口文件
+      entry: {
+        'A': 'src/components/a/entry.js',
+        'B': 'src/components/b/entry.js'
+      },
+      formats: ['es'],
+      // 打包后的文件名
+      fileName: (format, entryName) => `${entryName}/${entryName}.entry.${format}.js`,
+    },
+  }
+});
+```
+
+此时打包内容如下：
+
+![图](./img/07.png)
+
+无疑，这一个打包结果，距离我们差的有点多。
+
+主要问题，出在打包后，公共代码并没有分 2 个文件装到指定文件夹。
+
+关于这个问题，厚颜无耻在 Vite 的 Discussions 上请教大佬：
+
+* [vite lib multiple outputs](https://github.com/vitejs/vite/discussions/11843)
+
+还没得到回复。
+
+于是。
+
+咱就想。
+
+能不能自力更生，先把问题解决再说。
+
+
 
 ## 迁移 - Vue CLI 方案
 
@@ -255,6 +306,10 @@ export default defineConfig({
 ## 实例
 
 https://github.com/Yumiko-Liu/vue-flat-calendar
+
+## 参考文献
+
+* [Vite Issue - Multiple entry points/output in library mode? #1736](https://github.com/vitejs/vite/discussions/1736)
 
 ---
 

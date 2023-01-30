@@ -11,36 +11,16 @@ export default defineConfig({
   },
   // 打包模式
   build: {
-    // 库模式
-    // lib: {
-    //   // 设置入口文件
-    //   entry: {
-    //     'A': 'src/components/a/entry.js',
-    //     'B': 'src/components/b/entry.js'
-    //   },
-    //   formats: ['es'],
-    //   // 打包后的文件名
-    //   fileName: (format, entryName) => `${entryName}/${entryName}.entry.${format}.js`,
-    // },
     rollupOptions: {
       input: {
-        'A': 'src/components/a/entry.js',
-        'B': 'src/components/b/entry.js'
+        'A/A.entry': 'src/components/a/entry.js',
+        'B/B.entry': 'src/components/b/entry.js'
       },
-      output: [
-        {
-          dir: 'dist1',
-          // file: 'dist/a/a.js',
-        },
-        {
-          dir: 'dist2',
-          // file: 'dist/b/b.js',
-        }
-      ]
-      // output: {
-      //   dir: 'dist/',
-      // }
-    },
+      output: {
+        entryFileNames: '[name].js',
+        dir: 'dist',
+      }
+    }
   }
 });
 
