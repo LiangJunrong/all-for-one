@@ -5,10 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build",
+    "build": "node build.js",
+    "A": "vite build --mode A",
+    "B": "vite build --mode B",
     "preview": "vite preview"
   },
   "dependencies": {
+    "shelljs": "^0.8.5",
     "vue": "^3.2.45"
   },
   "devDependencies": {

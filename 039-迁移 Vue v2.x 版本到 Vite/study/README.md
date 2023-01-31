@@ -297,7 +297,67 @@ export default defineConfig({
 
 能不能自力更生，先把问题解决再说。
 
+**步骤一**：改造 `package.json`：
 
+> package.json
+
+```diff
+"scripts": {
+  "dev": "vite --host",
+- "build": "vite build",
++  "build": "node build.js",
++  "A": "vite build --mode A",
++  "B": "vite build --mode B",
+  "preview": "vite preview"
+},
+```
+
+**步骤二**：改造 `vite.config.js`，让它能根据模式单独打包
+
+> vite.config.js
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig(({ mode }) => ({
+  // 加载插件
+  plugins: [vue()],
+  // 端口设置
+  server: {
+    port: 8888,
+  },
+  // 打包模式
+  build: {
+    outDir: `dist/${mode}`,
+    lib: {
+      entry: {
+        [mode]: mode === 'A'
+          ? 'src/components/a/entry.js'
+          : 'src/components/b/entry.js'
+      },
+      formats: ['es'],
+      fileName: (format, entryName) => `${entryName}.entry.${format}.js`,
+    },
+  }
+}));
+```
+
+**第三步**：在项目文件夹上，新增 `build.js`，配合 `package.json` 中的 `pnpm run build` 指令：
+
+> build.js
+
+```js
+import shell from 'shelljs';
+
+shell.exec('pnpm run A');
+shell.exec('pnpm run B');
+```
+
+这样，我们就搞定了单独打包：
+
+![图](./img/08.png)
 
 ## 迁移 - Vue CLI 方案
 

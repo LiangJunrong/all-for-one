@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   // 加载插件
   plugins: [vue()],
   // 端口设置
@@ -11,16 +11,15 @@ export default defineConfig({
   },
   // 打包模式
   build: {
-    rollupOptions: {
-      input: {
-        'A/A.entry': 'src/components/a/entry.js',
-        'B/B.entry': 'src/components/b/entry.js'
+    outDir: `dist/${mode}`,
+    lib: {
+      entry: {
+        [mode]: mode === 'A'
+          ? 'src/components/a/entry.js'
+          : 'src/components/b/entry.js'
       },
-      output: {
-        entryFileNames: '[name].js',
-        dir: 'dist',
-      }
-    }
+      formats: ['es'],
+      fileName: (format, entryName) => `${entryName}.entry.${format}.js`,
+    },
   }
-});
-
+}));
