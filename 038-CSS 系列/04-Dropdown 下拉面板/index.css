@@ -99,17 +99,7 @@ div:hover::-webkit-scrollbar-thumb {
   border-radius: 8px;
 }
 
-/* 分割线 */
-.menu-divider {
-  width: calc(100% - 24px);
-  height: 1px;
-  margin: 6px 12px;
-  display: inline-block;
-  background-color: #e2e6ed;
-  flex-shrink: 0;
-}
-
-/* 属性设置 */
+/* 按钮图标区域 */
 .property-setting {
   display: flex;
   flex-wrap: wrap;
@@ -125,7 +115,17 @@ div:hover::-webkit-scrollbar-thumb {
   height: 24px;
 }
 
-/* 新增功能 */
+/* 分割线 */
+.menu-divider {
+  width: calc(100% - 24px);
+  height: 1px;
+  margin: 6px 12px;
+  display: inline-block;
+  background-color: #e2e6ed;
+  flex-shrink: 0;
+}
+
+/* 滚动内容区域 */
 .function-container {
   display: flex;
   flex-direction: column;
