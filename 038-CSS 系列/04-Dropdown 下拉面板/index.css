@@ -1,0 +1,170 @@
+/* ------ 公共样式 Start ----- */
+/* TIPS: 解决 img 标签被其他标签嵌套后，底部多了 4px 的问题 */
+img { display: block; }
+
+/* TIPS: 解决 div 计算样式的时候，无法稳定宽高问题 */
+div { box-sizing: border-box; }
+
+/* TIPS: 优化滚动条样式 */
+div::-webkit-scrollbar {
+  width: 0px;
+}
+div:hover::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+div:hover::-webkit-scrollbar-thumb {
+  border: 2px solid #fff;
+  border-radius: 5px;
+  background: #d0d5db;
+}
+/* ------ 公共样式 End ----- */
+
+/* ------ 1、「下拉菜单」 Start ----- */
+.dropdown-btn {
+  position: relative;
+  padding: 12px;
+  width: 130px;
+}
+
+/* ------ 2、「下拉菜单」按钮区域 Start ----- */
+.btn-wrap {
+  position: relative;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 106px;
+  height: 32px;
+
+  border-radius: 6px;
+}
+.dropdown-btn:hover .dropdown-panel {
+  display: inline-block;
+}
+.dropdown-btn:hover .right-btn:after {
+  transform: rotate(-180deg);
+}
+.base-btn {
+  text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+  color: #fff;
+  background: #1890ff;
+  box-shadow: 0 2px #0000000b;
+  border-color: #1890ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.left-btn {
+  width: 75px;
+  height: 32px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.right-btn {
+  margin-left: 1px;
+  width: 32px;
+  height: 32px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.right-btn::after {
+  position: absolute;
+  top: calc(50% - 10px / 2);
+  right: 10px;
+
+  content: "";
+  width: 0;
+  height: 0;
+
+  border-color: #fff transparent transparent;
+  border-style: solid solid none;
+  border-width: 10px 6px 0;
+
+  transition: transform .3s;
+}
+/* ------ 2、「下拉菜单」按钮区域 End ----- */
+
+/* ------ 3、「下拉菜单」菜单面板 Start ------ */
+/* 主面板 */
+.dropdown-panel {
+  display: none;
+  position: absolute;
+  top: 48px;
+  width: 220px;
+  background: #fff;
+  box-shadow: 0 2px 12px 0 rgb(56 56 56 / 20%);
+  border: 1px solid #e2e6ed;
+  border-radius: 8px;
+}
+
+/* 分割线 */
+.menu-divider {
+  width: calc(100% - 24px);
+  height: 1px;
+  margin: 6px 12px;
+  display: inline-block;
+  background-color: #e2e6ed;
+  flex-shrink: 0;
+}
+
+/* 属性设置 */
+.property-setting {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px;
+}
+.property {
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.property-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* 新增功能 */
+.function-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px 12px 12px;
+  height: 300px;
+  /* 向下兼容 */
+  overflow-y: scroll;
+  overflow-y: overlay;
+}
+.menu-description {
+  padding: 0 8px;
+  margin: 4px 0;
+  font-size: 16px;
+  line-height: 40px;
+  color: #aca5a5;
+}
+.menu-description:first-child {
+  margin-top: unset;
+}
+.function-item-a,
+.function-item-b {
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+}
+.function-item-description {
+  margin-left: 8px;
+  line-height: 24px;
+}
+
+/* 选项 hover 效果 */
+.property:hover,
+.function-item-a:hover,
+.function-item-b:hover {
+  background: deepskyblue;
+  color: #fff;
+}
+/* ------ 3、「下拉菜单」菜单面板 End ------ */
+
+/* ------ 1、「下拉菜单」End ----- */
