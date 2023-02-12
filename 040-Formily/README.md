@@ -21,11 +21,43 @@ Formily
 
 * 安装内核库：`pnpm i @formily/core -S`
 * 安装 React 桥接库：`pnpm i @formily/react -S`
-* 安装 UI 组件库：`pnpm i antd moment @formily/antd -S`
+* 【可选】安装 UI 组件库：`pnpm i antd moment @formily/antd -S`
 
 因为 Formily 需要 Less，所以还需要补充安装：
 
 * 安装 Less：`pnpm i less`
+
+## 初始化项目
+
+将 `src` 目录下的内容清空，并修改 `src/index.js` 里面的内容如下；
+
+> src/index.js
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const App = () => {
+  return (
+    <div className="App">
+      123
+    </div>
+  );
+}
+
+// 最终渲染节点
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+```
+
+React 构建的时候，会打包 `src/index.js` 的内容，最终挂载到 `index.html` 的 `#root` 节点上。
+
+## 
 
 ## Vite - 一生之敌
 
@@ -162,6 +194,9 @@ export default defineConfig({
 * [React + vite 引入 antd 并按需引入](https://blog.51cto.com/u_15709205/5447820)
 * [[plugin:vite:css] '~antd/es/style/themes/index.less' wasn't found.🐛[BUG] #4880](https://github.com/ant-design/pro-components/issues/4880)
 * [单测出现问题：Cannot find module 'antd/es/theme/style' from 'node_modules/@ant-design/pro-provider/es/index.js' ](https://github.com/ant-design/pro-components/issues/6104)
+* [略微探究 React StrictMode 两次渲染的问题](https://juejin.cn/post/7009189602506309640)
+* [前端 DSL 实践指南—— 内部 DSL](https://ost.51cto.com/posts/3409)
+* [JSON Schema](https://json-schema.org/)
 
 ---
 
