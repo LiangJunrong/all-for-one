@@ -4,6 +4,25 @@ Formily
 > Create by **jsliang** on **2023-02-09 22:54:29**  
 > Recently revised in **2023-02-09 22:54:29**
 
+【劝退指南】
+
+当前 **jsliang** 对于 Formily 的学习路径是这样的：
+
+* [Formily 主仓库](https://formilyjs.org/zh-CN)
+* [Formily Core Library](https://core.formilyjs.org/zh-CN)
+* [Formily React Library](https://react.formilyjs.org/zh-CN)
+* [Formily Antd Library](https://antd.formilyjs.org/zh-CN)
+
+**首先**，如果你和我一样，一开始就抱有某种目的，想实现自定义形式的组件之类的，那么建议你，一定要有耐心，细心地接受各种文档。
+
+**然后**，上面 4 个仓库的学习方式，其实就是：
+
+1. 先看「Formily 主仓库」，先了解一些概念
+2. 然后逐个看 Core 和 React/Vue 能提供什么功能，它是怎样的一种形式
+3. 复杂自定义组件的设计，就要看看 Formily 对于对接 Antd 是怎么操作的
+
+**最后**，祝你工作顺利，编码愉快。
+
 ## 创建项目
 
 **因为**，使用 Create React APP，会比较慢，当前比较好的解决方式，是注册淘宝源，但是快不到哪里。
@@ -57,7 +76,87 @@ root.render(
 
 React 构建的时候，会打包 `src/index.js` 的内容，最终挂载到 `index.html` 的 `#root` 节点上。
 
-## 
+## 初次接入 Formily
+
+我们稍微修改下 `src/index.js`，让它引入一个新组件 `Formily.js`
+
+> src/index.js
+
+```diff
+const App = () => {
+  return (
+    <div className="App">
+-      123
++      <Formily />
+    </div>
+  );
+};
+```
+
+> src/Formily.js
+
+```js
+import React from 'react';
+import { createForm } from '@formily/core';
+import { FormProvider, createSchemaField } from '@formily/react';
+
+// 自定义组件，渲染了一个普通的 Input
+const Input = (props) => {
+  const { onChange, placeholder, value = '' } = props;
+  console.log('props:', props);
+  return (
+    <input onChange={onChange} placeholder={placeholder} value={value} />
+  );
+};
+
+const form = createForm();
+
+const SchemaField = createSchemaField({
+  components: {
+    Input,
+  },
+});
+
+const schema = {
+  type: 'object',
+  properties: {
+    input: {
+      type: 'string',
+      // 自定义组件
+      'x-component': 'Input',
+      // 自定义参数
+      'x-component-props': {
+        placeholder: '请输入',
+        required: true,
+      },
+    },
+  },
+};
+
+export default () => (
+  <FormProvider form={form}>
+    <SchemaField schema={schema} />
+  </FormProvider>
+)
+
+```
+
+这里解释下里面的关键词：
+
+* `createForm`：用来创建表单核心领域模型，它是作为 MVVM 设计模式的标准 ViewModel
+* `FormProvider（createSchemaField）`：组件是作为视图层桥接表单模型的入口，它只有一个参数，就是接收 `createForm` 创建出来的 Form 实例，并将 Form 实例以上下文形式传递到子组件中
+
+此时界面渲染如下所示：
+
+![图](./img/f-01.png)
+
+## 实现自定义组件
+
+实现业务自定义组件主要是使用` @formily/react` 中的 `Hooks API` 与 `observer API`。
+
+接入现成组件库的话，我们主要使用 `connect/mapProps/mapReadPretty` API。
+
+如果想要实现一些更复杂的自定义组件，我们强烈推荐直接看 `@formily/antd` 或 `@formily/next` 的源码。
 
 ## Vite - 一生之敌
 
@@ -189,6 +288,47 @@ export default defineConfig({
 });
 ```
 
+## 报错及其修复
+
+### Warning: A component is changing an uncontrolled input to be controlled.
+
+报错内容：
+
+```
+Warning: A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component.
+```
+
+修复方式：
+
+这是因为设置 `<input>` 的时候，如果你没有设置默认的 `value`。
+
+那么第一次传递的参数，是 `<input value=undefined />`，此时 React 会认为是非受控组件，从而导致报错。
+
+这种问题只需要初始化它的值即可。
+
+> Input
+
+```js
+const Input = (props) => {
+  const {
+    disabled, onBlur, onChange, onFocus, placeholder,
+    // 注意设置默认值
+    value = '',
+  } = props;
+  console.log('props:', props);
+  return (
+    <input
+      disabled={disabled}
+      onBlur={onBlur}
+      onChange={onChange}
+      onFocus={onFocus}
+      placeholder={placeholder}
+      value={value}
+    />
+  );
+};
+```
+
 ## 参考文献
 
 * [React + vite 引入 antd 并按需引入](https://blog.51cto.com/u_15709205/5447820)
@@ -197,6 +337,9 @@ export default defineConfig({
 * [略微探究 React StrictMode 两次渲染的问题](https://juejin.cn/post/7009189602506309640)
 * [前端 DSL 实践指南—— 内部 DSL](https://ost.51cto.com/posts/3409)
 * [JSON Schema](https://json-schema.org/)
+* [关于react组件报错“A component is changing an uncontrolled input of type text to be controlled”](https://www.jianshu.com/p/796a9d0da8e9)
+* [Formily - React](https://react.formilyjs.org/zh-CN/guide/concept)
+* [Formily 2.0 更新概要](https://github.com/alibaba/formily/discussions/1087)
 
 ---
 

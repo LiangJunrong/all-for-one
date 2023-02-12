@@ -8,7 +8,7 @@ const App = () => {
       <Formily />
     </div>
   );
-}
+};
 
 // 最终渲染节点
 const root = ReactDOM.createRoot(document.getElementById('root'));
