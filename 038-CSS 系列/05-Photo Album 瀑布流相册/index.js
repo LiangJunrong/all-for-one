@@ -140,9 +140,7 @@ window.onload = () => {
     // 遍历并将 <img/> 添加到每一列上
     imgInfo.forEach((item, index) => {
       const surplus = index % limit;
-      if (surplus < limit) {
-        htmlString[surplus] += getInnerHTML(item);
-      }
+      htmlString[surplus] += getInnerHTML(item);
     });
     // 结尾设置 String
     for (let i = 0; i < limit; i++) {
